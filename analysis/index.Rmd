@@ -10,8 +10,6 @@ output:
     number_sections: false  ## if you want number sections at each table header
     theme: yeti # lovely fonts and colours
     code_folding: hide # awesome buttons to show/hide the code
-editor_options: 
-  chunk_output_type: inline
 ---
 
 ```{r setup, include=FALSE}
