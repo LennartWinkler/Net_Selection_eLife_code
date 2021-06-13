@@ -1,7 +1,7 @@
-name: "Net_Selection_eLife_code"
+name: Net_Selection_eLife_code
 output_dir: ../docs
 navbar:
-  title: "Net_Selection_eLife_code"
+  title: Net_Selection_eLife_code
   left:
   - text: Home
     href: index.html
@@ -9,6 +9,10 @@ navbar:
     href: about.html
   - text: License
     href: license.html
+  right:
+  - icon: fa-github
+    text: Source code
+    href: https://github.com/LennartWinkler/Net_Selection_eLife_code
 output:
   workflowr::wflow_html:
     toc: yes
