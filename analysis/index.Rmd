@@ -3,13 +3,15 @@ title: 'Stronger net selection on males across animals'
 author: "Lennart Winkler^1^, Maria Moiron^2^, Edward H. Morrow^3^ and Tim Janicke^1,2^ <br></br>  ^1^Applied Zoology, Technical University Dresden <br> ^2^Centre d’Écologie Fonctionnelle et Évolutive, UMR 5175, CNRS, Université de Montpellier</br> ^3^Department for Environmental and Life Sciences, Karlstad University"
 subtitle: Supplementary material reporting R code
 output:
-  html_document:
+  html_notebook:
     toc: true # table of content true
     toc_float: true # make 
     depth: 3  # upto three depths of headings (specified by #, ## and ###)
     number_sections: false  ## if you want number sections at each table header
     theme: yeti # lovely fonts and colours
     code_folding: hide # awesome buttons to show/hide the code
+editor_options: 
+  chunk_output_type: inline
 ---
 
 ```{r setup, include=FALSE}
