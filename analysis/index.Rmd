@@ -1,11 +1,142 @@
 ---
-title: "Home"
-site: workflowr::wflow_site
+title: 'Stronger net selection on males across animals'
+author: "Lennart Winkler^1^, Maria Moiron^2^, Edward H. Morrow^3^ and Tim Janicke^1,2^ <br></br>  ^1^Applied Zoology, Technical University Dresden <br> ^2^Centre d’Écologie Fonctionnelle et Évolutive, UMR 5175, CNRS, Université de Montpellier</br> ^3^Department for Environmental and Life Sciences, Karlstad University"
+subtitle: Supplementary material reporting R code
 output:
-  workflowr::wflow_html:
-    toc: false
-editor_options:
-  chunk_output_type: console
+  html_document:
+    toc: true # table of content true
+    toc_float: true # make 
+    depth: 3  # upto three depths of headings (specified by #, ## and ###)
+    number_sections: false  ## if you want number sections at each table header
+    theme: yeti # lovely fonts and colours
+    code_folding: hide # awesome buttons to show/hide the code
 ---
 
-Welcome to my research website.
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Supplementary material reporting R code for the manuscript 'Stronger net selection on males across animals'.
+
+## Phenotypic gambit
+
+Statistical analyses were carried out in two steps. First, we examined the key assumption of the ‘phenotypic gambit’ by testing whether estimates of phenotypic variance predict the estimated genetic variance. For this we computed the Pearson correlation coefficient r, testing the relationship between CVP and CVG for both sexes and the two fitness components separately. In addition, we tested whether the sex bias in CVP translates into a sex bias in CVG by correlating the coefficient of variation ratio lnCVR (Nakagawa et al. 2015), which refers to the ln-transformed ratio of male CV to female CV, with positive values indicating a male bias. The analyses on the phenotypic gambit were motivated from a methodological perspective and we did not expect that inter-specific variation in the difference between CVP and CVG can be explained by a shared phylogenetic history. However, for completeness, we also ran correlations on phylogenetic independent contrasts (PICs; computed using the ape R-package (version 5.4.1) in R (Paradis & Schliep 2019)) to test whether our findings were robust when accounting for potential phylogenetic non-independence. We report Pearson’s correlation coefficients r for normally distributed data and Spearman’s rho if assumptions of normality were violated.
+
+### Load and prepare data
+
+```{r, warning=FALSE, message=FALSE, results='hide'}
+# load packages
+rm(list = ls())
+library(ape);library(metafor); library(Matrix); library(MASS); library(pwr);library(multcomp);library(psych);library(outliers)
+library(matrixcalc)
+library(PerformanceAnalytics)
+library(tidyr)
+library(MCMCglmm)
+library(matrixcalc)
+library(dplyr) 
+library(stargazer)
+library(data.table)
+library(ggplot2)
+```
+
+```{r}
+# load and organize data
+Data <- read.csv("./data/META_SexSpecGenVar_Data_v23.csv", sep=",", header=TRUE,fileEncoding="UTF-8-BOM")
+theTree <- read.tree("./data/META_SexSpecGenVar_Pylogeny_v05_NEWICK.txt")
+
+stacked_gen_Data <- gather(Data, key = "Sex",value = "genCV", genCV_male, genCV_female)
+stacked_phen_Data <- gather(Data, key = "Sex",value = "phenCV", phenCV_male, phenCV_female)
+```
+
+
+```{r}
+# Subsetting dataset
+RS_gen_metaData<-subset(stacked_gen_Data, FitnessCat == "RS")
+LS_gen_metaData<-subset(stacked_gen_Data, FitnessCat == "LS")
+
+RS_phen_metaData<-subset(stacked_phen_Data, FitnessCat == "RS")
+LS_phen_metaData<-subset(stacked_phen_Data, FitnessCat == "LS")
+```
+
+### MCMC APPROACH - Reproductive Success
+```{r,results='hide'}
+# Prune phylogenetic tree to data subset
+RS_gen_metaData$animal <- factor(RS_gen_metaData$animal)
+RS_Species_Data <- unique(RS_gen_metaData$animal)
+summary(RS_Species_Data)
+RS_theTree<-drop.tip(theTree, theTree$tip.label[-na.omit(match(RS_Species_Data, theTree$tip.label))])
+plot(RS_theTree)
+
+#Check phylogenetic tree
+sort(RS_theTree$tip.label) == sort(unique(RS_gen_metaData$animal)) # check if tip names correspond to data names
+is.ultrametric(RS_theTree) # check if BL are aligned contemporaneously
+isSymmetric(vcv(RS_theTree, corr=TRUE)) # check symmetry of phylogenetic correlation matrix
+rawC <- vcv(RS_theTree, corr=TRUE)
+is.positive.definite(rawC) # if FALSE will have to force symmetry
+forcedC <- as.matrix(forceSymmetric(vcv(RS_theTree, corr=TRUE)))
+is.positive.definite(forcedC)
+comparedC <- rawC == forcedC
+rawC[cbind(which(comparedC!=TRUE, arr.ind = T))] - forcedC[cbind(which(comparedC!=TRUE, arr.ind = T))] < 1e-5
+```
+
+```{r,results='hide'}
+# Run MCMC models for reproductive success
+pr<-list(R=list(V=1,nu=0.002), G=list(G1=list(V=1,nu=0.002),
+                                      G2=list(V=1,nu=0.002),
+                                      G3=list(V=1,nu=0.002)))
+
+
+BURNIN = 1000000
+NITT   = 11000000
+THIN   = 500
+
+
+BURNIN = 100000
+NITT   = 1100000
+THIN   = 500
+
+
+names(RS_phen_metaData)
+RS_phen_metaData$Index <- as.factor(RS_phen_metaData$Index)
+RS_phen_metaData$Study_ID <- as.factor(RS_phen_metaData$Study_ID)
+
+
+RS_phen_MCMC_model <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
+                          pedigree=RS_theTree,
+                          prior=pr,
+                          data=RS_phen_metaData,
+                          pr = TRUE,
+                          burnin = BURNIN,
+                          nitt=NITT,
+                          thin=THIN)
+```
+
+```{r}
+# Model summaries for MCMC models on reproductive success
+
+# Model output: phenotypic variance in reproductive success
+summary(RS_phen_MCMC_model)
+#summary(RS_phen_MatSyst_MCMC_model)
+#summary(RS_phen_StudyType_MCMC_model)
+#summary(RS_phen_SSD_MCMC_model)
+#summary(RS_phen_SexualDimorphism_MCMC_model)
+#summary(RS_phen_BreedingDesign_MCMC_model)
+
+#summary(RS_gen_MCMC_model)
+#summary(RS_gen_MatSyst_MCMC_model)
+#summary(RS_gen_StudyType_MCMC_model)
+#summary(RS_gen_SSD_MCMC_model)
+#summary(RS_gen_SexualDimorphism_MCMC_model)
+#summary(RS_gen_BreedingDesign_MCMC_model)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
