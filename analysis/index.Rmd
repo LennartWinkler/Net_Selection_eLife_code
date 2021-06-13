@@ -2,20 +2,8 @@
 title: 'Stronger net selection on males across animals'
 author: "Lennart Winkler^1^, Maria Moiron^2^, Edward H. Morrow^3^ and Tim Janicke^1,2^ <br></br>  ^1^Applied Zoology, Technical University Dresden <br> ^2^Centre d’Écologie Fonctionnelle et Évolutive, UMR 5175, CNRS, Université de Montpellier</br> ^3^Department for Environmental and Life Sciences, Karlstad University"
 subtitle: Supplementary material reporting R code
-output:
-  html_notebook:
-    toc: true # table of content true
-    toc_float: true # make 
-    depth: 3  # upto three depths of headings (specified by #, ## and ###)
-    number_sections: false  ## if you want number sections at each table header
-    theme: yeti # lovely fonts and colours
-    code_folding: hide # awesome buttons to show/hide the code
+site: workflowr::wflow_site
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 
 Supplementary material reporting R code for the manuscript 'Stronger net selection on males across animals'.
 
@@ -42,8 +30,8 @@ library(ggplot2)
 
 ```{r}
 # load and organize data
-Data <- read.csv("./data/META_SexSpecGenVar_Data_v23.csv", sep=",", header=TRUE,fileEncoding="UTF-8-BOM")
-theTree <- read.tree("./data/META_SexSpecGenVar_Pylogeny_v05_NEWICK.txt")
+Data <- read.csv("C:/Users/lenna/Desktop/Documents/PhD/2020_META SexSpecGenVar/eLife/Net_Selection_eLife_code/data/META_SexSpecGenVar_Data_v23.csv", sep=",", header=TRUE,fileEncoding="UTF-8-BOM")
+theTree <- read.tree("C:/Users/lenna/Desktop/Documents/PhD/2020_META SexSpecGenVar/eLife/Net_Selection_eLife_code/data/META_SexSpecGenVar_Pylogeny_v05_NEWICK.txt")
 
 stacked_gen_Data <- gather(Data, key = "Sex",value = "genCV", genCV_male, genCV_female)
 stacked_phen_Data <- gather(Data, key = "Sex",value = "phenCV", phenCV_male, phenCV_female)
