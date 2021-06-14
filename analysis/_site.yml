@@ -1,21 +1,18 @@
+---
 name: Net_Selection_eLife_code
 output_dir: ../docs
 navbar:
-  title: Net_Selection_eLife_code
+  title: "Stronger net selection on males across animals"
   left:
-  - text: Home
+  - text: Analyses
     href: index.html
-  - text: About
-    href: about.html
-  - text: License
-    href: license.html
-  right:
-  - icon: fa-github
-    text: Source code
-    href: https://github.com/LennartWinkler/Net_Selection_eLife_code
 output:
   workflowr::wflow_html:
-    toc: yes
-    toc_float: yes
-    theme: cosmo
-    highlight: textmate
+    toc: true
+    toc_float: true
+    depth: 3
+    number_sections: false
+    theme: yeti
+    highlight: tango
+    code_folding: hide
+---

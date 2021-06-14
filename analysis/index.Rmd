@@ -3,6 +3,8 @@ title: 'Stronger net selection on males across animals'
 author: "Lennart Winkler^1^, Maria Moiron^2^, Edward H. Morrow^3^ and Tim Janicke^1,2^ <br></br>  ^1^Applied Zoology, Technical University Dresden <br> ^2^Centre d’Écologie Fonctionnelle et Évolutive, UMR 5175, CNRS, Université de Montpellier</br> ^3^Department for Environmental and Life Sciences, Karlstad University"
 subtitle: Supplementary material reporting R code
 site: workflowr::wflow_site
+output:
+  workflowr::wflow_html
 ---
 
 Supplementary material reporting R code for the manuscript 'Stronger net selection on males across animals'.
@@ -27,7 +29,7 @@ library(stargazer)
 library(data.table)
 library(ggplot2)
 ```
-
+First, the code to load and organize the data.
 ```{r}
 # load and organize data
 Data <- read.csv("C:/Users/lenna/Desktop/Documents/PhD/2020_META SexSpecGenVar/eLife/Net_Selection_eLife_code/data/META_SexSpecGenVar_Data_v23.csv", sep=",", header=TRUE,fileEncoding="UTF-8-BOM")
@@ -37,7 +39,7 @@ stacked_gen_Data <- gather(Data, key = "Sex",value = "genCV", genCV_male, genCV_
 stacked_phen_Data <- gather(Data, key = "Sex",value = "phenCV", phenCV_male, phenCV_female)
 ```
 
-
+Subsetting the dataset into different fitness categories.
 ```{r}
 # Subsetting dataset
 RS_gen_metaData<-subset(stacked_gen_Data, FitnessCat == "RS")
@@ -48,6 +50,7 @@ LS_phen_metaData<-subset(stacked_phen_Data, FitnessCat == "LS")
 ```
 
 ### MCMC APPROACH - Reproductive Success
+
 ```{r,results='hide'}
 # Prune phylogenetic tree to data subset
 RS_gen_metaData$animal <- factor(RS_gen_metaData$animal)
