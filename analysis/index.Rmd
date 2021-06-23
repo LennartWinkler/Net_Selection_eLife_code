@@ -17,6 +17,43 @@ Statistical analyses were carried out in two steps. First, we examined the key a
 
 ```{r, warning=FALSE, message=FALSE, results='hide'}
 # load packages
+
+```
+First, the code to load and organize the data.
+```{r}
+
+```
+
+Subsetting the dataset into different fitness categories.
+```{r}
+
+```
+
+### MCMC APPROACH - Reproductive Success
+
+```{r,results='hide'}
+
+```
+
+```{r,results='hide'}
+
+```
+
+```{r}
+
+```
+
+## Stronger net selection on males (PGLMMs)
+
+In this second part of the anlysis, we tested the hypothesis that net selection is stronger on males by testing for a male bias in CVP and CVG. Specifically, we ran Phylogenetic General Linear Mixed-Effects Models (PGLMMs) with CVP or CVG as the response variable, and sex as a fixed effect. To account for the paired data structure, we added an observation identifier as a random effect. Moreover, all models included a study identifier and the phylogeny (transformed into a correlation matrix) as random effects to account for statistical non-independence arising from shared study design or phylogenetic history, respectively. Note that the latter also accounts for the non-independence of estimates obtained from the same species as some studies estimated genetic variances from distinct field populations (Fox et al. 2004) or different experimental treatments under laboratory conditions such as food stress (Holman & Jacomb 2017) and temperature stress (Berger et al. 2014). In an additional series of PGLMMs we tested whether our proxy of sexual selection explained inter-specific variation in the sex-differences of CVP or CVG by adding mating system and its interaction with sex as fixed effects to the models. Finally, given that primary studies varied in the empirical approach used to quantify CVP and CVG, we also used PGLMMs to test whether study type (23 field studies versus 32 laboratory studies) represented a methodological determinant of the observed sex-differences in CVP and CVG.
+All PGLMMs were ran with the MCMCglmm R-package (version 2.2.9) (Hadfield 2010), using uninformative priors (V = 1, nu = 0.002) and an effective sample size of 20000 (number of iterations = 11000000, burn-in = 1000000, thinning interval = 500). We computed the proportion of variance explained by fixed factors (‘marginal R2’) (Nakagawa & Schielzeth 2013). In addition, we quantified the phylogenetic signal as the phylogenetic heritability H2 (i.e., proportional variance in CVP or CVG explained by species identity), which is equivalent to Pagel’s 𝜆 (de Villemereuil & Nakagawa 2014).
+In a previous study testing for sex-specific phenotypic variances in reproductive success (Janicke et al. 2016), we ran formal meta-analyses using lnCVR as the tested effect size (Nakagawa et al. 2015). This is potentially a more powerful approach for comparing phenotypic variances but rendered unsuitable when comparing genetic variances. This is because the computation of the sampling variance of lnCVR is a function of the sample size of the sampled population and the point estimate of lnCVR (Nakagawa et al. 2015). However, genetic variances are estimates from statistical models and notorious for being estimated with low precision (i.e. have large confidence intervals). Therefore, using a meta-analytic approach for genetic variances using lnCVR as an effect size leads to overconfident estimation of the global effect size and is therefore likely to result in type-II-errors. However, to allow comparison with the previous meta-analysis, we report the outcome of phylogenetic meta-analyses on phenotypic variances using lnCVR in the Supplementary Material (Table S2), which largely reflects the results on the point estimates of CVP from PGLMMs.
+
+### Load and prepare data
+
+We first load all neccessary packages.
+```{r, warning=FALSE, message=FALSE, results='hide'}
+# load packages
 rm(list = ls())
 library(ape);library(metafor); library(Matrix); library(MASS); library(pwr);library(multcomp);library(psych);library(outliers)
 library(matrixcalc)
@@ -28,20 +65,23 @@ library(dplyr)
 library(stargazer)
 library(data.table)
 library(ggplot2)
+library(readr)
 ```
-First, the code to load and organize the data.
-```{r}
-# load and organize data
-Data <- read.csv("C:/Users/lenna/Desktop/Documents/PhD/2020_META SexSpecGenVar/eLife/Net_Selection_eLife_code/data/META_SexSpecGenVar_Data_v23.csv", sep=",", header=TRUE,fileEncoding="UTF-8-BOM")
-theTree <- read.tree("C:/Users/lenna/Desktop/Documents/PhD/2020_META SexSpecGenVar/eLife/Net_Selection_eLife_code/data/META_SexSpecGenVar_Pylogeny_v05_NEWICK.txt")
+
+We then load the data set ('Data') and the phylogenetic tree ('theTree').  
+```{r, results='hide'}
+# load data
+Data <- read.csv("./data/META_SexSpecGenVar_Data_v23.csv", sep=",", header=TRUE,fileEncoding="UTF-8-BOM")
+theTree <- read.tree("./data/META_SexSpecGenVar_Pylogeny_v05_NEWICK.txt")
+```
+
+Finally, we subset our data set for the analyses into the fitness categories ('FitnessCat') lifespan ('LS') and reproductive success ('RS').
+```{r, results='hide'}
+## Reorganising and subsetting dataset ####
 
 stacked_gen_Data <- gather(Data, key = "Sex",value = "genCV", genCV_male, genCV_female)
 stacked_phen_Data <- gather(Data, key = "Sex",value = "phenCV", phenCV_male, phenCV_female)
-```
 
-Subsetting the dataset into different fitness categories.
-```{r}
-# Subsetting dataset
 RS_gen_metaData<-subset(stacked_gen_Data, FitnessCat == "RS")
 LS_gen_metaData<-subset(stacked_gen_Data, FitnessCat == "LS")
 
@@ -49,17 +89,25 @@ RS_phen_metaData<-subset(stacked_phen_Data, FitnessCat == "RS")
 LS_phen_metaData<-subset(stacked_phen_Data, FitnessCat == "LS")
 ```
 
-### MCMC APPROACH - Reproductive Success
+### Run MCMC models
 
-```{r,results='hide'}
-# Prune phylogenetic tree to data subset
+We then ran MCMC models to test for differences in the phenotypic and genetic variances in males and females for the fitness categories reproductive success and lifespan. 
+
+First we prune the phylogenetic tree to the data subset.
+```{r}
+## PRUNE PHYLOGENETIC TREE TO DATA SUBSET
 RS_gen_metaData$animal <- factor(RS_gen_metaData$animal)
+is.factor(RS_gen_metaData$animal)
 RS_Species_Data <- unique(RS_gen_metaData$animal)
 summary(RS_Species_Data)
 RS_theTree<-drop.tip(theTree, theTree$tip.label[-na.omit(match(RS_Species_Data, theTree$tip.label))])
 plot(RS_theTree)
+```
 
-#Check phylogenetic tree
+
+We then check if the phylogenetic tree was correctly build. 
+```{r, results='hide', echo=FALSE, message=FALSE}
+## CHECK PHYLOGENETIC TREE
 sort(RS_theTree$tip.label) == sort(unique(RS_gen_metaData$animal)) # check if tip names correspond to data names
 is.ultrametric(RS_theTree) # check if BL are aligned contemporaneously
 isSymmetric(vcv(RS_theTree, corr=TRUE)) # check symmetry of phylogenetic correlation matrix
@@ -71,28 +119,30 @@ comparedC <- rawC == forcedC
 rawC[cbind(which(comparedC!=TRUE, arr.ind = T))] - forcedC[cbind(which(comparedC!=TRUE, arr.ind = T))] < 1e-5
 ```
 
+Next, we set the priors for the MCMC models using uninformative priors (V = 1, nu = 0.002) and an effective sample size of 20000 (number of iterations = 11000000, burn-in = 1000000, thinning interval = 500). We also set the index and study ID as factors.
 ```{r,results='hide'}
-# Run MCMC models for reproductive success
+## Prior settings, iterations
 pr<-list(R=list(V=1,nu=0.002), G=list(G1=list(V=1,nu=0.002),
                                       G2=list(V=1,nu=0.002),
                                       G3=list(V=1,nu=0.002)))
-
-
-BURNIN = 1000000
-NITT   = 11000000
-THIN   = 500
-
 
 BURNIN = 100000
 NITT   = 1100000
 THIN   = 500
 
+BURNIN = 10000
+NITT   = 110000
+THIN   = 500
 
-names(RS_phen_metaData)
 RS_phen_metaData$Index <- as.factor(RS_phen_metaData$Index)
 RS_phen_metaData$Study_ID <- as.factor(RS_phen_metaData$Study_ID)
+RS_gen_metaData$Index <- as.factor(RS_gen_metaData$Index)
+RS_gen_metaData$Study_ID <- as.factor(RS_gen_metaData$Study_ID)
+```
 
-
+#### MCMC models for reproductive success 
+First, we ran the MCMC testing for overall differences in phenotypic variance in  reproductive success ('phenCV') between males and females ('Sex'). The model includes the species ('animal'), estimate ID ('Index') and study ID ('Study_ID') as random factors.
+```{r,results=c(2)}
 RS_phen_MCMC_model <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
                           pedigree=RS_theTree,
                           prior=pr,
@@ -101,33 +151,89 @@ RS_phen_MCMC_model <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study
                           burnin = BURNIN,
                           nitt=NITT,
                           thin=THIN)
+
+summary(RS_phen_MCMC_model)
 ```
 
 ```{r}
-# Model summaries for MCMC models on reproductive success
 
-# Model output: phenotypic variance in reproductive success
-summary(RS_phen_MCMC_model)
-#summary(RS_phen_MatSyst_MCMC_model)
-#summary(RS_phen_StudyType_MCMC_model)
-#summary(RS_phen_SSD_MCMC_model)
-#summary(RS_phen_SexualDimorphism_MCMC_model)
-#summary(RS_phen_BreedingDesign_MCMC_model)
-
-#summary(RS_gen_MCMC_model)
-#summary(RS_gen_MatSyst_MCMC_model)
-#summary(RS_gen_StudyType_MCMC_model)
-#summary(RS_gen_SSD_MCMC_model)
-#summary(RS_gen_SexualDimorphism_MCMC_model)
-#summary(RS_gen_BreedingDesign_MCMC_model)
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+We then expanded the model to include the matingsytem as a covariate ('Mating_system').
+```{r,results='hide'}
+RS_phen_MatSyst_MCMC_model <- MCMCglmm(phenCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
+                                  pedigree=RS_theTree,
+                                  prior=pr,
+                                  data=RS_phen_metaData,
+                                  burnin = BURNIN,
+                                  nitt=NITT,
+                                  thin=THIN)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+summary(RS_phen_MatSyst_MCMC_model)
+```
+
+In an additional model, we included the study type ('StudyType'), i.e. if the data were obtained in laboratory or field experiments.
+```{r,results='hide'}
+RS_phen_StudyType_MCMC_model <- MCMCglmm(phenCV~factor(Sex) * factor(StudyType),random=~animal + Index + Study_ID,
+                                        pedigree=RS_theTree,
+                                        prior=pr,
+                                        data=RS_phen_metaData,
+                                        burnin = BURNIN,
+                                        nitt=NITT,
+                                        thin=THIN)
+
+```
+
+```{r}
+summary(RS_phen_StudyType_MCMC_model)
+```
+
+Next, we ran the MCMC models examining the genetic variance in reproductive success ('genCV').
+First, the overall model for a sex difference.
+```{r,results='hide'}
+RS_gen_MCMC_model <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_ID,
+                       pedigree=RS_theTree,
+                       prior=pr,
+                       data=RS_gen_metaData,
+                       pr = TRUE,
+                       burnin = BURNIN,
+                       nitt=NITT,
+                       thin=THIN)
+```
+
+```{r}
+summary(RS_gen_MCMC_model)
+```
+
+Secondly, including the matingsytem as a covariate ('Mating_system').
+```{r,results='hide'}
+RS_gen_MatSyst_MCMC_model <- MCMCglmm(genCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
+                  pedigree=RS_theTree,
+                  prior=pr,
+                  data=RS_gen_metaData,
+                  burnin = BURNIN,
+                  nitt=NITT,
+                  thin=THIN)
+```
+
+```{r}
+summary(RS_gen_MatSyst_MCMC_model)
+```
+
+And finally, we included the study type ('StudyType'), i.e. if the data were obtained in laboratory or field experiments.
+```{r,results='hide'}
+RS_gen_StudyType_MCMC_model <- MCMCglmm(genCV~factor(Sex) * factor(StudyType),random=~animal + Index + Study_ID,
+                                      pedigree=RS_theTree,
+                                      prior=pr,
+                                      data=RS_gen_metaData,
+                                      burnin = BURNIN,
+                                      nitt=NITT,
+                                      thin=THIN)
+```
+
+```{r}
+summary(RS_gen_StudyType_MCMC_model)
+```
+

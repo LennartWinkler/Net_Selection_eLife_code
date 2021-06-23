@@ -468,7 +468,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-06-14
+<strong>Last updated:</strong> 2021-06-23
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -483,16 +483,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <hr>
 </div>
 <div id="checks" class="tab-pane fade">
-<div class="panel-group" id="workflowr-checks">
+<div id="workflowr-checks" class="panel-group">
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -547,60 +547,28 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongabsolute"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>File paths:</strong> absolute </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
 </p>
 </div>
-<div id="strongFilepathsstrongabsolute" class="panel-collapse collapse">
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
 <div class="panel-body">
-<p>
-Using absolute paths to the files within your workflowr project makes it difficult for you and others to run your code on a different machine. Change the absolute path(s) below to the suggested relative path(s) to make your code more reproducible.
-</p>
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th style="text-align:left;">
-absolute
-</th>
-<th style="text-align:left;">
-relative
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-C:/Users/lenna/Desktop/Documents/PhD/2020_META SexSpecGenVar/eLife/Net_Selection_eLife_code/data/META_SexSpecGenVar_Data_v23.csv
-</td>
-<td style="text-align:left;">
-data/META_SexSpecGenVar_Data_v23.csv
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-C:/Users/lenna/Desktop/Documents/PhD/2020_META SexSpecGenVar/eLife/Net_Selection_eLife_code/data/META_SexSpecGenVar_Pylogeny_v05_NEWICK.txt
-</td>
-<td style="text-align:left;">
-data/META_SexSpecGenVar_Pylogeny_v05_NEWICK.txt
-</td>
-</tr>
-</tbody>
-</table>
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomLennartWinklerNetSelectioneLifecodetree9290105671d5938440c5e00147b7b221b92787d1targetblank9290105a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/LennartWinkler/Net_Selection_eLife_code/tree/9290105671d5938440c5e00147b7b221b92787d1" target="_blank">9290105</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomLennartWinklerNetSelectioneLifecodetree3139eb4d54ec90248d7cb998041d07a29bf51d07targetblank3139eb4a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/LennartWinkler/Net_Selection_eLife_code/tree/3139eb4d54ec90248d7cb998041d07a29bf51d07" target="_blank">3139eb4</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomLennartWinklerNetSelectioneLifecodetree9290105671d5938440c5e00147b7b221b92787d1targetblank9290105a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomLennartWinklerNetSelectioneLifecodetree3139eb4d54ec90248d7cb998041d07a29bf51d07targetblank3139eb4a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/LennartWinkler/Net_Selection_eLife_code/tree/9290105671d5938440c5e00147b7b221b92787d1" target="_blank">9290105</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/LennartWinkler/Net_Selection_eLife_code/tree/3139eb4d54ec90248d7cb998041d07a29bf51d07" target="_blank">3139eb4</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -608,6 +576,8 @@ Note that you need to be careful to ensure that all relevant files for the analy
 <pre><code>
 Ignored files:
     Ignored:    .Rhistory
+    Ignored:    analysis/figure/
+    Ignored:    data/.Rhistory
 
 Untracked files:
     Untracked:  analysis/docs/.nojekyll
@@ -616,6 +586,9 @@ Untracked files:
     Untracked:  analysis/docs/site_libs/
     Untracked:  data/META_SexSpecGenVar_Data_v23.csv
     Untracked:  data/META_SexSpecGenVar_Pylogeny_v05_NEWICK.txt
+
+Unstaged changes:
+    Modified:   analysis/index.Rmd
 
 </code></pre>
 <p>
@@ -654,6 +627,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/LennartWinkler/Net_Selection_eLife_code/3139eb4d54ec90248d7cb998041d07a29bf51d07/docs/index.html" target="_blank">3139eb4</a>
+</td>
+<td>
+LennartWinkler
+</td>
+<td>
+2021-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -871,138 +861,617 @@ Start workflowr project.
 <p>Statistical analyses were carried out in two steps. First, we examined the key assumption of the ‘phenotypic gambit’ by testing whether estimates of phenotypic variance predict the estimated genetic variance. For this we computed the Pearson correlation coefficient r, testing the relationship between CVP and CVG for both sexes and the two fitness components separately. In addition, we tested whether the sex bias in CVP translates into a sex bias in CVG by correlating the coefficient of variation ratio lnCVR (Nakagawa et al. 2015), which refers to the ln-transformed ratio of male CV to female CV, with positive values indicating a male bias. The analyses on the phenotypic gambit were motivated from a methodological perspective and we did not expect that inter-specific variation in the difference between CVP and CVG can be explained by a shared phylogenetic history. However, for completeness, we also ran correlations on phylogenetic independent contrasts (PICs; computed using the ape R-package (version 5.4.1) in R (Paradis &amp; Schliep 2019)) to test whether our findings were robust when accounting for potential phylogenetic non-independence. We report Pearson’s correlation coefficients r for normally distributed data and Spearman’s rho if assumptions of normality were violated.</p>
 <div id="load-and-prepare-data" class="section level3">
 <h3>Load and prepare data</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># load packages</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw">library</span>(ape);<span class="kw">library</span>(metafor); <span class="kw">library</span>(Matrix); <span class="kw">library</span>(MASS); <span class="kw">library</span>(pwr);<span class="kw">library</span>(multcomp);<span class="kw">library</span>(psych);<span class="kw">library</span>(outliers)</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw">library</span>(matrixcalc)</a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="kw">library</span>(PerformanceAnalytics)</a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="kw">library</span>(tidyr)</a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="kw">library</span>(MCMCglmm)</a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="kw">library</span>(matrixcalc)</a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="kw">library</span>(dplyr) </a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="kw">library</span>(stargazer)</a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="kw">library</span>(data.table)</a>
-<a class="sourceLine" id="cb1-12" title="12"><span class="kw">library</span>(ggplot2)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># load packages</span></a></code></pre></div>
 <p>First, the code to load and organize the data.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># load and organize data</span></a>
-<a class="sourceLine" id="cb2-2" title="2">Data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;C:/Users/lenna/Desktop/Documents/PhD/2020_META SexSpecGenVar/eLife/Net_Selection_eLife_code/data/META_SexSpecGenVar_Data_v23.csv&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>, <span class="dt">header=</span><span class="ot">TRUE</span>,<span class="dt">fileEncoding=</span><span class="st">&quot;UTF-8-BOM&quot;</span>)</a>
-<a class="sourceLine" id="cb2-3" title="3">theTree &lt;-<span class="st"> </span><span class="kw">read.tree</span>(<span class="st">&quot;C:/Users/lenna/Desktop/Documents/PhD/2020_META SexSpecGenVar/eLife/Net_Selection_eLife_code/data/META_SexSpecGenVar_Pylogeny_v05_NEWICK.txt&quot;</span>)</a>
-<a class="sourceLine" id="cb2-4" title="4"></a>
-<a class="sourceLine" id="cb2-5" title="5">stacked_gen_Data &lt;-<span class="st"> </span><span class="kw">gather</span>(Data, <span class="dt">key =</span> <span class="st">&quot;Sex&quot;</span>,<span class="dt">value =</span> <span class="st">&quot;genCV&quot;</span>, genCV_male, genCV_female)</a>
-<a class="sourceLine" id="cb2-6" title="6">stacked_phen_Data &lt;-<span class="st"> </span><span class="kw">gather</span>(Data, <span class="dt">key =</span> <span class="st">&quot;Sex&quot;</span>,<span class="dt">value =</span> <span class="st">&quot;phenCV&quot;</span>, phenCV_male, phenCV_female)</a></code></pre></div>
 <p>Subsetting the dataset into different fitness categories.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># Subsetting dataset</span></a>
-<a class="sourceLine" id="cb3-2" title="2">RS_gen_metaData&lt;-<span class="kw">subset</span>(stacked_gen_Data, FitnessCat <span class="op">==</span><span class="st"> &quot;RS&quot;</span>)</a>
-<a class="sourceLine" id="cb3-3" title="3">LS_gen_metaData&lt;-<span class="kw">subset</span>(stacked_gen_Data, FitnessCat <span class="op">==</span><span class="st"> &quot;LS&quot;</span>)</a>
-<a class="sourceLine" id="cb3-4" title="4"></a>
-<a class="sourceLine" id="cb3-5" title="5">RS_phen_metaData&lt;-<span class="kw">subset</span>(stacked_phen_Data, FitnessCat <span class="op">==</span><span class="st"> &quot;RS&quot;</span>)</a>
-<a class="sourceLine" id="cb3-6" title="6">LS_phen_metaData&lt;-<span class="kw">subset</span>(stacked_phen_Data, FitnessCat <span class="op">==</span><span class="st"> &quot;LS&quot;</span>)</a></code></pre></div>
 </div>
 <div id="mcmc-approach---reproductive-success" class="section level3">
 <h3>MCMC APPROACH - Reproductive Success</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># Prune phylogenetic tree to data subset</span></a>
-<a class="sourceLine" id="cb4-2" title="2">RS_gen_metaData<span class="op">$</span>animal &lt;-<span class="st"> </span><span class="kw">factor</span>(RS_gen_metaData<span class="op">$</span>animal)</a>
-<a class="sourceLine" id="cb4-3" title="3">RS_Species_Data &lt;-<span class="st"> </span><span class="kw">unique</span>(RS_gen_metaData<span class="op">$</span>animal)</a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="kw">summary</span>(RS_Species_Data)</a>
-<a class="sourceLine" id="cb4-5" title="5">RS_theTree&lt;-<span class="kw">drop.tip</span>(theTree, theTree<span class="op">$</span>tip.label[<span class="op">-</span><span class="kw">na.omit</span>(<span class="kw">match</span>(RS_Species_Data, theTree<span class="op">$</span>tip.label))])</a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="kw">plot</span>(RS_theTree)</a></code></pre></div>
-<p><img src="figure/index.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co">#Check phylogenetic tree</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="kw">sort</span>(RS_theTree<span class="op">$</span>tip.label) <span class="op">==</span><span class="st"> </span><span class="kw">sort</span>(<span class="kw">unique</span>(RS_gen_metaData<span class="op">$</span>animal)) <span class="co"># check if tip names correspond to data names</span></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="kw">is.ultrametric</span>(RS_theTree) <span class="co"># check if BL are aligned contemporaneously</span></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="kw">isSymmetric</span>(<span class="kw">vcv</span>(RS_theTree, <span class="dt">corr=</span><span class="ot">TRUE</span>)) <span class="co"># check symmetry of phylogenetic correlation matrix</span></a>
-<a class="sourceLine" id="cb5-5" title="5">rawC &lt;-<span class="st"> </span><span class="kw">vcv</span>(RS_theTree, <span class="dt">corr=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="kw">is.positive.definite</span>(rawC) <span class="co"># if FALSE will have to force symmetry</span></a>
-<a class="sourceLine" id="cb5-7" title="7">forcedC &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">forceSymmetric</span>(<span class="kw">vcv</span>(RS_theTree, <span class="dt">corr=</span><span class="ot">TRUE</span>)))</a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="kw">is.positive.definite</span>(forcedC)</a>
-<a class="sourceLine" id="cb5-9" title="9">comparedC &lt;-<span class="st"> </span>rawC <span class="op">==</span><span class="st"> </span>forcedC</a>
-<a class="sourceLine" id="cb5-10" title="10">rawC[<span class="kw">cbind</span>(<span class="kw">which</span>(comparedC<span class="op">!=</span><span class="ot">TRUE</span>, <span class="dt">arr.ind =</span> T))] <span class="op">-</span><span class="st"> </span>forcedC[<span class="kw">cbind</span>(<span class="kw">which</span>(comparedC<span class="op">!=</span><span class="ot">TRUE</span>, <span class="dt">arr.ind =</span> T))] <span class="op">&lt;</span><span class="st"> </span><span class="fl">1e-5</span></a></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># Run MCMC models for reproductive success</span></a>
-<a class="sourceLine" id="cb6-2" title="2">pr&lt;-<span class="kw">list</span>(<span class="dt">R=</span><span class="kw">list</span>(<span class="dt">V=</span><span class="dv">1</span>,<span class="dt">nu=</span><span class="fl">0.002</span>), <span class="dt">G=</span><span class="kw">list</span>(<span class="dt">G1=</span><span class="kw">list</span>(<span class="dt">V=</span><span class="dv">1</span>,<span class="dt">nu=</span><span class="fl">0.002</span>),</a>
-<a class="sourceLine" id="cb6-3" title="3">                                      <span class="dt">G2=</span><span class="kw">list</span>(<span class="dt">V=</span><span class="dv">1</span>,<span class="dt">nu=</span><span class="fl">0.002</span>),</a>
-<a class="sourceLine" id="cb6-4" title="4">                                      <span class="dt">G3=</span><span class="kw">list</span>(<span class="dt">V=</span><span class="dv">1</span>,<span class="dt">nu=</span><span class="fl">0.002</span>)))</a>
-<a class="sourceLine" id="cb6-5" title="5"></a>
-<a class="sourceLine" id="cb6-6" title="6"></a>
-<a class="sourceLine" id="cb6-7" title="7">BURNIN =<span class="st"> </span><span class="dv">1000000</span></a>
-<a class="sourceLine" id="cb6-8" title="8">NITT   =<span class="st"> </span><span class="dv">11000000</span></a>
-<a class="sourceLine" id="cb6-9" title="9">THIN   =<span class="st"> </span><span class="dv">500</span></a>
-<a class="sourceLine" id="cb6-10" title="10"></a>
-<a class="sourceLine" id="cb6-11" title="11"></a>
-<a class="sourceLine" id="cb6-12" title="12">BURNIN =<span class="st"> </span><span class="dv">100000</span></a>
-<a class="sourceLine" id="cb6-13" title="13">NITT   =<span class="st"> </span><span class="dv">1100000</span></a>
-<a class="sourceLine" id="cb6-14" title="14">THIN   =<span class="st"> </span><span class="dv">500</span></a>
-<a class="sourceLine" id="cb6-15" title="15"></a>
-<a class="sourceLine" id="cb6-16" title="16"></a>
-<a class="sourceLine" id="cb6-17" title="17"><span class="kw">names</span>(RS_phen_metaData)</a>
-<a class="sourceLine" id="cb6-18" title="18">RS_phen_metaData<span class="op">$</span>Index &lt;-<span class="st"> </span><span class="kw">as.factor</span>(RS_phen_metaData<span class="op">$</span>Index)</a>
-<a class="sourceLine" id="cb6-19" title="19">RS_phen_metaData<span class="op">$</span>Study_ID &lt;-<span class="st"> </span><span class="kw">as.factor</span>(RS_phen_metaData<span class="op">$</span>Study_ID)</a>
-<a class="sourceLine" id="cb6-20" title="20"></a>
-<a class="sourceLine" id="cb6-21" title="21"></a>
-<a class="sourceLine" id="cb6-22" title="22">RS_phen_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(phenCV<span class="op">~</span><span class="kw">factor</span>(Sex),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
-<a class="sourceLine" id="cb6-23" title="23">                          <span class="dt">pedigree=</span>RS_theTree,</a>
-<a class="sourceLine" id="cb6-24" title="24">                          <span class="dt">prior=</span>pr,</a>
-<a class="sourceLine" id="cb6-25" title="25">                          <span class="dt">data=</span>RS_phen_metaData,</a>
-<a class="sourceLine" id="cb6-26" title="26">                          <span class="dt">pr =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb6-27" title="27">                          <span class="dt">burnin =</span> BURNIN,</a>
-<a class="sourceLine" id="cb6-28" title="28">                          <span class="dt">nitt=</span>NITT,</a>
-<a class="sourceLine" id="cb6-29" title="29">                          <span class="dt">thin=</span>THIN)</a></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Model summaries for MCMC models on reproductive success</span></a>
-<a class="sourceLine" id="cb7-2" title="2"></a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="co"># Model output: phenotypic variance in reproductive success</span></a>
-<a class="sourceLine" id="cb7-4" title="4"><span class="kw">summary</span>(RS_phen_MCMC_model)</a></code></pre></div>
+</div>
+</div>
+<div id="stronger-net-selection-on-males-pglmms" class="section level2">
+<h2>Stronger net selection on males (PGLMMs)</h2>
+<p>In this second part of the anlysis, we tested the hypothesis that net selection is stronger on males by testing for a male bias in CVP and CVG. Specifically, we ran Phylogenetic General Linear Mixed-Effects Models (PGLMMs) with CVP or CVG as the response variable, and sex as a fixed effect. To account for the paired data structure, we added an observation identifier as a random effect. Moreover, all models included a study identifier and the phylogeny (transformed into a correlation matrix) as random effects to account for statistical non-independence arising from shared study design or phylogenetic history, respectively. Note that the latter also accounts for the non-independence of estimates obtained from the same species as some studies estimated genetic variances from distinct field populations (Fox et al. 2004) or different experimental treatments under laboratory conditions such as food stress (Holman &amp; Jacomb 2017) and temperature stress (Berger et al. 2014). In an additional series of PGLMMs we tested whether our proxy of sexual selection explained inter-specific variation in the sex-differences of CVP or CVG by adding mating system and its interaction with sex as fixed effects to the models. Finally, given that primary studies varied in the empirical approach used to quantify CVP and CVG, we also used PGLMMs to test whether study type (23 field studies versus 32 laboratory studies) represented a methodological determinant of the observed sex-differences in CVP and CVG. All PGLMMs were ran with the MCMCglmm R-package (version 2.2.9) (Hadfield 2010), using uninformative priors (V = 1, nu = 0.002) and an effective sample size of 20000 (number of iterations = 11000000, burn-in = 1000000, thinning interval = 500). We computed the proportion of variance explained by fixed factors (‘marginal R2’) (Nakagawa &amp; Schielzeth 2013). In addition, we quantified the phylogenetic signal as the phylogenetic heritability H2 (i.e., proportional variance in CVP or CVG explained by species identity), which is equivalent to Pagel’s 𝜆 (de Villemereuil &amp; Nakagawa 2014). In a previous study testing for sex-specific phenotypic variances in reproductive success (Janicke et al. 2016), we ran formal meta-analyses using lnCVR as the tested effect size (Nakagawa et al. 2015). This is potentially a more powerful approach for comparing phenotypic variances but rendered unsuitable when comparing genetic variances. This is because the computation of the sampling variance of lnCVR is a function of the sample size of the sampled population and the point estimate of lnCVR (Nakagawa et al. 2015). However, genetic variances are estimates from statistical models and notorious for being estimated with low precision (i.e. have large confidence intervals). Therefore, using a meta-analytic approach for genetic variances using lnCVR as an effect size leads to overconfident estimation of the global effect size and is therefore likely to result in type-II-errors. However, to allow comparison with the previous meta-analysis, we report the outcome of phylogenetic meta-analyses on phenotypic variances using lnCVR in the Supplementary Material (Table S2), which largely reflects the results on the point estimates of CVP from PGLMMs.</p>
+<div id="load-and-prepare-data-1" class="section level3">
+<h3>Load and prepare data</h3>
+<p>We first load all neccessary packages.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># load packages</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="kw">library</span>(ape);<span class="kw">library</span>(metafor); <span class="kw">library</span>(Matrix); <span class="kw">library</span>(MASS); <span class="kw">library</span>(pwr);<span class="kw">library</span>(multcomp);<span class="kw">library</span>(psych);<span class="kw">library</span>(outliers)</a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="kw">library</span>(matrixcalc)</a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="kw">library</span>(PerformanceAnalytics)</a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="kw">library</span>(tidyr)</a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="kw">library</span>(MCMCglmm)</a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="kw">library</span>(matrixcalc)</a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="kw">library</span>(dplyr) </a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="kw">library</span>(stargazer)</a>
+<a class="sourceLine" id="cb2-11" title="11"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb2-12" title="12"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb2-13" title="13"><span class="kw">library</span>(readr)</a></code></pre></div>
+<p>We then load the data set (‘Data’) and the phylogenetic tree (‘theTree’).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># load data</span></a>
+<a class="sourceLine" id="cb3-2" title="2">Data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/META_SexSpecGenVar_Data_v23.csv&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>, <span class="dt">header=</span><span class="ot">TRUE</span>,<span class="dt">fileEncoding=</span><span class="st">&quot;UTF-8-BOM&quot;</span>)</a>
+<a class="sourceLine" id="cb3-3" title="3">theTree &lt;-<span class="st"> </span><span class="kw">read.tree</span>(<span class="st">&quot;./data/META_SexSpecGenVar_Pylogeny_v05_NEWICK.txt&quot;</span>)</a></code></pre></div>
+<p>Finally, we subset our data set for the analyses into the fitness categories (‘FitnessCat’) lifespan (‘LS’) and reproductive success (‘RS’).</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co">## Reorganising and subsetting dataset ####</span></a>
+<a class="sourceLine" id="cb4-2" title="2"></a>
+<a class="sourceLine" id="cb4-3" title="3">stacked_gen_Data &lt;-<span class="st"> </span><span class="kw">gather</span>(Data, <span class="dt">key =</span> <span class="st">&quot;Sex&quot;</span>,<span class="dt">value =</span> <span class="st">&quot;genCV&quot;</span>, genCV_male, genCV_female)</a>
+<a class="sourceLine" id="cb4-4" title="4">stacked_phen_Data &lt;-<span class="st"> </span><span class="kw">gather</span>(Data, <span class="dt">key =</span> <span class="st">&quot;Sex&quot;</span>,<span class="dt">value =</span> <span class="st">&quot;phenCV&quot;</span>, phenCV_male, phenCV_female)</a>
+<a class="sourceLine" id="cb4-5" title="5"></a>
+<a class="sourceLine" id="cb4-6" title="6">RS_gen_metaData&lt;-<span class="kw">subset</span>(stacked_gen_Data, FitnessCat <span class="op">==</span><span class="st"> &quot;RS&quot;</span>)</a>
+<a class="sourceLine" id="cb4-7" title="7">LS_gen_metaData&lt;-<span class="kw">subset</span>(stacked_gen_Data, FitnessCat <span class="op">==</span><span class="st"> &quot;LS&quot;</span>)</a>
+<a class="sourceLine" id="cb4-8" title="8"></a>
+<a class="sourceLine" id="cb4-9" title="9">RS_phen_metaData&lt;-<span class="kw">subset</span>(stacked_phen_Data, FitnessCat <span class="op">==</span><span class="st"> &quot;RS&quot;</span>)</a>
+<a class="sourceLine" id="cb4-10" title="10">LS_phen_metaData&lt;-<span class="kw">subset</span>(stacked_phen_Data, FitnessCat <span class="op">==</span><span class="st"> &quot;LS&quot;</span>)</a></code></pre></div>
+</div>
+<div id="run-mcmc-models" class="section level3">
+<h3>Run MCMC models</h3>
+<p>We then ran MCMC models to test for differences in the phenotypic and genetic variances in males and females for the fitness categories reproductive success and lifespan.</p>
+<p>First we prune the phylogenetic tree to the data subset.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co">## PRUNE PHYLOGENETIC TREE TO DATA SUBSET</span></a>
+<a class="sourceLine" id="cb5-2" title="2">RS_gen_metaData<span class="op">$</span>animal &lt;-<span class="st"> </span><span class="kw">factor</span>(RS_gen_metaData<span class="op">$</span>animal)</a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="kw">is.factor</span>(RS_gen_metaData<span class="op">$</span>animal)</a></code></pre></div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">RS_Species_Data &lt;-<span class="st"> </span><span class="kw">unique</span>(RS_gen_metaData<span class="op">$</span>animal)</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="kw">summary</span>(RS_Species_Data)</a></code></pre></div>
+<pre><code> Acanthoscelides_obtectus Acrocephalus_arundinaceus             Anolis_sagrei 
+                        1                         1                         1 
+ Callosobruchus_maculatus            Cervus_elaphus   Drosophila_melanogaster 
+                        1                         1                         1 
+       Drosophila_serrata       Drosophila_simulans       Ficedula_albicollis 
+                        1                         1                         1 
+             Homo_sapiens     Larus_novaehollandiae       Macrostomum_lignano 
+                        1                         1                         1 
+        Melospiza_melodia           Ovis_canadensis               Parus_major 
+                        1                         1                         1 
+Passerculus_sandwichensis               Physa_acuta            Sterna_hirundo 
+                        1                         1                         1 
+  Tamiasciurus_hudsonicus     Teleogryllus_commodus       Tribolium_castaneum 
+                        1                         1                         1 </code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">RS_theTree&lt;-<span class="kw">drop.tip</span>(theTree, theTree<span class="op">$</span>tip.label[<span class="op">-</span><span class="kw">na.omit</span>(<span class="kw">match</span>(RS_Species_Data, theTree<span class="op">$</span>tip.label))])</a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="kw">plot</span>(RS_theTree)</a></code></pre></div>
+<p><img src="figure/index.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We then check if the phylogenetic tree was correctly build.</p>
+<p>Next, we set the priors for the MCMC models using uninformative priors (V = 1, nu = 0.002) and an effective sample size of 20000 (number of iterations = 11000000, burn-in = 1000000, thinning interval = 500). We also set the index and study ID as factors.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co">## Prior settings, iterations</span></a>
+<a class="sourceLine" id="cb10-2" title="2">pr&lt;-<span class="kw">list</span>(<span class="dt">R=</span><span class="kw">list</span>(<span class="dt">V=</span><span class="dv">1</span>,<span class="dt">nu=</span><span class="fl">0.002</span>), <span class="dt">G=</span><span class="kw">list</span>(<span class="dt">G1=</span><span class="kw">list</span>(<span class="dt">V=</span><span class="dv">1</span>,<span class="dt">nu=</span><span class="fl">0.002</span>),</a>
+<a class="sourceLine" id="cb10-3" title="3">                                      <span class="dt">G2=</span><span class="kw">list</span>(<span class="dt">V=</span><span class="dv">1</span>,<span class="dt">nu=</span><span class="fl">0.002</span>),</a>
+<a class="sourceLine" id="cb10-4" title="4">                                      <span class="dt">G3=</span><span class="kw">list</span>(<span class="dt">V=</span><span class="dv">1</span>,<span class="dt">nu=</span><span class="fl">0.002</span>)))</a>
+<a class="sourceLine" id="cb10-5" title="5"></a>
+<a class="sourceLine" id="cb10-6" title="6">BURNIN =<span class="st"> </span><span class="dv">100000</span></a>
+<a class="sourceLine" id="cb10-7" title="7">NITT   =<span class="st"> </span><span class="dv">1100000</span></a>
+<a class="sourceLine" id="cb10-8" title="8">THIN   =<span class="st"> </span><span class="dv">500</span></a>
+<a class="sourceLine" id="cb10-9" title="9"></a>
+<a class="sourceLine" id="cb10-10" title="10">BURNIN =<span class="st"> </span><span class="dv">10000</span></a>
+<a class="sourceLine" id="cb10-11" title="11">NITT   =<span class="st"> </span><span class="dv">110000</span></a>
+<a class="sourceLine" id="cb10-12" title="12">THIN   =<span class="st"> </span><span class="dv">500</span></a>
+<a class="sourceLine" id="cb10-13" title="13"></a>
+<a class="sourceLine" id="cb10-14" title="14">RS_phen_metaData<span class="op">$</span>Index &lt;-<span class="st"> </span><span class="kw">as.factor</span>(RS_phen_metaData<span class="op">$</span>Index)</a>
+<a class="sourceLine" id="cb10-15" title="15">RS_phen_metaData<span class="op">$</span>Study_ID &lt;-<span class="st"> </span><span class="kw">as.factor</span>(RS_phen_metaData<span class="op">$</span>Study_ID)</a>
+<a class="sourceLine" id="cb10-16" title="16">RS_gen_metaData<span class="op">$</span>Index &lt;-<span class="st"> </span><span class="kw">as.factor</span>(RS_gen_metaData<span class="op">$</span>Index)</a>
+<a class="sourceLine" id="cb10-17" title="17">RS_gen_metaData<span class="op">$</span>Study_ID &lt;-<span class="st"> </span><span class="kw">as.factor</span>(RS_gen_metaData<span class="op">$</span>Study_ID)</a></code></pre></div>
+<div id="mcmc-models-for-reproductive-success" class="section level4">
+<h4>MCMC models for reproductive success</h4>
+<p>First, we ran the MCMC testing for overall differences in phenotypic variance in reproductive success (‘phenCV’) between males and females (‘Sex’). The model includes the species (‘animal’), estimate ID (‘Index’) and study ID (‘Study_ID’) as random factors.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">RS_phen_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(phenCV<span class="op">~</span><span class="kw">factor</span>(Sex),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
+<a class="sourceLine" id="cb11-2" title="2">                          <span class="dt">pedigree=</span>RS_theTree,</a>
+<a class="sourceLine" id="cb11-3" title="3">                          <span class="dt">prior=</span>pr,</a>
+<a class="sourceLine" id="cb11-4" title="4">                          <span class="dt">data=</span>RS_phen_metaData,</a>
+<a class="sourceLine" id="cb11-5" title="5">                          <span class="dt">pr =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb11-6" title="6">                          <span class="dt">burnin =</span> BURNIN,</a>
+<a class="sourceLine" id="cb11-7" title="7">                          <span class="dt">nitt=</span>NITT,</a>
+<a class="sourceLine" id="cb11-8" title="8">                          <span class="dt">thin=</span>THIN)</a></code></pre></div>
 <pre><code>
- Iterations = 100001:1099501
- Thinning interval  = 500
- Sample size  = 2000 
+                       MCMC iteration = 0
 
- DIC: 50.043 
+                       MCMC iteration = 1000
+
+                       MCMC iteration = 2000
+
+                       MCMC iteration = 3000
+
+                       MCMC iteration = 4000
+
+                       MCMC iteration = 5000
+
+                       MCMC iteration = 6000
+
+                       MCMC iteration = 7000
+
+                       MCMC iteration = 8000
+
+                       MCMC iteration = 9000
+
+                       MCMC iteration = 10000
+
+                       MCMC iteration = 11000
+
+                       MCMC iteration = 12000
+
+                       MCMC iteration = 13000
+
+                       MCMC iteration = 14000
+
+                       MCMC iteration = 15000
+
+                       MCMC iteration = 16000
+
+                       MCMC iteration = 17000
+
+                       MCMC iteration = 18000
+
+                       MCMC iteration = 19000
+
+                       MCMC iteration = 20000
+
+                       MCMC iteration = 21000
+
+                       MCMC iteration = 22000
+
+                       MCMC iteration = 23000
+
+                       MCMC iteration = 24000
+
+                       MCMC iteration = 25000
+
+                       MCMC iteration = 26000
+
+                       MCMC iteration = 27000
+
+                       MCMC iteration = 28000
+
+                       MCMC iteration = 29000
+
+                       MCMC iteration = 30000
+
+                       MCMC iteration = 31000
+
+                       MCMC iteration = 32000
+
+                       MCMC iteration = 33000
+
+                       MCMC iteration = 34000
+
+                       MCMC iteration = 35000
+
+                       MCMC iteration = 36000
+
+                       MCMC iteration = 37000
+
+                       MCMC iteration = 38000
+
+                       MCMC iteration = 39000
+
+                       MCMC iteration = 40000
+
+                       MCMC iteration = 41000
+
+                       MCMC iteration = 42000
+
+                       MCMC iteration = 43000
+
+                       MCMC iteration = 44000
+
+                       MCMC iteration = 45000
+
+                       MCMC iteration = 46000
+
+                       MCMC iteration = 47000
+
+                       MCMC iteration = 48000
+
+                       MCMC iteration = 49000
+
+                       MCMC iteration = 50000
+
+                       MCMC iteration = 51000
+
+                       MCMC iteration = 52000
+
+                       MCMC iteration = 53000
+
+                       MCMC iteration = 54000
+
+                       MCMC iteration = 55000
+
+                       MCMC iteration = 56000
+
+                       MCMC iteration = 57000
+
+                       MCMC iteration = 58000
+
+                       MCMC iteration = 59000
+
+                       MCMC iteration = 60000
+
+                       MCMC iteration = 61000
+
+                       MCMC iteration = 62000
+
+                       MCMC iteration = 63000
+
+                       MCMC iteration = 64000
+
+                       MCMC iteration = 65000
+
+                       MCMC iteration = 66000
+
+                       MCMC iteration = 67000
+
+                       MCMC iteration = 68000
+
+                       MCMC iteration = 69000
+
+                       MCMC iteration = 70000
+
+                       MCMC iteration = 71000
+
+                       MCMC iteration = 72000
+
+                       MCMC iteration = 73000
+
+                       MCMC iteration = 74000
+
+                       MCMC iteration = 75000
+
+                       MCMC iteration = 76000
+
+                       MCMC iteration = 77000
+
+                       MCMC iteration = 78000
+
+                       MCMC iteration = 79000
+
+                       MCMC iteration = 80000
+
+                       MCMC iteration = 81000
+
+                       MCMC iteration = 82000
+
+                       MCMC iteration = 83000
+
+                       MCMC iteration = 84000
+
+                       MCMC iteration = 85000
+
+                       MCMC iteration = 86000
+
+                       MCMC iteration = 87000
+
+                       MCMC iteration = 88000
+
+                       MCMC iteration = 89000
+
+                       MCMC iteration = 90000
+
+                       MCMC iteration = 91000
+
+                       MCMC iteration = 92000
+
+                       MCMC iteration = 93000
+
+                       MCMC iteration = 94000
+
+                       MCMC iteration = 95000
+
+                       MCMC iteration = 96000
+
+                       MCMC iteration = 97000
+
+                       MCMC iteration = 98000
+
+                       MCMC iteration = 99000
+
+                       MCMC iteration = 100000
+
+                       MCMC iteration = 101000
+
+                       MCMC iteration = 102000
+
+                       MCMC iteration = 103000
+
+                       MCMC iteration = 104000
+
+                       MCMC iteration = 105000
+
+                       MCMC iteration = 106000
+
+                       MCMC iteration = 107000
+
+                       MCMC iteration = 108000
+
+                       MCMC iteration = 109000
+
+                       MCMC iteration = 110000</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">summary</span>(RS_phen_MCMC_model)</a></code></pre></div>
+<pre><code>
+ Iterations = 10001:109501
+ Thinning interval  = 500
+ Sample size  = 200 
+
+ DIC: 50.08103 
 
  G-structure:  ~animal
 
        post.mean  l-95% CI u-95% CI eff.samp
-animal   0.02255 0.0002015  0.07153     2000
+animal    0.0215 0.0004836  0.08548      200
 
                ~Index
 
       post.mean l-95% CI u-95% CI eff.samp
-Index   0.06268 0.002205   0.1299     2000
+Index   0.05882 0.001148   0.1242    267.8
 
                ~Study_ID
 
-         post.mean  l-95% CI u-95% CI eff.samp
-Study_ID   0.05648 0.0003111    0.144     2000
+         post.mean l-95% CI u-95% CI eff.samp
+Study_ID   0.06306 0.000233   0.1526    200.3
 
  R-structure:  ~units
 
       post.mean l-95% CI u-95% CI eff.samp
-units    0.0598  0.03933  0.08289     2241
+units   0.06034  0.03996  0.08267    117.8
 
  Location effects: phenCV ~ factor(Sex) 
 
-                       post.mean l-95% CI u-95% CI eff.samp  pMCMC    
-(Intercept)               0.6941   0.4875   0.8888     2000 &lt;5e-04 ***
-factor(Sex)phenCV_male    0.2329   0.1500   0.3183     2000 &lt;5e-04 ***
+                       post.mean l-95% CI u-95% CI eff.samp  pMCMC   
+(Intercept)               0.6897   0.5147   0.9442      200 &lt;0.005 **
+factor(Sex)phenCV_male    0.2316   0.1426   0.2996      200 &lt;0.005 **
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co">#summary(RS_phen_MatSyst_MCMC_model)</span></a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="co">#summary(RS_phen_StudyType_MCMC_model)</span></a>
-<a class="sourceLine" id="cb9-3" title="3"><span class="co">#summary(RS_phen_SSD_MCMC_model)</span></a>
-<a class="sourceLine" id="cb9-4" title="4"><span class="co">#summary(RS_phen_SexualDimorphism_MCMC_model)</span></a>
-<a class="sourceLine" id="cb9-5" title="5"><span class="co">#summary(RS_phen_BreedingDesign_MCMC_model)</span></a>
-<a class="sourceLine" id="cb9-6" title="6"></a>
-<a class="sourceLine" id="cb9-7" title="7"><span class="co">#summary(RS_gen_MCMC_model)</span></a>
-<a class="sourceLine" id="cb9-8" title="8"><span class="co">#summary(RS_gen_MatSyst_MCMC_model)</span></a>
-<a class="sourceLine" id="cb9-9" title="9"><span class="co">#summary(RS_gen_StudyType_MCMC_model)</span></a>
-<a class="sourceLine" id="cb9-10" title="10"><span class="co">#summary(RS_gen_SSD_MCMC_model)</span></a>
-<a class="sourceLine" id="cb9-11" title="11"><span class="co">#summary(RS_gen_SexualDimorphism_MCMC_model)</span></a>
-<a class="sourceLine" id="cb9-12" title="12"><span class="co">#summary(RS_gen_BreedingDesign_MCMC_model)</span></a></code></pre></div>
-</div>
-</div>
-<div id="including-plots" class="section level2">
-<h2>Including Plots</h2>
-<p>You can also embed plots, for example:</p>
-<p><img src="figure/index.Rmd/pressure-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+<p>We then expanded the model to include the matingsytem as a covariate (‘Mating_system’).</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">RS_phen_MatSyst_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(phenCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(Mating_system),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
+<a class="sourceLine" id="cb15-2" title="2">                                  <span class="dt">pedigree=</span>RS_theTree,</a>
+<a class="sourceLine" id="cb15-3" title="3">                                  <span class="dt">prior=</span>pr,</a>
+<a class="sourceLine" id="cb15-4" title="4">                                  <span class="dt">data=</span>RS_phen_metaData,</a>
+<a class="sourceLine" id="cb15-5" title="5">                                  <span class="dt">burnin =</span> BURNIN,</a>
+<a class="sourceLine" id="cb15-6" title="6">                                  <span class="dt">nitt=</span>NITT,</a>
+<a class="sourceLine" id="cb15-7" title="7">                                  <span class="dt">thin=</span>THIN)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">summary</span>(RS_phen_MatSyst_MCMC_model)</a></code></pre></div>
+<pre><code>
+ Iterations = 10001:109501
+ Thinning interval  = 500
+ Sample size  = 200 
+
+ DIC: 31.00689 
+
+ G-structure:  ~animal
+
+       post.mean  l-95% CI u-95% CI eff.samp
+animal    0.0415 0.0009463   0.1245      200
+
+               ~Index
+
+      post.mean  l-95% CI u-95% CI eff.samp
+Index   0.06553 0.0006622   0.1327    345.3
+
+               ~Study_ID
+
+         post.mean  l-95% CI u-95% CI eff.samp
+Study_ID   0.05893 0.0002484   0.1553      139
+
+ R-structure:  ~units
+
+      post.mean l-95% CI u-95% CI eff.samp
+units   0.05102   0.0327   0.0685      200
+
+ Location effects: phenCV ~ factor(Sex) * factor(Mating_system) 
+
+                                                     post.mean  l-95% CI
+(Intercept)                                           0.705011  0.331216
+factor(Sex)phenCV_male                               -0.008772 -0.203472
+factor(Mating_system)polygamy                         0.008150 -0.297388
+factor(Sex)phenCV_male:factor(Mating_system)polygamy  0.319035  0.120912
+                                                      u-95% CI eff.samp  pMCMC
+(Intercept)                                           1.091192      200   0.01
+factor(Sex)phenCV_male                                0.136592      200   0.94
+factor(Mating_system)polygamy                         0.489325      200   0.98
+factor(Sex)phenCV_male:factor(Mating_system)polygamy  0.483260      200 &lt;0.005
+                                                       
+(Intercept)                                          * 
+factor(Sex)phenCV_male                                 
+factor(Mating_system)polygamy                          
+factor(Sex)phenCV_male:factor(Mating_system)polygamy **
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>In an additional model, we included the study type (‘StudyType’), i.e. if the data were obtained in laboratory or field experiments.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">RS_phen_StudyType_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(phenCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(StudyType),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
+<a class="sourceLine" id="cb18-2" title="2">                                        <span class="dt">pedigree=</span>RS_theTree,</a>
+<a class="sourceLine" id="cb18-3" title="3">                                        <span class="dt">prior=</span>pr,</a>
+<a class="sourceLine" id="cb18-4" title="4">                                        <span class="dt">data=</span>RS_phen_metaData,</a>
+<a class="sourceLine" id="cb18-5" title="5">                                        <span class="dt">burnin =</span> BURNIN,</a>
+<a class="sourceLine" id="cb18-6" title="6">                                        <span class="dt">nitt=</span>NITT,</a>
+<a class="sourceLine" id="cb18-7" title="7">                                        <span class="dt">thin=</span>THIN)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">summary</span>(RS_phen_StudyType_MCMC_model)</a></code></pre></div>
+<pre><code>
+ Iterations = 10001:109501
+ Thinning interval  = 500
+ Sample size  = 200 
+
+ DIC: 51.0445 
+
+ G-structure:  ~animal
+
+       post.mean  l-95% CI u-95% CI eff.samp
+animal   0.01296 0.0002984  0.04841      200
+
+               ~Index
+
+      post.mean l-95% CI u-95% CI eff.samp
+Index   0.06457 0.005559   0.1166    228.2
+
+               ~Study_ID
+
+         post.mean  l-95% CI u-95% CI eff.samp
+Study_ID   0.04607 0.0004687   0.1219      200
+
+ R-structure:  ~units
+
+      post.mean l-95% CI u-95% CI eff.samp
+units   0.05913  0.03754  0.08295      200
+
+ Location effects: phenCV ~ factor(Sex) * factor(StudyType) 
+
+                                                   post.mean l-95% CI u-95% CI
+(Intercept)                                          0.88229  0.69786  1.13647
+factor(Sex)phenCV_male                               0.19596  0.07779  0.32654
+factor(StudyType)Laboratory                         -0.32085 -0.60583 -0.04419
+factor(Sex)phenCV_male:factor(StudyType)Laboratory   0.06189 -0.11074  0.21244
+                                                   eff.samp  pMCMC   
+(Intercept)                                           215.5 &lt;0.005 **
+factor(Sex)phenCV_male                                200.0   0.01 * 
+factor(StudyType)Laboratory                           200.0   0.03 * 
+factor(Sex)phenCV_male:factor(StudyType)Laboratory    200.0   0.45   
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Next, we ran the MCMC models examining the genetic variance in reproductive success (‘genCV’). First, the overall model for a sex difference.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">RS_gen_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
+<a class="sourceLine" id="cb21-2" title="2">                       <span class="dt">pedigree=</span>RS_theTree,</a>
+<a class="sourceLine" id="cb21-3" title="3">                       <span class="dt">prior=</span>pr,</a>
+<a class="sourceLine" id="cb21-4" title="4">                       <span class="dt">data=</span>RS_gen_metaData,</a>
+<a class="sourceLine" id="cb21-5" title="5">                       <span class="dt">pr =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb21-6" title="6">                       <span class="dt">burnin =</span> BURNIN,</a>
+<a class="sourceLine" id="cb21-7" title="7">                       <span class="dt">nitt=</span>NITT,</a>
+<a class="sourceLine" id="cb21-8" title="8">                       <span class="dt">thin=</span>THIN)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">summary</span>(RS_gen_MCMC_model)</a></code></pre></div>
+<pre><code>
+ Iterations = 10001:109501
+ Thinning interval  = 500
+ Sample size  = 200 
+
+ DIC: -130.0802 
+
+ G-structure:  ~animal
+
+       post.mean  l-95% CI u-95% CI eff.samp
+animal   0.01198 0.0004535  0.04331      200
+
+               ~Index
+
+      post.mean  l-95% CI u-95% CI eff.samp
+Index  0.003847 0.0003005 0.009868      200
+
+               ~Study_ID
+
+         post.mean l-95% CI u-95% CI eff.samp
+Study_ID   0.01471 0.004494  0.02548    248.7
+
+ R-structure:  ~units
+
+      post.mean l-95% CI u-95% CI eff.samp
+units   0.01497 0.009596  0.02006      200
+
+ Location effects: genCV ~ factor(Sex) 
+
+                      post.mean l-95% CI u-95% CI eff.samp  pMCMC   
+(Intercept)             0.24615  0.13462  0.37596    200.0 &lt;0.005 **
+factor(Sex)genCV_male   0.08424  0.04133  0.12205    149.8 &lt;0.005 **
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Secondly, including the matingsytem as a covariate (‘Mating_system’).</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">RS_gen_MatSyst_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(Mating_system),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
+<a class="sourceLine" id="cb24-2" title="2">                  <span class="dt">pedigree=</span>RS_theTree,</a>
+<a class="sourceLine" id="cb24-3" title="3">                  <span class="dt">prior=</span>pr,</a>
+<a class="sourceLine" id="cb24-4" title="4">                  <span class="dt">data=</span>RS_gen_metaData,</a>
+<a class="sourceLine" id="cb24-5" title="5">                  <span class="dt">burnin =</span> BURNIN,</a>
+<a class="sourceLine" id="cb24-6" title="6">                  <span class="dt">nitt=</span>NITT,</a>
+<a class="sourceLine" id="cb24-7" title="7">                  <span class="dt">thin=</span>THIN)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">summary</span>(RS_gen_MatSyst_MCMC_model)</a></code></pre></div>
+<pre><code>
+ Iterations = 10001:109501
+ Thinning interval  = 500
+ Sample size  = 200 
+
+ DIC: -138.7594 
+
+ G-structure:  ~animal
+
+       post.mean  l-95% CI u-95% CI eff.samp
+animal   0.01056 0.0002717  0.03152      200
+
+               ~Index
+
+      post.mean  l-95% CI u-95% CI eff.samp
+Index  0.004712 0.0004249  0.01062      200
+
+               ~Study_ID
+
+         post.mean l-95% CI u-95% CI eff.samp
+Study_ID   0.01545 0.005762  0.03144    156.5
+
+ R-structure:  ~units
+
+      post.mean l-95% CI u-95% CI eff.samp
+units   0.01356 0.009133  0.01777      200
+
+ Location effects: genCV ~ factor(Sex) * factor(Mating_system) 
+
+                                                    post.mean  l-95% CI
+(Intercept)                                          0.254980  0.103623
+factor(Sex)genCV_male                               -0.015821 -0.088028
+factor(Mating_system)polygamy                       -0.007049 -0.146419
+factor(Sex)genCV_male:factor(Mating_system)polygamy  0.135581  0.032283
+                                                     u-95% CI eff.samp  pMCMC
+(Intercept)                                          0.455024    200.0 &lt;0.005
+factor(Sex)genCV_male                                0.071933    200.0   0.74
+factor(Mating_system)polygamy                        0.143565    272.4   0.98
+factor(Sex)genCV_male:factor(Mating_system)polygamy  0.232928    246.3 &lt;0.005
+                                                      
+(Intercept)                                         **
+factor(Sex)genCV_male                                 
+factor(Mating_system)polygamy                         
+factor(Sex)genCV_male:factor(Mating_system)polygamy **
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>And finally, we included the study type (‘StudyType’), i.e. if the data were obtained in laboratory or field experiments.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">RS_gen_StudyType_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(StudyType),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
+<a class="sourceLine" id="cb27-2" title="2">                                      <span class="dt">pedigree=</span>RS_theTree,</a>
+<a class="sourceLine" id="cb27-3" title="3">                                      <span class="dt">prior=</span>pr,</a>
+<a class="sourceLine" id="cb27-4" title="4">                                      <span class="dt">data=</span>RS_gen_metaData,</a>
+<a class="sourceLine" id="cb27-5" title="5">                                      <span class="dt">burnin =</span> BURNIN,</a>
+<a class="sourceLine" id="cb27-6" title="6">                                      <span class="dt">nitt=</span>NITT,</a>
+<a class="sourceLine" id="cb27-7" title="7">                                      <span class="dt">thin=</span>THIN)</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="kw">summary</span>(RS_gen_StudyType_MCMC_model)</a></code></pre></div>
+<pre><code>
+ Iterations = 10001:109501
+ Thinning interval  = 500
+ Sample size  = 200 
+
+ DIC: -127.4064 
+
+ G-structure:  ~animal
+
+       post.mean  l-95% CI u-95% CI eff.samp
+animal   0.01346 0.0004328  0.03499      200
+
+               ~Index
+
+      post.mean  l-95% CI u-95% CI eff.samp
+Index  0.003754 0.0003163  0.00981    142.8
+
+               ~Study_ID
+
+         post.mean l-95% CI u-95% CI eff.samp
+Study_ID    0.0143 0.003386   0.0273      200
+
+ R-structure:  ~units
+
+      post.mean l-95% CI u-95% CI eff.samp
+units   0.01555  0.01059  0.02143      200
+
+ Location effects: genCV ~ factor(Sex) * factor(StudyType) 
+
+                                                  post.mean  l-95% CI  u-95% CI
+(Intercept)                                        0.171715 -0.088682  0.386666
+factor(Sex)genCV_male                              0.080874  0.023493  0.161411
+factor(StudyType)Laboratory                        0.127308 -0.071792  0.395470
+factor(Sex)genCV_male:factor(StudyType)Laboratory  0.002628 -0.074388  0.084146
+                                                  eff.samp pMCMC  
+(Intercept)                                          142.8  0.11  
+factor(Sex)genCV_male                                258.0  0.04 *
+factor(StudyType)Laboratory                          129.2  0.27  
+factor(Sex)genCV_male:factor(StudyType)Laboratory    246.0  0.95  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1010,7 +1479,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </button>
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
 <pre><code>R version 4.0.0 (2020-04-24)
 Platform: x86_64-w64-mingw32/x64 (64-bit)
 Running under: Windows 10 x64 (build 19041)
@@ -1026,18 +1495,18 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] ggplot2_3.3.3              data.table_1.14.0         
- [3] stargazer_5.2.2            dplyr_1.0.5               
- [5] MCMCglmm_2.32              coda_0.19-4               
- [7] tidyr_1.1.3                PerformanceAnalytics_2.0.4
- [9] xts_0.12.1                 zoo_1.8-9                 
-[11] matrixcalc_1.0-3           outliers_0.14             
-[13] psych_2.1.3                multcomp_1.4-16           
-[15] TH.data_1.0-10             survival_3.1-12           
-[17] mvtnorm_1.1-1              pwr_1.3-0                 
-[19] MASS_7.3-51.5              metafor_2.4-0             
-[21] Matrix_1.2-18              ape_5.4-1                 
-[23] workflowr_1.6.2           
+ [1] readr_1.4.0                ggplot2_3.3.3             
+ [3] data.table_1.14.0          stargazer_5.2.2           
+ [5] dplyr_1.0.5                MCMCglmm_2.32             
+ [7] coda_0.19-4                tidyr_1.1.3               
+ [9] PerformanceAnalytics_2.0.4 xts_0.12.1                
+[11] zoo_1.8-9                  matrixcalc_1.0-3          
+[13] outliers_0.14              psych_2.1.3               
+[15] multcomp_1.4-16            TH.data_1.0-10            
+[17] survival_3.1-12            mvtnorm_1.1-1             
+[19] pwr_1.3-0                  MASS_7.3-51.5             
+[21] metafor_2.4-0              Matrix_1.2-18             
+[23] ape_5.4-1                  workflowr_1.6.2           
 
 loaded via a namespace (and not attached):
  [1] Rcpp_1.0.6        lattice_0.20-41   corpcor_1.6.9     assertthat_0.2.1 
@@ -1053,7 +1522,10 @@ loaded via a namespace (and not attached):
 [41] magrittr_2.0.1    scales_1.1.1      stringi_1.5.3     fs_1.5.0         
 [45] promises_1.2.0.1  ellipsis_0.3.1    vctrs_0.3.6       generics_0.1.0   
 [49] sandwich_3.0-0    tools_4.0.0       glue_1.4.2        purrr_0.3.4      
-[53] parallel_4.0.0    yaml_2.2.1        colorspace_2.0-0  knitr_1.31       </code></pre>
+[53] hms_1.0.0         parallel_4.0.0    yaml_2.2.1        colorspace_2.0-0 
+[57] knitr_1.31       </code></pre>
+</div>
+</div>
 </div>
 </div>
 
