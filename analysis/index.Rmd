@@ -19,29 +19,7 @@ Statistical analyses were carried out in two steps. First, we examined the key a
 # load packages
 
 ```
-First, the code to load and organize the data.
-```{r}
 
-```
-
-Subsetting the dataset into different fitness categories.
-```{r}
-
-```
-
-### MCMC APPROACH - Reproductive Success
-
-```{r,results='hide'}
-
-```
-
-```{r,results='hide'}
-
-```
-
-```{r}
-
-```
 
 ## Stronger net selection on males (PGLMMs)
 
@@ -76,7 +54,7 @@ theTree <- read.tree("./data/META_SexSpecGenVar_Pylogeny_v05_NEWICK.txt")
 ```
 
 Finally, we subset our data set for the analyses into the fitness categories ('FitnessCat') lifespan ('LS') and reproductive success ('RS').
-```{r, results='hide',echo=FALSE}
+```{r, results='hide'}
 ## Reorganising and subsetting dataset ####
 
 stacked_gen_Data <- gather(Data, key = "Sex",value = "genCV", genCV_male, genCV_female)
@@ -94,7 +72,7 @@ LS_phen_metaData<-subset(stacked_phen_Data, FitnessCat == "LS")
 We then ran MCMC models to test for differences in the phenotypic and genetic variances in males and females for the fitness categories reproductive success and lifespan. 
 
 First we prune the phylogenetic tree to the data subset.
-```{r,echo=FALSE}
+```{r, results='hide'}
 ## PRUNE PHYLOGENETIC TREE TO DATA SUBSET
 RS_gen_metaData$animal <- factor(RS_gen_metaData$animal)
 is.factor(RS_gen_metaData$animal)
@@ -106,7 +84,7 @@ plot(RS_theTree)
 
 
 We then check if the phylogenetic tree was correctly build. 
-```{r, results='hide', echo=FALSE, message=FALSE}
+```{r, results='hide', message=FALSE}
 ## CHECK PHYLOGENETIC TREE
 sort(RS_theTree$tip.label) == sort(unique(RS_gen_metaData$animal)) # check if tip names correspond to data names
 is.ultrametric(RS_theTree) # check if BL are aligned contemporaneously
@@ -120,7 +98,7 @@ rawC[cbind(which(comparedC!=TRUE, arr.ind = T))] - forcedC[cbind(which(comparedC
 ```
 
 Next, we set the priors for the MCMC models using uninformative priors (V = 1, nu = 0.002) and an effective sample size of 20000 (number of iterations = 11000000, burn-in = 1000000, thinning interval = 500). We also set the index and study ID as factors.
-```{r,results='hide',echo=FALSE}
+```{r,results='hide'}
 ## Prior settings, iterations
 pr<-list(R=list(V=1,nu=0.002), G=list(G1=list(V=1,nu=0.002),
                                       G2=list(V=1,nu=0.002),
