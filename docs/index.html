@@ -450,7 +450,7 @@ div.tocify {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -459,7 +459,7 @@ div.tocify {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -471,7 +471,7 @@ div.tocify {
 <strong>Last updated:</strong> 2021-06-23
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>Net_Selection_eLife_code/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -487,12 +487,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -559,16 +559,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomLennartWinklerNetSelectioneLifecodetree926ceb8061cd359e9440de3e01261a6f4cdc940ctargetblank926ceb8a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/LennartWinkler/Net_Selection_eLife_code/tree/926ceb8061cd359e9440de3e01261a6f4cdc940c" target="_blank">926ceb8</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomLennartWinklerNetSelectioneLifecodetree98c553de2cd446b43abfe7ba5a3c6832d45681c0targetblank98c553da"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/LennartWinkler/Net_Selection_eLife_code/tree/98c553de2cd446b43abfe7ba5a3c6832d45681c0" target="_blank">98c553d</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomLennartWinklerNetSelectioneLifecodetree926ceb8061cd359e9440de3e01261a6f4cdc940ctargetblank926ceb8a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomLennartWinklerNetSelectioneLifecodetree98c553de2cd446b43abfe7ba5a3c6832d45681c0targetblank98c553da" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/LennartWinkler/Net_Selection_eLife_code/tree/926ceb8061cd359e9440de3e01261a6f4cdc940c" target="_blank">926ceb8</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/LennartWinkler/Net_Selection_eLife_code/tree/98c553de2cd446b43abfe7ba5a3c6832d45681c0" target="_blank">98c553d</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -585,6 +585,9 @@ Untracked files:
     Untracked:  analysis/docs/site_libs/
     Untracked:  data/META_SexSpecGenVar_Data_v23.csv
     Untracked:  data/META_SexSpecGenVar_Pylogeny_v05_NEWICK.txt
+
+Unstaged changes:
+    Modified:   analysis/index.Rmd
 
 </code></pre>
 <p>
@@ -623,6 +626,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/LennartWinkler/Net_Selection_eLife_code/98c553de2cd446b43abfe7ba5a3c6832d45681c0/docs/index.html" target="_blank">98c553d</a>
+</td>
+<td>
+LennartWinkler
+</td>
+<td>
+2021-06-23
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1279,276 +1299,9 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <a class="sourceLine" id="cb10-4" title="4">                                  <span class="dt">data=</span>RS_phen_metaData,</a>
 <a class="sourceLine" id="cb10-5" title="5">                                  <span class="dt">burnin =</span> BURNIN,</a>
 <a class="sourceLine" id="cb10-6" title="6">                                  <span class="dt">nitt=</span>NITT,</a>
-<a class="sourceLine" id="cb10-7" title="7">                                  <span class="dt">thin=</span>THIN)</a></code></pre></div>
-<pre><code>
-                       MCMC iteration = 0
-
-                       MCMC iteration = 1000
-
-                       MCMC iteration = 2000
-
-                       MCMC iteration = 3000
-
-                       MCMC iteration = 4000
-
-                       MCMC iteration = 5000
-
-                       MCMC iteration = 6000
-
-                       MCMC iteration = 7000
-
-                       MCMC iteration = 8000
-
-                       MCMC iteration = 9000
-
-                       MCMC iteration = 10000
-
-                       MCMC iteration = 11000
-
-                       MCMC iteration = 12000
-
-                       MCMC iteration = 13000
-
-                       MCMC iteration = 14000
-
-                       MCMC iteration = 15000
-
-                       MCMC iteration = 16000
-
-                       MCMC iteration = 17000
-
-                       MCMC iteration = 18000
-
-                       MCMC iteration = 19000
-
-                       MCMC iteration = 20000
-
-                       MCMC iteration = 21000
-
-                       MCMC iteration = 22000
-
-                       MCMC iteration = 23000
-
-                       MCMC iteration = 24000
-
-                       MCMC iteration = 25000
-
-                       MCMC iteration = 26000
-
-                       MCMC iteration = 27000
-
-                       MCMC iteration = 28000
-
-                       MCMC iteration = 29000
-
-                       MCMC iteration = 30000
-
-                       MCMC iteration = 31000
-
-                       MCMC iteration = 32000
-
-                       MCMC iteration = 33000
-
-                       MCMC iteration = 34000
-
-                       MCMC iteration = 35000
-
-                       MCMC iteration = 36000
-
-                       MCMC iteration = 37000
-
-                       MCMC iteration = 38000
-
-                       MCMC iteration = 39000
-
-                       MCMC iteration = 40000
-
-                       MCMC iteration = 41000
-
-                       MCMC iteration = 42000
-
-                       MCMC iteration = 43000
-
-                       MCMC iteration = 44000
-
-                       MCMC iteration = 45000
-
-                       MCMC iteration = 46000
-
-                       MCMC iteration = 47000
-
-                       MCMC iteration = 48000
-
-                       MCMC iteration = 49000
-
-                       MCMC iteration = 50000
-
-                       MCMC iteration = 51000
-
-                       MCMC iteration = 52000
-
-                       MCMC iteration = 53000
-
-                       MCMC iteration = 54000
-
-                       MCMC iteration = 55000
-
-                       MCMC iteration = 56000
-
-                       MCMC iteration = 57000
-
-                       MCMC iteration = 58000
-
-                       MCMC iteration = 59000
-
-                       MCMC iteration = 60000
-
-                       MCMC iteration = 61000
-
-                       MCMC iteration = 62000
-
-                       MCMC iteration = 63000
-
-                       MCMC iteration = 64000
-
-                       MCMC iteration = 65000
-
-                       MCMC iteration = 66000
-
-                       MCMC iteration = 67000
-
-                       MCMC iteration = 68000
-
-                       MCMC iteration = 69000
-
-                       MCMC iteration = 70000
-
-                       MCMC iteration = 71000
-
-                       MCMC iteration = 72000
-
-                       MCMC iteration = 73000
-
-                       MCMC iteration = 74000
-
-                       MCMC iteration = 75000
-
-                       MCMC iteration = 76000
-
-                       MCMC iteration = 77000
-
-                       MCMC iteration = 78000
-
-                       MCMC iteration = 79000
-
-                       MCMC iteration = 80000
-
-                       MCMC iteration = 81000
-
-                       MCMC iteration = 82000
-
-                       MCMC iteration = 83000
-
-                       MCMC iteration = 84000
-
-                       MCMC iteration = 85000
-
-                       MCMC iteration = 86000
-
-                       MCMC iteration = 87000
-
-                       MCMC iteration = 88000
-
-                       MCMC iteration = 89000
-
-                       MCMC iteration = 90000
-
-                       MCMC iteration = 91000
-
-                       MCMC iteration = 92000
-
-                       MCMC iteration = 93000
-
-                       MCMC iteration = 94000
-
-                       MCMC iteration = 95000
-
-                       MCMC iteration = 96000
-
-                       MCMC iteration = 97000
-
-                       MCMC iteration = 98000
-
-                       MCMC iteration = 99000
-
-                       MCMC iteration = 100000
-
-                       MCMC iteration = 101000
-
-                       MCMC iteration = 102000
-
-                       MCMC iteration = 103000
-
-                       MCMC iteration = 104000
-
-                       MCMC iteration = 105000
-
-                       MCMC iteration = 106000
-
-                       MCMC iteration = 107000
-
-                       MCMC iteration = 108000
-
-                       MCMC iteration = 109000
-
-                       MCMC iteration = 110000</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">summary</span>(RS_phen_MatSyst_MCMC_model)</a></code></pre></div>
-<pre><code>
- Iterations = 10001:109501
- Thinning interval  = 500
- Sample size  = 200 
-
- DIC: 31.00689 
-
- G-structure:  ~animal
-
-       post.mean  l-95% CI u-95% CI eff.samp
-animal    0.0415 0.0009463   0.1245      200
-
-               ~Index
-
-      post.mean  l-95% CI u-95% CI eff.samp
-Index   0.06553 0.0006622   0.1327    345.3
-
-               ~Study_ID
-
-         post.mean  l-95% CI u-95% CI eff.samp
-Study_ID   0.05893 0.0002484   0.1553      139
-
- R-structure:  ~units
-
-      post.mean l-95% CI u-95% CI eff.samp
-units   0.05102   0.0327   0.0685      200
-
- Location effects: phenCV ~ factor(Sex) * factor(Mating_system) 
-
-                                                     post.mean  l-95% CI
-(Intercept)                                           0.705011  0.331216
-factor(Sex)phenCV_male                               -0.008772 -0.203472
-factor(Mating_system)polygamy                         0.008150 -0.297388
-factor(Sex)phenCV_male:factor(Mating_system)polygamy  0.319035  0.120912
-                                                      u-95% CI eff.samp  pMCMC
-(Intercept)                                           1.091192      200   0.01
-factor(Sex)phenCV_male                                0.136592      200   0.94
-factor(Mating_system)polygamy                         0.489325      200   0.98
-factor(Sex)phenCV_male:factor(Mating_system)polygamy  0.483260      200 &lt;0.005
-                                                       
-(Intercept)                                          * 
-factor(Sex)phenCV_male                                 
-factor(Mating_system)polygamy                          
-factor(Sex)phenCV_male:factor(Mating_system)polygamy **
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<a class="sourceLine" id="cb10-7" title="7">                                  <span class="dt">thin=</span>THIN)</a>
+<a class="sourceLine" id="cb10-8" title="8"></a>
+<a class="sourceLine" id="cb10-9" title="9"><span class="kw">summary</span>(RS_phen_MatSyst_MCMC_model)</a></code></pre></div>
 <pre><code>
  Iterations = 10001:109501
  Thinning interval  = 500
@@ -1596,277 +1349,14 @@ factor(Sex)phenCV_male:factor(Mating_system)polygamy **
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>In an additional model, we included the study type (‘StudyType’), i.e. if the data were obtained in laboratory or field experiments.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">RS_phen_StudyType_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(phenCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(StudyType),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
-<a class="sourceLine" id="cb15-2" title="2">                                        <span class="dt">pedigree=</span>RS_theTree,</a>
-<a class="sourceLine" id="cb15-3" title="3">                                        <span class="dt">prior=</span>pr,</a>
-<a class="sourceLine" id="cb15-4" title="4">                                        <span class="dt">data=</span>RS_phen_metaData,</a>
-<a class="sourceLine" id="cb15-5" title="5">                                        <span class="dt">burnin =</span> BURNIN,</a>
-<a class="sourceLine" id="cb15-6" title="6">                                        <span class="dt">nitt=</span>NITT,</a>
-<a class="sourceLine" id="cb15-7" title="7">                                        <span class="dt">thin=</span>THIN)</a></code></pre></div>
-<pre><code>
-                       MCMC iteration = 0
-
-                       MCMC iteration = 1000
-
-                       MCMC iteration = 2000
-
-                       MCMC iteration = 3000
-
-                       MCMC iteration = 4000
-
-                       MCMC iteration = 5000
-
-                       MCMC iteration = 6000
-
-                       MCMC iteration = 7000
-
-                       MCMC iteration = 8000
-
-                       MCMC iteration = 9000
-
-                       MCMC iteration = 10000
-
-                       MCMC iteration = 11000
-
-                       MCMC iteration = 12000
-
-                       MCMC iteration = 13000
-
-                       MCMC iteration = 14000
-
-                       MCMC iteration = 15000
-
-                       MCMC iteration = 16000
-
-                       MCMC iteration = 17000
-
-                       MCMC iteration = 18000
-
-                       MCMC iteration = 19000
-
-                       MCMC iteration = 20000
-
-                       MCMC iteration = 21000
-
-                       MCMC iteration = 22000
-
-                       MCMC iteration = 23000
-
-                       MCMC iteration = 24000
-
-                       MCMC iteration = 25000
-
-                       MCMC iteration = 26000
-
-                       MCMC iteration = 27000
-
-                       MCMC iteration = 28000
-
-                       MCMC iteration = 29000
-
-                       MCMC iteration = 30000
-
-                       MCMC iteration = 31000
-
-                       MCMC iteration = 32000
-
-                       MCMC iteration = 33000
-
-                       MCMC iteration = 34000
-
-                       MCMC iteration = 35000
-
-                       MCMC iteration = 36000
-
-                       MCMC iteration = 37000
-
-                       MCMC iteration = 38000
-
-                       MCMC iteration = 39000
-
-                       MCMC iteration = 40000
-
-                       MCMC iteration = 41000
-
-                       MCMC iteration = 42000
-
-                       MCMC iteration = 43000
-
-                       MCMC iteration = 44000
-
-                       MCMC iteration = 45000
-
-                       MCMC iteration = 46000
-
-                       MCMC iteration = 47000
-
-                       MCMC iteration = 48000
-
-                       MCMC iteration = 49000
-
-                       MCMC iteration = 50000
-
-                       MCMC iteration = 51000
-
-                       MCMC iteration = 52000
-
-                       MCMC iteration = 53000
-
-                       MCMC iteration = 54000
-
-                       MCMC iteration = 55000
-
-                       MCMC iteration = 56000
-
-                       MCMC iteration = 57000
-
-                       MCMC iteration = 58000
-
-                       MCMC iteration = 59000
-
-                       MCMC iteration = 60000
-
-                       MCMC iteration = 61000
-
-                       MCMC iteration = 62000
-
-                       MCMC iteration = 63000
-
-                       MCMC iteration = 64000
-
-                       MCMC iteration = 65000
-
-                       MCMC iteration = 66000
-
-                       MCMC iteration = 67000
-
-                       MCMC iteration = 68000
-
-                       MCMC iteration = 69000
-
-                       MCMC iteration = 70000
-
-                       MCMC iteration = 71000
-
-                       MCMC iteration = 72000
-
-                       MCMC iteration = 73000
-
-                       MCMC iteration = 74000
-
-                       MCMC iteration = 75000
-
-                       MCMC iteration = 76000
-
-                       MCMC iteration = 77000
-
-                       MCMC iteration = 78000
-
-                       MCMC iteration = 79000
-
-                       MCMC iteration = 80000
-
-                       MCMC iteration = 81000
-
-                       MCMC iteration = 82000
-
-                       MCMC iteration = 83000
-
-                       MCMC iteration = 84000
-
-                       MCMC iteration = 85000
-
-                       MCMC iteration = 86000
-
-                       MCMC iteration = 87000
-
-                       MCMC iteration = 88000
-
-                       MCMC iteration = 89000
-
-                       MCMC iteration = 90000
-
-                       MCMC iteration = 91000
-
-                       MCMC iteration = 92000
-
-                       MCMC iteration = 93000
-
-                       MCMC iteration = 94000
-
-                       MCMC iteration = 95000
-
-                       MCMC iteration = 96000
-
-                       MCMC iteration = 97000
-
-                       MCMC iteration = 98000
-
-                       MCMC iteration = 99000
-
-                       MCMC iteration = 100000
-
-                       MCMC iteration = 101000
-
-                       MCMC iteration = 102000
-
-                       MCMC iteration = 103000
-
-                       MCMC iteration = 104000
-
-                       MCMC iteration = 105000
-
-                       MCMC iteration = 106000
-
-                       MCMC iteration = 107000
-
-                       MCMC iteration = 108000
-
-                       MCMC iteration = 109000
-
-                       MCMC iteration = 110000</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">summary</span>(RS_phen_StudyType_MCMC_model)</a></code></pre></div>
-<pre><code>
- Iterations = 10001:109501
- Thinning interval  = 500
- Sample size  = 200 
-
- DIC: 51.0445 
-
- G-structure:  ~animal
-
-       post.mean  l-95% CI u-95% CI eff.samp
-animal   0.01296 0.0002984  0.04841      200
-
-               ~Index
-
-      post.mean l-95% CI u-95% CI eff.samp
-Index   0.06457 0.005559   0.1166    228.2
-
-               ~Study_ID
-
-         post.mean  l-95% CI u-95% CI eff.samp
-Study_ID   0.04607 0.0004687   0.1219      200
-
- R-structure:  ~units
-
-      post.mean l-95% CI u-95% CI eff.samp
-units   0.05913  0.03754  0.08295      200
-
- Location effects: phenCV ~ factor(Sex) * factor(StudyType) 
-
-                                                   post.mean l-95% CI u-95% CI
-(Intercept)                                          0.88229  0.69786  1.13647
-factor(Sex)phenCV_male                               0.19596  0.07779  0.32654
-factor(StudyType)Laboratory                         -0.32085 -0.60583 -0.04419
-factor(Sex)phenCV_male:factor(StudyType)Laboratory   0.06189 -0.11074  0.21244
-                                                   eff.samp  pMCMC   
-(Intercept)                                           215.5 &lt;0.005 **
-factor(Sex)phenCV_male                                200.0   0.01 * 
-factor(StudyType)Laboratory                           200.0   0.03 * 
-factor(Sex)phenCV_male:factor(StudyType)Laboratory    200.0   0.45   
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">RS_phen_StudyType_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(phenCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(StudyType),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
+<a class="sourceLine" id="cb12-2" title="2">                                        <span class="dt">pedigree=</span>RS_theTree,</a>
+<a class="sourceLine" id="cb12-3" title="3">                                        <span class="dt">prior=</span>pr,</a>
+<a class="sourceLine" id="cb12-4" title="4">                                        <span class="dt">data=</span>RS_phen_metaData,</a>
+<a class="sourceLine" id="cb12-5" title="5">                                        <span class="dt">burnin =</span> BURNIN,</a>
+<a class="sourceLine" id="cb12-6" title="6">                                        <span class="dt">nitt=</span>NITT,</a>
+<a class="sourceLine" id="cb12-7" title="7">                                        <span class="dt">thin=</span>THIN)</a>
+<a class="sourceLine" id="cb12-8" title="8"><span class="kw">summary</span>(RS_phen_StudyType_MCMC_model)</a></code></pre></div>
 <pre><code>
  Iterations = 10001:109501
  Thinning interval  = 500
@@ -1909,271 +1399,15 @@ factor(Sex)phenCV_male:factor(StudyType)Laboratory    200.0   0.45
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Next, we ran the MCMC models examining the genetic variance in reproductive success (‘genCV’). First, the overall model for a sex difference.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">RS_gen_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
-<a class="sourceLine" id="cb20-2" title="2">                       <span class="dt">pedigree=</span>RS_theTree,</a>
-<a class="sourceLine" id="cb20-3" title="3">                       <span class="dt">prior=</span>pr,</a>
-<a class="sourceLine" id="cb20-4" title="4">                       <span class="dt">data=</span>RS_gen_metaData,</a>
-<a class="sourceLine" id="cb20-5" title="5">                       <span class="dt">pr =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb20-6" title="6">                       <span class="dt">burnin =</span> BURNIN,</a>
-<a class="sourceLine" id="cb20-7" title="7">                       <span class="dt">nitt=</span>NITT,</a>
-<a class="sourceLine" id="cb20-8" title="8">                       <span class="dt">thin=</span>THIN)</a></code></pre></div>
-<pre><code>
-                       MCMC iteration = 0
-
-                       MCMC iteration = 1000
-
-                       MCMC iteration = 2000
-
-                       MCMC iteration = 3000
-
-                       MCMC iteration = 4000
-
-                       MCMC iteration = 5000
-
-                       MCMC iteration = 6000
-
-                       MCMC iteration = 7000
-
-                       MCMC iteration = 8000
-
-                       MCMC iteration = 9000
-
-                       MCMC iteration = 10000
-
-                       MCMC iteration = 11000
-
-                       MCMC iteration = 12000
-
-                       MCMC iteration = 13000
-
-                       MCMC iteration = 14000
-
-                       MCMC iteration = 15000
-
-                       MCMC iteration = 16000
-
-                       MCMC iteration = 17000
-
-                       MCMC iteration = 18000
-
-                       MCMC iteration = 19000
-
-                       MCMC iteration = 20000
-
-                       MCMC iteration = 21000
-
-                       MCMC iteration = 22000
-
-                       MCMC iteration = 23000
-
-                       MCMC iteration = 24000
-
-                       MCMC iteration = 25000
-
-                       MCMC iteration = 26000
-
-                       MCMC iteration = 27000
-
-                       MCMC iteration = 28000
-
-                       MCMC iteration = 29000
-
-                       MCMC iteration = 30000
-
-                       MCMC iteration = 31000
-
-                       MCMC iteration = 32000
-
-                       MCMC iteration = 33000
-
-                       MCMC iteration = 34000
-
-                       MCMC iteration = 35000
-
-                       MCMC iteration = 36000
-
-                       MCMC iteration = 37000
-
-                       MCMC iteration = 38000
-
-                       MCMC iteration = 39000
-
-                       MCMC iteration = 40000
-
-                       MCMC iteration = 41000
-
-                       MCMC iteration = 42000
-
-                       MCMC iteration = 43000
-
-                       MCMC iteration = 44000
-
-                       MCMC iteration = 45000
-
-                       MCMC iteration = 46000
-
-                       MCMC iteration = 47000
-
-                       MCMC iteration = 48000
-
-                       MCMC iteration = 49000
-
-                       MCMC iteration = 50000
-
-                       MCMC iteration = 51000
-
-                       MCMC iteration = 52000
-
-                       MCMC iteration = 53000
-
-                       MCMC iteration = 54000
-
-                       MCMC iteration = 55000
-
-                       MCMC iteration = 56000
-
-                       MCMC iteration = 57000
-
-                       MCMC iteration = 58000
-
-                       MCMC iteration = 59000
-
-                       MCMC iteration = 60000
-
-                       MCMC iteration = 61000
-
-                       MCMC iteration = 62000
-
-                       MCMC iteration = 63000
-
-                       MCMC iteration = 64000
-
-                       MCMC iteration = 65000
-
-                       MCMC iteration = 66000
-
-                       MCMC iteration = 67000
-
-                       MCMC iteration = 68000
-
-                       MCMC iteration = 69000
-
-                       MCMC iteration = 70000
-
-                       MCMC iteration = 71000
-
-                       MCMC iteration = 72000
-
-                       MCMC iteration = 73000
-
-                       MCMC iteration = 74000
-
-                       MCMC iteration = 75000
-
-                       MCMC iteration = 76000
-
-                       MCMC iteration = 77000
-
-                       MCMC iteration = 78000
-
-                       MCMC iteration = 79000
-
-                       MCMC iteration = 80000
-
-                       MCMC iteration = 81000
-
-                       MCMC iteration = 82000
-
-                       MCMC iteration = 83000
-
-                       MCMC iteration = 84000
-
-                       MCMC iteration = 85000
-
-                       MCMC iteration = 86000
-
-                       MCMC iteration = 87000
-
-                       MCMC iteration = 88000
-
-                       MCMC iteration = 89000
-
-                       MCMC iteration = 90000
-
-                       MCMC iteration = 91000
-
-                       MCMC iteration = 92000
-
-                       MCMC iteration = 93000
-
-                       MCMC iteration = 94000
-
-                       MCMC iteration = 95000
-
-                       MCMC iteration = 96000
-
-                       MCMC iteration = 97000
-
-                       MCMC iteration = 98000
-
-                       MCMC iteration = 99000
-
-                       MCMC iteration = 100000
-
-                       MCMC iteration = 101000
-
-                       MCMC iteration = 102000
-
-                       MCMC iteration = 103000
-
-                       MCMC iteration = 104000
-
-                       MCMC iteration = 105000
-
-                       MCMC iteration = 106000
-
-                       MCMC iteration = 107000
-
-                       MCMC iteration = 108000
-
-                       MCMC iteration = 109000
-
-                       MCMC iteration = 110000</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">summary</span>(RS_gen_MCMC_model)</a></code></pre></div>
-<pre><code>
- Iterations = 10001:109501
- Thinning interval  = 500
- Sample size  = 200 
-
- DIC: -130.0802 
-
- G-structure:  ~animal
-
-       post.mean  l-95% CI u-95% CI eff.samp
-animal   0.01198 0.0004535  0.04331      200
-
-               ~Index
-
-      post.mean  l-95% CI u-95% CI eff.samp
-Index  0.003847 0.0003005 0.009868      200
-
-               ~Study_ID
-
-         post.mean l-95% CI u-95% CI eff.samp
-Study_ID   0.01471 0.004494  0.02548    248.7
-
- R-structure:  ~units
-
-      post.mean l-95% CI u-95% CI eff.samp
-units   0.01497 0.009596  0.02006      200
-
- Location effects: genCV ~ factor(Sex) 
-
-                      post.mean l-95% CI u-95% CI eff.samp  pMCMC   
-(Intercept)             0.24615  0.13462  0.37596    200.0 &lt;0.005 **
-factor(Sex)genCV_male   0.08424  0.04133  0.12205    149.8 &lt;0.005 **
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">RS_gen_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
+<a class="sourceLine" id="cb14-2" title="2">                       <span class="dt">pedigree=</span>RS_theTree,</a>
+<a class="sourceLine" id="cb14-3" title="3">                       <span class="dt">prior=</span>pr,</a>
+<a class="sourceLine" id="cb14-4" title="4">                       <span class="dt">data=</span>RS_gen_metaData,</a>
+<a class="sourceLine" id="cb14-5" title="5">                       <span class="dt">pr =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb14-6" title="6">                       <span class="dt">burnin =</span> BURNIN,</a>
+<a class="sourceLine" id="cb14-7" title="7">                       <span class="dt">nitt=</span>NITT,</a>
+<a class="sourceLine" id="cb14-8" title="8">                       <span class="dt">thin=</span>THIN)</a>
+<a class="sourceLine" id="cb14-9" title="9"><span class="kw">summary</span>(RS_gen_MCMC_model)</a></code></pre></div>
 <pre><code>
  Iterations = 10001:109501
  Thinning interval  = 500
@@ -2209,282 +1443,14 @@ factor(Sex)genCV_male   0.08424  0.04133  0.12205    149.8 &lt;0.005 **
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Secondly, including the matingsytem as a covariate (‘Mating_system’).</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">RS_gen_MatSyst_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(Mating_system),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
-<a class="sourceLine" id="cb25-2" title="2">                  <span class="dt">pedigree=</span>RS_theTree,</a>
-<a class="sourceLine" id="cb25-3" title="3">                  <span class="dt">prior=</span>pr,</a>
-<a class="sourceLine" id="cb25-4" title="4">                  <span class="dt">data=</span>RS_gen_metaData,</a>
-<a class="sourceLine" id="cb25-5" title="5">                  <span class="dt">burnin =</span> BURNIN,</a>
-<a class="sourceLine" id="cb25-6" title="6">                  <span class="dt">nitt=</span>NITT,</a>
-<a class="sourceLine" id="cb25-7" title="7">                  <span class="dt">thin=</span>THIN)</a></code></pre></div>
-<pre><code>
-                       MCMC iteration = 0
-
-                       MCMC iteration = 1000
-
-                       MCMC iteration = 2000
-
-                       MCMC iteration = 3000
-
-                       MCMC iteration = 4000
-
-                       MCMC iteration = 5000
-
-                       MCMC iteration = 6000
-
-                       MCMC iteration = 7000
-
-                       MCMC iteration = 8000
-
-                       MCMC iteration = 9000
-
-                       MCMC iteration = 10000
-
-                       MCMC iteration = 11000
-
-                       MCMC iteration = 12000
-
-                       MCMC iteration = 13000
-
-                       MCMC iteration = 14000
-
-                       MCMC iteration = 15000
-
-                       MCMC iteration = 16000
-
-                       MCMC iteration = 17000
-
-                       MCMC iteration = 18000
-
-                       MCMC iteration = 19000
-
-                       MCMC iteration = 20000
-
-                       MCMC iteration = 21000
-
-                       MCMC iteration = 22000
-
-                       MCMC iteration = 23000
-
-                       MCMC iteration = 24000
-
-                       MCMC iteration = 25000
-
-                       MCMC iteration = 26000
-
-                       MCMC iteration = 27000
-
-                       MCMC iteration = 28000
-
-                       MCMC iteration = 29000
-
-                       MCMC iteration = 30000
-
-                       MCMC iteration = 31000
-
-                       MCMC iteration = 32000
-
-                       MCMC iteration = 33000
-
-                       MCMC iteration = 34000
-
-                       MCMC iteration = 35000
-
-                       MCMC iteration = 36000
-
-                       MCMC iteration = 37000
-
-                       MCMC iteration = 38000
-
-                       MCMC iteration = 39000
-
-                       MCMC iteration = 40000
-
-                       MCMC iteration = 41000
-
-                       MCMC iteration = 42000
-
-                       MCMC iteration = 43000
-
-                       MCMC iteration = 44000
-
-                       MCMC iteration = 45000
-
-                       MCMC iteration = 46000
-
-                       MCMC iteration = 47000
-
-                       MCMC iteration = 48000
-
-                       MCMC iteration = 49000
-
-                       MCMC iteration = 50000
-
-                       MCMC iteration = 51000
-
-                       MCMC iteration = 52000
-
-                       MCMC iteration = 53000
-
-                       MCMC iteration = 54000
-
-                       MCMC iteration = 55000
-
-                       MCMC iteration = 56000
-
-                       MCMC iteration = 57000
-
-                       MCMC iteration = 58000
-
-                       MCMC iteration = 59000
-
-                       MCMC iteration = 60000
-
-                       MCMC iteration = 61000
-
-                       MCMC iteration = 62000
-
-                       MCMC iteration = 63000
-
-                       MCMC iteration = 64000
-
-                       MCMC iteration = 65000
-
-                       MCMC iteration = 66000
-
-                       MCMC iteration = 67000
-
-                       MCMC iteration = 68000
-
-                       MCMC iteration = 69000
-
-                       MCMC iteration = 70000
-
-                       MCMC iteration = 71000
-
-                       MCMC iteration = 72000
-
-                       MCMC iteration = 73000
-
-                       MCMC iteration = 74000
-
-                       MCMC iteration = 75000
-
-                       MCMC iteration = 76000
-
-                       MCMC iteration = 77000
-
-                       MCMC iteration = 78000
-
-                       MCMC iteration = 79000
-
-                       MCMC iteration = 80000
-
-                       MCMC iteration = 81000
-
-                       MCMC iteration = 82000
-
-                       MCMC iteration = 83000
-
-                       MCMC iteration = 84000
-
-                       MCMC iteration = 85000
-
-                       MCMC iteration = 86000
-
-                       MCMC iteration = 87000
-
-                       MCMC iteration = 88000
-
-                       MCMC iteration = 89000
-
-                       MCMC iteration = 90000
-
-                       MCMC iteration = 91000
-
-                       MCMC iteration = 92000
-
-                       MCMC iteration = 93000
-
-                       MCMC iteration = 94000
-
-                       MCMC iteration = 95000
-
-                       MCMC iteration = 96000
-
-                       MCMC iteration = 97000
-
-                       MCMC iteration = 98000
-
-                       MCMC iteration = 99000
-
-                       MCMC iteration = 100000
-
-                       MCMC iteration = 101000
-
-                       MCMC iteration = 102000
-
-                       MCMC iteration = 103000
-
-                       MCMC iteration = 104000
-
-                       MCMC iteration = 105000
-
-                       MCMC iteration = 106000
-
-                       MCMC iteration = 107000
-
-                       MCMC iteration = 108000
-
-                       MCMC iteration = 109000
-
-                       MCMC iteration = 110000</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">summary</span>(RS_gen_MatSyst_MCMC_model)</a></code></pre></div>
-<pre><code>
- Iterations = 10001:109501
- Thinning interval  = 500
- Sample size  = 200 
-
- DIC: -138.7594 
-
- G-structure:  ~animal
-
-       post.mean  l-95% CI u-95% CI eff.samp
-animal   0.01056 0.0002717  0.03152      200
-
-               ~Index
-
-      post.mean  l-95% CI u-95% CI eff.samp
-Index  0.004712 0.0004249  0.01062      200
-
-               ~Study_ID
-
-         post.mean l-95% CI u-95% CI eff.samp
-Study_ID   0.01545 0.005762  0.03144    156.5
-
- R-structure:  ~units
-
-      post.mean l-95% CI u-95% CI eff.samp
-units   0.01356 0.009133  0.01777      200
-
- Location effects: genCV ~ factor(Sex) * factor(Mating_system) 
-
-                                                    post.mean  l-95% CI
-(Intercept)                                          0.254980  0.103623
-factor(Sex)genCV_male                               -0.015821 -0.088028
-factor(Mating_system)polygamy                       -0.007049 -0.146419
-factor(Sex)genCV_male:factor(Mating_system)polygamy  0.135581  0.032283
-                                                     u-95% CI eff.samp  pMCMC
-(Intercept)                                          0.455024    200.0 &lt;0.005
-factor(Sex)genCV_male                                0.071933    200.0   0.74
-factor(Mating_system)polygamy                        0.143565    272.4   0.98
-factor(Sex)genCV_male:factor(Mating_system)polygamy  0.232928    246.3 &lt;0.005
-                                                      
-(Intercept)                                         **
-factor(Sex)genCV_male                                 
-factor(Mating_system)polygamy                         
-factor(Sex)genCV_male:factor(Mating_system)polygamy **
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">RS_gen_MatSyst_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(Mating_system),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
+<a class="sourceLine" id="cb16-2" title="2">                  <span class="dt">pedigree=</span>RS_theTree,</a>
+<a class="sourceLine" id="cb16-3" title="3">                  <span class="dt">prior=</span>pr,</a>
+<a class="sourceLine" id="cb16-4" title="4">                  <span class="dt">data=</span>RS_gen_metaData,</a>
+<a class="sourceLine" id="cb16-5" title="5">                  <span class="dt">burnin =</span> BURNIN,</a>
+<a class="sourceLine" id="cb16-6" title="6">                  <span class="dt">nitt=</span>NITT,</a>
+<a class="sourceLine" id="cb16-7" title="7">                  <span class="dt">thin=</span>THIN)</a>
+<a class="sourceLine" id="cb16-8" title="8"><span class="kw">summary</span>(RS_gen_MatSyst_MCMC_model)</a></code></pre></div>
 <pre><code>
  Iterations = 10001:109501
  Thinning interval  = 500
@@ -2532,277 +1498,14 @@ factor(Sex)genCV_male:factor(Mating_system)polygamy **
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>And finally, we included the study type (‘StudyType’), i.e. if the data were obtained in laboratory or field experiments.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">RS_gen_StudyType_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(StudyType),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
-<a class="sourceLine" id="cb30-2" title="2">                                      <span class="dt">pedigree=</span>RS_theTree,</a>
-<a class="sourceLine" id="cb30-3" title="3">                                      <span class="dt">prior=</span>pr,</a>
-<a class="sourceLine" id="cb30-4" title="4">                                      <span class="dt">data=</span>RS_gen_metaData,</a>
-<a class="sourceLine" id="cb30-5" title="5">                                      <span class="dt">burnin =</span> BURNIN,</a>
-<a class="sourceLine" id="cb30-6" title="6">                                      <span class="dt">nitt=</span>NITT,</a>
-<a class="sourceLine" id="cb30-7" title="7">                                      <span class="dt">thin=</span>THIN)</a></code></pre></div>
-<pre><code>
-                       MCMC iteration = 0
-
-                       MCMC iteration = 1000
-
-                       MCMC iteration = 2000
-
-                       MCMC iteration = 3000
-
-                       MCMC iteration = 4000
-
-                       MCMC iteration = 5000
-
-                       MCMC iteration = 6000
-
-                       MCMC iteration = 7000
-
-                       MCMC iteration = 8000
-
-                       MCMC iteration = 9000
-
-                       MCMC iteration = 10000
-
-                       MCMC iteration = 11000
-
-                       MCMC iteration = 12000
-
-                       MCMC iteration = 13000
-
-                       MCMC iteration = 14000
-
-                       MCMC iteration = 15000
-
-                       MCMC iteration = 16000
-
-                       MCMC iteration = 17000
-
-                       MCMC iteration = 18000
-
-                       MCMC iteration = 19000
-
-                       MCMC iteration = 20000
-
-                       MCMC iteration = 21000
-
-                       MCMC iteration = 22000
-
-                       MCMC iteration = 23000
-
-                       MCMC iteration = 24000
-
-                       MCMC iteration = 25000
-
-                       MCMC iteration = 26000
-
-                       MCMC iteration = 27000
-
-                       MCMC iteration = 28000
-
-                       MCMC iteration = 29000
-
-                       MCMC iteration = 30000
-
-                       MCMC iteration = 31000
-
-                       MCMC iteration = 32000
-
-                       MCMC iteration = 33000
-
-                       MCMC iteration = 34000
-
-                       MCMC iteration = 35000
-
-                       MCMC iteration = 36000
-
-                       MCMC iteration = 37000
-
-                       MCMC iteration = 38000
-
-                       MCMC iteration = 39000
-
-                       MCMC iteration = 40000
-
-                       MCMC iteration = 41000
-
-                       MCMC iteration = 42000
-
-                       MCMC iteration = 43000
-
-                       MCMC iteration = 44000
-
-                       MCMC iteration = 45000
-
-                       MCMC iteration = 46000
-
-                       MCMC iteration = 47000
-
-                       MCMC iteration = 48000
-
-                       MCMC iteration = 49000
-
-                       MCMC iteration = 50000
-
-                       MCMC iteration = 51000
-
-                       MCMC iteration = 52000
-
-                       MCMC iteration = 53000
-
-                       MCMC iteration = 54000
-
-                       MCMC iteration = 55000
-
-                       MCMC iteration = 56000
-
-                       MCMC iteration = 57000
-
-                       MCMC iteration = 58000
-
-                       MCMC iteration = 59000
-
-                       MCMC iteration = 60000
-
-                       MCMC iteration = 61000
-
-                       MCMC iteration = 62000
-
-                       MCMC iteration = 63000
-
-                       MCMC iteration = 64000
-
-                       MCMC iteration = 65000
-
-                       MCMC iteration = 66000
-
-                       MCMC iteration = 67000
-
-                       MCMC iteration = 68000
-
-                       MCMC iteration = 69000
-
-                       MCMC iteration = 70000
-
-                       MCMC iteration = 71000
-
-                       MCMC iteration = 72000
-
-                       MCMC iteration = 73000
-
-                       MCMC iteration = 74000
-
-                       MCMC iteration = 75000
-
-                       MCMC iteration = 76000
-
-                       MCMC iteration = 77000
-
-                       MCMC iteration = 78000
-
-                       MCMC iteration = 79000
-
-                       MCMC iteration = 80000
-
-                       MCMC iteration = 81000
-
-                       MCMC iteration = 82000
-
-                       MCMC iteration = 83000
-
-                       MCMC iteration = 84000
-
-                       MCMC iteration = 85000
-
-                       MCMC iteration = 86000
-
-                       MCMC iteration = 87000
-
-                       MCMC iteration = 88000
-
-                       MCMC iteration = 89000
-
-                       MCMC iteration = 90000
-
-                       MCMC iteration = 91000
-
-                       MCMC iteration = 92000
-
-                       MCMC iteration = 93000
-
-                       MCMC iteration = 94000
-
-                       MCMC iteration = 95000
-
-                       MCMC iteration = 96000
-
-                       MCMC iteration = 97000
-
-                       MCMC iteration = 98000
-
-                       MCMC iteration = 99000
-
-                       MCMC iteration = 100000
-
-                       MCMC iteration = 101000
-
-                       MCMC iteration = 102000
-
-                       MCMC iteration = 103000
-
-                       MCMC iteration = 104000
-
-                       MCMC iteration = 105000
-
-                       MCMC iteration = 106000
-
-                       MCMC iteration = 107000
-
-                       MCMC iteration = 108000
-
-                       MCMC iteration = 109000
-
-                       MCMC iteration = 110000</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">summary</span>(RS_gen_StudyType_MCMC_model)</a></code></pre></div>
-<pre><code>
- Iterations = 10001:109501
- Thinning interval  = 500
- Sample size  = 200 
-
- DIC: -127.4064 
-
- G-structure:  ~animal
-
-       post.mean  l-95% CI u-95% CI eff.samp
-animal   0.01346 0.0004328  0.03499      200
-
-               ~Index
-
-      post.mean  l-95% CI u-95% CI eff.samp
-Index  0.003754 0.0003163  0.00981    142.8
-
-               ~Study_ID
-
-         post.mean l-95% CI u-95% CI eff.samp
-Study_ID    0.0143 0.003386   0.0273      200
-
- R-structure:  ~units
-
-      post.mean l-95% CI u-95% CI eff.samp
-units   0.01555  0.01059  0.02143      200
-
- Location effects: genCV ~ factor(Sex) * factor(StudyType) 
-
-                                                  post.mean  l-95% CI  u-95% CI
-(Intercept)                                        0.171715 -0.088682  0.386666
-factor(Sex)genCV_male                              0.080874  0.023493  0.161411
-factor(StudyType)Laboratory                        0.127308 -0.071792  0.395470
-factor(Sex)genCV_male:factor(StudyType)Laboratory  0.002628 -0.074388  0.084146
-                                                  eff.samp pMCMC  
-(Intercept)                                          142.8  0.11  
-factor(Sex)genCV_male                                258.0  0.04 *
-factor(StudyType)Laboratory                          129.2  0.27  
-factor(Sex)genCV_male:factor(StudyType)Laboratory    246.0  0.95  
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">RS_gen_StudyType_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(StudyType),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
+<a class="sourceLine" id="cb18-2" title="2">                                      <span class="dt">pedigree=</span>RS_theTree,</a>
+<a class="sourceLine" id="cb18-3" title="3">                                      <span class="dt">prior=</span>pr,</a>
+<a class="sourceLine" id="cb18-4" title="4">                                      <span class="dt">data=</span>RS_gen_metaData,</a>
+<a class="sourceLine" id="cb18-5" title="5">                                      <span class="dt">burnin =</span> BURNIN,</a>
+<a class="sourceLine" id="cb18-6" title="6">                                      <span class="dt">nitt=</span>NITT,</a>
+<a class="sourceLine" id="cb18-7" title="7">                                      <span class="dt">thin=</span>THIN)</a>
+<a class="sourceLine" id="cb18-8" title="8"><span class="kw">summary</span>(RS_gen_StudyType_MCMC_model)</a></code></pre></div>
 <pre><code>
  Iterations = 10001:109501
  Thinning interval  = 500
@@ -2851,7 +1554,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </button>
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
 <pre><code>R version 4.0.0 (2020-04-24)
 Platform: x86_64-w64-mingw32/x64 (64-bit)
 Running under: Windows 10 x64 (build 19041)
