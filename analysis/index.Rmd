@@ -76,7 +76,7 @@ theTree <- read.tree("./data/META_SexSpecGenVar_Pylogeny_v05_NEWICK.txt")
 ```
 
 Finally, we subset our data set for the analyses into the fitness categories ('FitnessCat') lifespan ('LS') and reproductive success ('RS').
-```{r, results='hide'}
+```{r, results='hide',echo=FALSE}
 ## Reorganising and subsetting dataset ####
 
 stacked_gen_Data <- gather(Data, key = "Sex",value = "genCV", genCV_male, genCV_female)
@@ -94,7 +94,7 @@ LS_phen_metaData<-subset(stacked_phen_Data, FitnessCat == "LS")
 We then ran MCMC models to test for differences in the phenotypic and genetic variances in males and females for the fitness categories reproductive success and lifespan. 
 
 First we prune the phylogenetic tree to the data subset.
-```{r}
+```{r,echo=FALSE}
 ## PRUNE PHYLOGENETIC TREE TO DATA SUBSET
 RS_gen_metaData$animal <- factor(RS_gen_metaData$animal)
 is.factor(RS_gen_metaData$animal)
@@ -120,7 +120,7 @@ rawC[cbind(which(comparedC!=TRUE, arr.ind = T))] - forcedC[cbind(which(comparedC
 ```
 
 Next, we set the priors for the MCMC models using uninformative priors (V = 1, nu = 0.002) and an effective sample size of 20000 (number of iterations = 11000000, burn-in = 1000000, thinning interval = 500). We also set the index and study ID as factors.
-```{r,results='hide'}
+```{r,results='hide',echo=FALSE}
 ## Prior settings, iterations
 pr<-list(R=list(V=1,nu=0.002), G=list(G1=list(V=1,nu=0.002),
                                       G2=list(V=1,nu=0.002),
