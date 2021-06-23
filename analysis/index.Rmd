@@ -120,7 +120,8 @@ RS_gen_metaData$Study_ID <- as.factor(RS_gen_metaData$Study_ID)
 
 #### MCMC models for reproductive success 
 First, we ran the MCMC testing for overall differences in phenotypic variance in  reproductive success ('phenCV') between males and females ('Sex'). The model includes the species ('animal'), estimate ID ('Index') and study ID ('Study_ID') as random factors.
-```{r, message=FALSE,results=FALSE}
+```{r echo = T, results = 'hide'}
+
 RS_phen_MCMC_model <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
                           pedigree=RS_theTree,
                           prior=pr,
@@ -130,6 +131,10 @@ RS_phen_MCMC_model <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study
                           nitt=NITT,
                           thin=THIN)
 
+summary(RS_phen_MCMC_model)
+```
+
+```{r,echo=F}
 summary(RS_phen_MCMC_model)
 ```
 
@@ -146,6 +151,10 @@ RS_phen_MatSyst_MCMC_model <- MCMCglmm(phenCV~factor(Sex) * factor(Mating_system
 summary(RS_phen_MatSyst_MCMC_model)
 ```
 
+```{r,echo=F}
+summary(RS_phen_MatSyst_MCMC_model)
+```
+
 In an additional model, we included the study type ('StudyType'), i.e. if the data were obtained in laboratory or field experiments.
 ```{r, message=FALSE,results=c(2)}
 RS_phen_StudyType_MCMC_model <- MCMCglmm(phenCV~factor(Sex) * factor(StudyType),random=~animal + Index + Study_ID,
@@ -155,6 +164,10 @@ RS_phen_StudyType_MCMC_model <- MCMCglmm(phenCV~factor(Sex) * factor(StudyType),
                                         burnin = BURNIN,
                                         nitt=NITT,
                                         thin=THIN)
+summary(RS_phen_StudyType_MCMC_model)
+```
+
+```{r,echo=F}
 summary(RS_phen_StudyType_MCMC_model)
 ```
 
@@ -172,6 +185,10 @@ RS_gen_MCMC_model <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_I
 summary(RS_gen_MCMC_model)
 ```
 
+```{r,echo=F}
+summary(RS_gen_MCMC_model)
+```
+
 Secondly, including the matingsytem as a covariate ('Mating_system').
 ```{r, message=FALSE,results=c(2)}
 RS_gen_MatSyst_MCMC_model <- MCMCglmm(genCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
@@ -181,6 +198,10 @@ RS_gen_MatSyst_MCMC_model <- MCMCglmm(genCV~factor(Sex) * factor(Mating_system),
                   burnin = BURNIN,
                   nitt=NITT,
                   thin=THIN)
+summary(RS_gen_MatSyst_MCMC_model)
+```
+
+```{r,echo=F}
 summary(RS_gen_MatSyst_MCMC_model)
 ```
 
@@ -196,3 +217,6 @@ RS_gen_StudyType_MCMC_model <- MCMCglmm(genCV~factor(Sex) * factor(StudyType),ra
 summary(RS_gen_StudyType_MCMC_model)
 ```
 
+```{r,echo=F}
+summary(RS_gen_StudyType_MCMC_model)
+```
