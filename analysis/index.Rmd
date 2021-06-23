@@ -120,7 +120,7 @@ RS_gen_metaData$Study_ID <- as.factor(RS_gen_metaData$Study_ID)
 
 #### MCMC models for reproductive success 
 First, we ran the MCMC testing for overall differences in phenotypic variance in  reproductive success ('phenCV') between males and females ('Sex'). The model includes the species ('animal'), estimate ID ('Index') and study ID ('Study_ID') as random factors.
-```{r,results=c(2)}
+```{r, message=FALSE,results=c(2)}
 RS_phen_MCMC_model <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
                           pedigree=RS_theTree,
                           prior=pr,
@@ -133,12 +133,8 @@ RS_phen_MCMC_model <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study
 summary(RS_phen_MCMC_model)
 ```
 
-```{r}
-
-```
-
 We then expanded the model to include the matingsytem as a covariate ('Mating_system').
-```{r,results='hide'}
+```{r, message=FALSE,results=c(2)}
 RS_phen_MatSyst_MCMC_model <- MCMCglmm(phenCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
                                   pedigree=RS_theTree,
                                   prior=pr,
@@ -146,14 +142,12 @@ RS_phen_MatSyst_MCMC_model <- MCMCglmm(phenCV~factor(Sex) * factor(Mating_system
                                   burnin = BURNIN,
                                   nitt=NITT,
                                   thin=THIN)
-```
 
-```{r}
 summary(RS_phen_MatSyst_MCMC_model)
 ```
 
 In an additional model, we included the study type ('StudyType'), i.e. if the data were obtained in laboratory or field experiments.
-```{r,results='hide'}
+```{r, message=FALSE,results=c(2)}
 RS_phen_StudyType_MCMC_model <- MCMCglmm(phenCV~factor(Sex) * factor(StudyType),random=~animal + Index + Study_ID,
                                         pedigree=RS_theTree,
                                         prior=pr,
@@ -161,16 +155,12 @@ RS_phen_StudyType_MCMC_model <- MCMCglmm(phenCV~factor(Sex) * factor(StudyType),
                                         burnin = BURNIN,
                                         nitt=NITT,
                                         thin=THIN)
-
-```
-
-```{r}
 summary(RS_phen_StudyType_MCMC_model)
 ```
 
 Next, we ran the MCMC models examining the genetic variance in reproductive success ('genCV').
 First, the overall model for a sex difference.
-```{r,results='hide'}
+```{r, message=FALSE,results=c(2)}
 RS_gen_MCMC_model <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_ID,
                        pedigree=RS_theTree,
                        prior=pr,
@@ -179,14 +169,11 @@ RS_gen_MCMC_model <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_I
                        burnin = BURNIN,
                        nitt=NITT,
                        thin=THIN)
-```
-
-```{r}
 summary(RS_gen_MCMC_model)
 ```
 
 Secondly, including the matingsytem as a covariate ('Mating_system').
-```{r,results='hide'}
+```{r, message=FALSE,results=c(2)}
 RS_gen_MatSyst_MCMC_model <- MCMCglmm(genCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
                   pedigree=RS_theTree,
                   prior=pr,
@@ -194,14 +181,11 @@ RS_gen_MatSyst_MCMC_model <- MCMCglmm(genCV~factor(Sex) * factor(Mating_system),
                   burnin = BURNIN,
                   nitt=NITT,
                   thin=THIN)
-```
-
-```{r}
 summary(RS_gen_MatSyst_MCMC_model)
 ```
 
 And finally, we included the study type ('StudyType'), i.e. if the data were obtained in laboratory or field experiments.
-```{r,results='hide'}
+```{r, message=FALSE,results=c(2)}
 RS_gen_StudyType_MCMC_model <- MCMCglmm(genCV~factor(Sex) * factor(StudyType),random=~animal + Index + Study_ID,
                                       pedigree=RS_theTree,
                                       prior=pr,
@@ -209,9 +193,6 @@ RS_gen_StudyType_MCMC_model <- MCMCglmm(genCV~factor(Sex) * factor(StudyType),ra
                                       burnin = BURNIN,
                                       nitt=NITT,
                                       thin=THIN)
-```
-
-```{r}
 summary(RS_gen_StudyType_MCMC_model)
 ```
 
