@@ -9,52 +9,29 @@ output:
 
 Supplementary material reporting R code for the manuscript 'Stronger net selection on males across animals'.
 
-## Phenotypic gambit
+## Load and prepare data
 
-Statistical analyses were carried out in two steps. First, we examined the key assumption of the ‘phenotypic gambit’ by testing whether estimates of phenotypic variance predict the estimated genetic variance. For this we computed the Pearson correlation coefficient r, testing the relationship between CVP and CVG for both sexes and the two fitness components separately. In addition, we tested whether the sex bias in CVP translates into a sex bias in CVG by correlating the coefficient of variation ratio lnCVR (Nakagawa et al. 2015), which refers to the ln-transformed ratio of male CV to female CV, with positive values indicating a male bias. The analyses on the phenotypic gambit were motivated from a methodological perspective and we did not expect that inter-specific variation in the difference between CVP and CVG can be explained by a shared phylogenetic history. However, for completeness, we also ran correlations on phylogenetic independent contrasts (PICs; computed using the ape R-package (version 5.4.1) in R (Paradis & Schliep 2019)) to test whether our findings were robust when accounting for potential phylogenetic non-independence. We report Pearson’s correlation coefficients r for normally distributed data and Spearman’s rho if assumptions of normality were violated.
-
-### Load and prepare data
+Before we started the analyses, we loaded all necessary packages and data.
 
 ```{r, warning=FALSE, message=FALSE, results='hide'}
-# load packages
-
-```
-
-
-## Stronger net selection on males (PGLMMs)
-
-In this second part of the anlysis, we tested the hypothesis that net selection is stronger on males by testing for a male bias in CVP and CVG. Specifically, we ran Phylogenetic General Linear Mixed-Effects Models (PGLMMs) with CVP or CVG as the response variable, and sex as a fixed effect. To account for the paired data structure, we added an observation identifier as a random effect. Moreover, all models included a study identifier and the phylogeny (transformed into a correlation matrix) as random effects to account for statistical non-independence arising from shared study design or phylogenetic history, respectively. Note that the latter also accounts for the non-independence of estimates obtained from the same species as some studies estimated genetic variances from distinct field populations (Fox et al. 2004) or different experimental treatments under laboratory conditions such as food stress (Holman & Jacomb 2017) and temperature stress (Berger et al. 2014). In an additional series of PGLMMs we tested whether our proxy of sexual selection explained inter-specific variation in the sex-differences of CVP or CVG by adding mating system and its interaction with sex as fixed effects to the models. Finally, given that primary studies varied in the empirical approach used to quantify CVP and CVG, we also used PGLMMs to test whether study type (23 field studies versus 32 laboratory studies) represented a methodological determinant of the observed sex-differences in CVP and CVG.
-All PGLMMs were ran with the MCMCglmm R-package (version 2.2.9) (Hadfield 2010), using uninformative priors (V = 1, nu = 0.002) and an effective sample size of 20000 (number of iterations = 11000000, burn-in = 1000000, thinning interval = 500). We computed the proportion of variance explained by fixed factors (‘marginal R2’) (Nakagawa & Schielzeth 2013). In addition, we quantified the phylogenetic signal as the phylogenetic heritability H2 (i.e., proportional variance in CVP or CVG explained by species identity), which is equivalent to Pagel’s 𝜆 (de Villemereuil & Nakagawa 2014).
-In a previous study testing for sex-specific phenotypic variances in reproductive success (Janicke et al. 2016), we ran formal meta-analyses using lnCVR as the tested effect size (Nakagawa et al. 2015). This is potentially a more powerful approach for comparing phenotypic variances but rendered unsuitable when comparing genetic variances. This is because the computation of the sampling variance of lnCVR is a function of the sample size of the sampled population and the point estimate of lnCVR (Nakagawa et al. 2015). However, genetic variances are estimates from statistical models and notorious for being estimated with low precision (i.e. have large confidence intervals). Therefore, using a meta-analytic approach for genetic variances using lnCVR as an effect size leads to overconfident estimation of the global effect size and is therefore likely to result in type-II-errors. However, to allow comparison with the previous meta-analysis, we report the outcome of phylogenetic meta-analyses on phenotypic variances using lnCVR in the Supplementary Material (Table S2), which largely reflects the results on the point estimates of CVP from PGLMMs.
-
-### Load and prepare data
-
-We first load all neccessary packages.
-```{r, warning=FALSE, message=FALSE, results='hide'}
-# load packages
+#load packages
 rm(list = ls())
-library(ape);library(metafor); library(Matrix); library(MASS); library(pwr);library(multcomp);library(psych);library(outliers)
-library(matrixcalc)
-library(PerformanceAnalytics)
-library(tidyr)
+library(ape)
 library(MCMCglmm)
+library(caper) #for phylogenetic independent contrasts (PICs)
+library(tidyr)
 library(matrixcalc)
-library(dplyr) 
-library(stargazer)
-library(data.table)
+library(lattice)
 library(ggplot2)
-library(readr)
-```
+library(reshape2)
 
-We then load the data set ('Data') and the phylogenetic tree ('theTree').  
-```{r, results='hide'}
-# load data
-Data <- read.csv("./data/META_SexSpecGenVar_Data_v23.csv", sep=",", header=TRUE,fileEncoding="UTF-8-BOM")
-theTree <- read.tree("./data/META_SexSpecGenVar_Pylogeny_v05_NEWICK.txt")
-```
+#load data
+setwd(".")
+Data <- read.delim("./data/Winkler_et_al_2021_DataTable.txt")
+theTree <- read.tree("./data/META_SexSpecGenVar_Pylogeny_v05_NEWICK.txt") #phylogenetic tree
+#Load phylogenetic tree for PIC analyses
+PIC_Tree <- read.tree("./data/META_SexSpecGenVar_Pylogeny_v05_PIC.txt")
 
-Finally, we subset our data set for the analyses into the fitness categories ('FitnessCat') lifespan ('LS') and reproductive success ('RS').
-```{r, results='hide'}
 ## Reorganising and subsetting dataset ####
 
 stacked_gen_Data <- gather(Data, key = "Sex",value = "genCV", genCV_male, genCV_female)
@@ -65,14 +42,107 @@ LS_gen_metaData<-subset(stacked_gen_Data, FitnessCat == "LS")
 
 RS_phen_metaData<-subset(stacked_phen_Data, FitnessCat == "RS")
 LS_phen_metaData<-subset(stacked_phen_Data, FitnessCat == "LS")
+
+RS_Data<-subset(Data, FitnessCat == "RS")
+LS_Data<-subset(Data, FitnessCat == "LS")
 ```
+
+## Phenotypic gambit
+
+Statistical analyses were carried out in two steps. First, we examined the key assumption of the ‘phenotypic gambit’ by testing whether estimates of phenotypic variance predict the estimated genetic variance. For this we ran linear regressions with CVP defined as predictor variable and CVG defined as response variable. This was done separately for both sexes and the two fitness components. The analyses on the phenotypic gambit were motivated from a methodological perspective and we did not expect that inter-specific variation in the difference between CVP and CVG can be explained by a shared phylogenetic history. However, for completeness, we also ran linear regressions on phylogenetic independent contrasts (PICs) computed using the crunch function of the caper R-package (version 1.0.1) in R (Orme et al. 2018) to test whether our findings were robust when accounting for potential phylogenetic non-independence.
+
+First, we computed linear regressions between genetic and phenotypic variances, not controlling for the phylogeny.
+We started with the linear regression in reproductive success for males.
+```{r, echo = T}
+### Linear regressions (not controlling for phylogeny) ####
+
+LM_Gambit_RS_males   <- lm(genCV_male   ~ phenCV_male,   data = RS_Data) #Reproductive success in males
+summary(LM_Gambit_RS_males) #Reproductive success in males
+```
+
+Then we continued with the linear regression in reproductive success for females.
+```{r, echo = T}
+LM_Gambit_RS_females <- lm(genCV_female ~ phenCV_female, data = RS_Data) #Reproductive success in females
+summary(LM_Gambit_RS_females) #Reproductive success in females
+```
+
+Next, the linear regression in lifespan for males.
+```{r, echo = T}
+LM_Gambit_LS_males   <- lm(genCV_male   ~ phenCV_male,   data = LS_Data) #Lifespan in males
+summary(LM_Gambit_LS_males) #Lifespan in males
+```
+
+Finally, the linear regression in lifespan for females.
+```{r, echo = T}
+LM_Gambit_LS_females <- lm(genCV_female ~ phenCV_female, data = LS_Data) #Lifespan in females
+summary(LM_Gambit_LS_females) #Lifespan in females
+```
+
+
+Next, we expanded the previous analyses on the phenotypic gambit, by considering the phylogeny using phylogenetic independent contrasts (PICs).
+```{r, echo = T, results='hide',fig.show = "hide"}
+# Phylogenetic linear regressions using the caper package ####
+
+#Build phylogenetic tree for reproductive success
+RS_Data$Species_PIC <- factor(RS_Data$Species_PIC)
+RS_Species_Data_PIC <- unique(RS_Data$Species_PIC)
+RS_PIC_Tree<-drop.tip(PIC_Tree, PIC_Tree$tip.label[-na.omit(match(RS_Species_Data_PIC, PIC_Tree$tip.label))])
+plot(RS_PIC_Tree)
+
+#Build phylogenetic tree for lifespan
+LS_Data$Species_PIC <- factor(LS_Data$Species_PIC)
+LS_Species_Data_PIC <- unique(LS_Data$Species_PIC)
+LS_PIC_Tree<-drop.tip(PIC_Tree, PIC_Tree$tip.label[-na.omit(match(LS_Species_Data_PIC, PIC_Tree$tip.label))])
+plot(LS_PIC_Tree)
+
+#Combine phylogeny and data
+PGLS_RS_Data    <-comparative.data(phy = RS_PIC_Tree, data = RS_Data, names.col = Species_PIC, vcv = TRUE, na.omit = FALSE, warn.dropped = TRUE)
+PGLS_LS_Data    <-comparative.data(phy = LS_PIC_Tree, data = LS_Data, names.col = Species_PIC, vcv = TRUE, na.omit = FALSE, warn.dropped = TRUE)
+
+#Run PIC using caper package
+PIC_Crunch_mRS <- crunch(genCV_male   ~ phenCV_male,   data=PGLS_RS_Data, equal.branch.length=FALSE)
+PIC_Crunch_fRS <- crunch(genCV_female ~ phenCV_female, data=PGLS_RS_Data, equal.branch.length=FALSE)
+PIC_Crunch_mLS <- crunch(genCV_male   ~ phenCV_male,   data=PGLS_LS_Data, equal.branch.length=FALSE)
+PIC_Crunch_fLS <- crunch(genCV_female ~ phenCV_female, data=PGLS_LS_Data, equal.branch.length=FALSE)
+
+PIC_Crunch_mRS #PIC male reproductive success
+PIC_Crunch_fRS #PIC female reproductive success
+PIC_Crunch_mLS #PIC male lifespan
+PIC_Crunch_fLS #PIC female lifespan
+```
+
+The results for phylogenetic independent contrast (PIC) for male reproductive success: 
+```{r,echo=F}
+PIC_Crunch_mRS #PIC male reproductive success
+```
+
+The results for phylogenetic independent contrast (PIC) for female reproductive success: 
+```{r,echo=F}
+PIC_Crunch_fRS #PIC female reproductive success
+```
+
+The results for phylogenetic independent contrast (PIC) for male lifespan:
+```{r,echo=F}
+PIC_Crunch_mLS #PIC male lifespan
+```
+
+The results for phylogenetic independent contrast (PIC) for female lifespan:
+```{r,echo=F}
+PIC_Crunch_fLS #PIC female lifespan
+```
+## Stronger net selection on males (PGLMMs)
+
+In this second part of the analysis, we tested the hypothesis that net selection is stronger on males by testing for a male bias in CVP and CVG. Specifically, we ran Phylogenetic General Linear Mixed-Effects Models (PGLMMs) with CVP or CVG as the response variable, and sex as a fixed effect. To account for the paired data structure, we added an observation identifier as a random effect. Moreover, all models included a study identifier and the phylogeny (transformed into a correlation matrix) as random effects to account for statistical non-independence arising from shared study design or phylogenetic history, respectively. Note that the latter also accounts for the non-independence of estimates obtained from the same species as some studies estimated genetic variances from distinct field populations (Fox et al. 2004) or different experimental treatments under laboratory conditions such as food stress (Holman & Jacomb 2017) and temperature stress (Berger et al. 2014). In an additional series of PGLMMs we tested whether our proxy of sexual selection explained inter-specific variation in the sex-differences of CVP or CVG by adding mating system and its interaction with sex as fixed effects to the models. These analyses were run on both the complete dataset and on a subset including only vertebrates. The latter set of analyses were  done to acknowledge the fact that all sampled invertebrate species were classified as polygamous and the three independent evolutionary events in our phylogeny marking transitions between mating systems occurred in vertebrates (including 6 polygamous species, 6 monogamous species).
+Finally, given that primary studies varied in several methodological aspects (see section ‘Literature Search and Characterization of Primary Studies’) and whenever the level of replication allowed statistical analysis, we tested whether the different approaches predicted estimates of CVP and CVG and affected their sex-difference. Specifically, we ran three PGLMMs to test separately for effects of the study type, the estimate of genetic variance VG, and the type of reproductive success metric (see above).
+We carried out PGLMMs with the MCMCglmm R-package (version 2.2.9) (Hadfield 2010), using uninformative priors (V = 1, nu = 0.01) and an effective sample size of 20000 (number of iterations = 11000000, burn-in = 1000000, thinning interval = 500). We computed the proportion of variance explained by fixed factors (‘marginal R2’) (Nakagawa & Schielzeth 2013). In addition, we quantified the phylogenetic signal as the phylogenetic heritability H2 (i.e., proportional variance in CVP or CVG explained by the phylogeny) (de Villemereuil & Nakagawa 2014).
+In a previous study testing for sex-specific phenotypic variances in reproductive success (Janicke et al. 2016), we ran formal meta-analyses using lnCVR as the tested effect size (Nakagawa et al. 2015). This is potentially a more powerful approach for comparing phenotypic variances but rendered unsuitable when comparing genetic variances. This is because the computation of the sampling variance of lnCVR is a function of the sample size of the sampled population and the point estimate of lnCVR (Nakagawa et al. 2015). However, genetic variances are estimates from statistical models and notorious for being estimated with low precision (i.e., have large confidence intervals). Therefore, using a meta-analytic approach for genetic variances using lnCVR as an effect size leads to overconfident estimation of the global effect size and is therefore likely to result in type-II-errors. However, to allow comparison with the previous meta-analysis, we report the outcome of phylogenetic meta-analyses on phenotypic variances using lnCVR in the Supplementary Material (Table S3), which largely reflects the results on the point estimates of CVP from PGLMMs.
 
 ### Run MCMC models
 
 We then ran MCMC models to test for differences in the phenotypic and genetic variances in males and females for the fitness categories reproductive success and lifespan. 
 
-First we prune the phylogenetic tree to the data subset.
-```{r, results='hide'}
+First, we pruned the phylogenetic tree to the data subset.
+```{r, echo = T, results='hide'}
 ## PRUNE PHYLOGENETIC TREE TO DATA SUBSET
 RS_gen_metaData$animal <- factor(RS_gen_metaData$animal)
 is.factor(RS_gen_metaData$animal)
@@ -83,7 +153,7 @@ plot(RS_theTree)
 ```
 
 
-We then check if the phylogenetic tree was correctly build. 
+We then checked if the phylogenetic tree had been build correctly. 
 ```{r, results='hide', message=FALSE}
 ## CHECK PHYLOGENETIC TREE
 sort(RS_theTree$tip.label) == sort(unique(RS_gen_metaData$animal)) # check if tip names correspond to data names
@@ -97,20 +167,18 @@ comparedC <- rawC == forcedC
 rawC[cbind(which(comparedC!=TRUE, arr.ind = T))] - forcedC[cbind(which(comparedC!=TRUE, arr.ind = T))] < 1e-5
 ```
 
-Next, we set the priors for the MCMC models using uninformative priors (V = 1, nu = 0.002) and an effective sample size of 20000 (number of iterations = 11000000, burn-in = 1000000, thinning interval = 500). We also set the index and study ID as factors.
+Next, we set the priors for the MCMC models using uninformative priors (V = 1, nu = 0.01) and an effective sample size of 20000 (number of iterations = 11000000, burn-in = 1000000, thinning interval = 500). We also set the index and study ID as factors.
 ```{r,results='hide'}
 ## Prior settings, iterations
-pr<-list(R=list(V=1,nu=0.002), G=list(G1=list(V=1,nu=0.002),
-                                      G2=list(V=1,nu=0.002),
-                                      G3=list(V=1,nu=0.002)))
+pr<-list(R=list(V=1,nu=0.01),  G=list(G1=list(V=1,nu=0.01),
+                                      G2=list(V=1,nu=0.01),
+                                      G3=list(V=1,nu=0.01)))
 
-BURNIN = 100000
-NITT   = 1100000
-THIN   = 500
 
-BURNIN = 10000
-NITT   = 110000
-THIN   = 500
+BURNIN =  1000000
+NITT   = 11000000
+THIN   =      500
+
 
 RS_phen_metaData$Index <- as.factor(RS_phen_metaData$Index)
 RS_phen_metaData$Study_ID <- as.factor(RS_phen_metaData$Study_ID)
@@ -119,17 +187,14 @@ RS_gen_metaData$Study_ID <- as.factor(RS_gen_metaData$Study_ID)
 ```
 
 #### MCMC models for reproductive success 
-First, we ran the MCMC testing for overall differences in phenotypic variance in  reproductive success ('phenCV') between males and females ('Sex'). The model includes the species ('animal'), estimate ID ('Index') and study ID ('Study_ID') as random factors.
+First, we ran the MCMC testing for overall differences in phenotypic variance in  reproductive success ('phenCV') between males and females ('Sex'). The model includes the species ('animal'), estimate ID ('Index') and study ID ('Study_ID') as random factors (Table 1).
 ```{r, echo = T, results = 'hide'}
 
 RS_phen_MCMC_model <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
                           pedigree=RS_theTree,
                           prior=pr,
                           data=RS_phen_metaData,
-                          pr = TRUE,
-                          burnin = BURNIN,
-                          nitt=NITT,
-                          thin=THIN)
+                          pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
 
 summary(RS_phen_MCMC_model)
 ```
@@ -138,50 +203,29 @@ summary(RS_phen_MCMC_model)
 summary(RS_phen_MCMC_model)
 ```
 
-We then expanded the model to include the matingsytem as a covariate ('Mating_system').
+We then expanded the model to include an interaction of mating system ('Mating_system') and sex (Table S4).
 ```{r, echo = T, results = 'hide'}
 RS_phen_MatSyst_MCMC_model <- MCMCglmm(phenCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
                                   pedigree=RS_theTree,
                                   prior=pr,
                                   data=RS_phen_metaData,
-                                  burnin = BURNIN,
-                                  nitt=NITT,
-                                  thin=THIN)
+                                  pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
 
 summary(RS_phen_MatSyst_MCMC_model)
 ```
 
 ```{r,echo=F}
 summary(RS_phen_MatSyst_MCMC_model)
-```
-
-In an additional model, we included the study type ('StudyType'), i.e. if the data were obtained in laboratory or field experiments.
-```{r, echo = T, results = 'hide'}
-RS_phen_StudyType_MCMC_model <- MCMCglmm(phenCV~factor(Sex) * factor(StudyType),random=~animal + Index + Study_ID,
-                                        pedigree=RS_theTree,
-                                        prior=pr,
-                                        data=RS_phen_metaData,
-                                        burnin = BURNIN,
-                                        nitt=NITT,
-                                        thin=THIN)
-summary(RS_phen_StudyType_MCMC_model)
-```
-
-```{r,echo=F}
-summary(RS_phen_StudyType_MCMC_model)
 ```
 
 Next, we ran the MCMC models examining the genetic variance in reproductive success ('genCV').
-First, the overall model for a sex difference.
+First, the overall model for a sex difference (Table 1).
 ```{r, echo = T, results = 'hide'}
 RS_gen_MCMC_model <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_ID,
                        pedigree=RS_theTree,
                        prior=pr,
                        data=RS_gen_metaData,
-                       pr = TRUE,
-                       burnin = BURNIN,
-                       nitt=NITT,
-                       thin=THIN)
+                       pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
 summary(RS_gen_MCMC_model)
 ```
 
@@ -189,45 +233,26 @@ summary(RS_gen_MCMC_model)
 summary(RS_gen_MCMC_model)
 ```
 
-Secondly, including the matingsytem as a covariate ('Mating_system').
+Secondly, we included an interaction of mating system ('Mating_system') and sex (Table S4).
 ```{r, echo = T, results = 'hide'}
 RS_gen_MatSyst_MCMC_model <- MCMCglmm(genCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
                   pedigree=RS_theTree,
                   prior=pr,
                   data=RS_gen_metaData,
-                  burnin = BURNIN,
-                  nitt=NITT,
-                  thin=THIN)
+                  pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
 summary(RS_gen_MatSyst_MCMC_model)
 ```
 
 ```{r,echo=F}
 summary(RS_gen_MatSyst_MCMC_model)
-```
-
-And finally, we included the study type ('StudyType'), i.e. if the data were obtained in laboratory or field experiments.
-```{r, echo = T, results = 'hide'}
-RS_gen_StudyType_MCMC_model <- MCMCglmm(genCV~factor(Sex) * factor(StudyType),random=~animal + Index + Study_ID,
-                                      pedigree=RS_theTree,
-                                      prior=pr,
-                                      data=RS_gen_metaData,
-                                      burnin = BURNIN,
-                                      nitt=NITT,
-                                      thin=THIN)
-summary(RS_gen_StudyType_MCMC_model)
-```
-
-```{r,echo=F}
-summary(RS_gen_StudyType_MCMC_model)
 ```
 
 #### MCMC models for lifespan
 
-In addition to the previouse models on reprodutive success, ran MCMC models to test for differences in the phenotypic and genetic variances in males and females for lifespan. 
+In addition to the previous models on reproductive success, ran MCMC models to test for differences in the phenotypic and genetic variances in males and females for lifespan. 
 
-First we prune the phylogenetic tree to the data subset.
+First, we pruned the phylogenetic tree to the data subset.
 ```{r, results='hide'}
-## PRUNE PHYLOGENETIC TREE TO DATA SUBSET
 ## PRUNE PHYLOGENETIC TREE TO DATA SUBSET
 LS_gen_metaData$animal <- factor(LS_gen_metaData$animal)
 is.factor(LS_gen_metaData$animal)
@@ -238,7 +263,7 @@ plot(LS_theTree)
 ```
 
 
-We then check if the phylogenetic tree was correctly build. 
+We then checked if the phylogenetic tree had been build correctly. 
 ```{r, results='hide', message=FALSE}
 ## CHECK PHYLOGENETIC TREE
 sort(LS_theTree$tip.label) == sort(unique(LS_gen_metaData$animal)) # check if tip names correspond to data names
@@ -255,14 +280,13 @@ rawC[cbind(which(comparedC!=TRUE, arr.ind = T))] - forcedC[cbind(which(comparedC
 Next, we set the priors for the MCMC models using uninformative priors (V = 1, nu = 0.002) and an effective sample size of 20000 (number of iterations = 11000000, burn-in = 1000000, thinning interval = 500). We also set the index and study ID as factors.
 ```{r,results='hide'}
 ## Prior settings, iterations
-## Prior settings, iterations
-pr<-list(R=list(V=1,nu=0.002), G=list(G1=list(V=1,nu=0.002),
-                                      G2=list(V=1,nu=0.002),
-                                      G3=list(V=1,nu=0.002)))
+pr<-list(R=list(V=1,nu=0.01), G=list(G1=list(V=1,nu=0.01),
+                                      G2=list(V=1,nu=0.01),
+                                      G3=list(V=1,nu=0.01)))
 
-BURNIN = 10000
-NITT   = 110000
-THIN   = 500
+BURNIN =  1000000
+NITT   = 11000000
+THIN   =      500
 
 
 LS_phen_metaData$Index <- as.factor(LS_phen_metaData$Index)
@@ -272,17 +296,14 @@ LS_gen_metaData$Study_ID <- as.factor(LS_gen_metaData$Study_ID)
 ```
 
 
-First, we ran the MCMC testing for overall differences in phenotypic variance in  lifespan ('phenCV') between males and females ('Sex'). The model includes the species ('animal'), estimate ID ('Index') and study ID ('Study_ID') as random factors.
+First, we ran the MCMC testing for overall differences in phenotypic variance in lifespan ('phenCV') between males and females ('Sex'). The model includes the species ('animal'), estimate ID ('Index') and study ID ('Study_ID') as random factors (Table 1).
 ```{r, echo = T, results = 'hide'}
 
 LS_phen_MCMC_model <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
                                pedigree=LS_theTree,
                                prior=pr,
                                data=LS_phen_metaData,
-                               pr = TRUE,
-                               burnin = BURNIN,
-                               nitt=NITT,
-                               thin=THIN)
+                               pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
 
 summary(LS_phen_MCMC_model)
 ```
@@ -291,50 +312,29 @@ summary(LS_phen_MCMC_model)
 summary(LS_phen_MCMC_model)
 ```
 
-We then expanded the model to include the matingsytem as a covariate ('Mating_system').
+We then expanded the model to include an interaction of mating system ('Mating_system') and sex (Table S4).
 ```{r, echo = T, results = 'hide'}
 LS_phen_MatSyst_MCMC_model <- MCMCglmm(phenCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
                                        pedigree=LS_theTree,
                                        prior=pr,
                                        data=LS_phen_metaData,
-                                       burnin = BURNIN,
-                                       nitt=NITT,
-                                       thin=THIN)
+                                       pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
 
 summary(LS_phen_MatSyst_MCMC_model)
 ```
 
 ```{r,echo=F}
 summary(LS_phen_MatSyst_MCMC_model)
-```
-
-In an additional model, we included the study type ('StudyType'), i.e. if the data were obtained in laboratory or field experiments.
-```{r, echo = T, results = 'hide'}
-LS_phen_StudyType_MCMC_model <- MCMCglmm(phenCV~factor(Sex) * factor(StudyType),random=~animal + Index + Study_ID,
-                                         pedigree=LS_theTree,
-                                         prior=pr,
-                                         data=LS_phen_metaData,
-                                         burnin = BURNIN,
-                                         nitt=NITT,
-                                         thin=THIN)
-summary(LS_phen_StudyType_MCMC_model)
-```
-
-```{r,echo=F}
-summary(LS_phen_StudyType_MCMC_model)
 ```
 
 Next, we ran the MCMC models examining the genetic variance in lifespan ('genCV').
-First, the overall model for a sex difference.
+First, the overall model for a sex difference (Table 1).
 ```{r, echo = T, results = 'hide'}
 LS_gen_MCMC_model <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_ID,
                               pedigree=LS_theTree,
                               prior=pr,
                               data=LS_gen_metaData,
-                              pr = TRUE,
-                              burnin = BURNIN,
-                              nitt=NITT,
-                              thin=THIN)
+                              pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
 summary(LS_gen_MCMC_model)
 ```
 
@@ -342,15 +342,13 @@ summary(LS_gen_MCMC_model)
 summary(LS_gen_MCMC_model)
 ```
 
-Secondly, including the matingsytem as a covariate ('Mating_system').
+Secondly, including an interaction of mating system ('Mating_system') and sex (Table S4).
 ```{r, echo = T, results = 'hide'}
 LS_gen_MatSyst_MCMC_model <- MCMCglmm(genCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
                                       pedigree=LS_theTree,
                                       prior=pr,
                                       data=LS_gen_metaData,
-                                      burnin = BURNIN,
-                                      nitt=NITT,
-                                      thin=THIN)
+                                      pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
 summary(LS_gen_MatSyst_MCMC_model)
 ```
 
@@ -358,74 +356,13 @@ summary(LS_gen_MatSyst_MCMC_model)
 summary(LS_gen_MatSyst_MCMC_model)
 ```
 
-And finally, we included the study type ('StudyType'), i.e. if the data were obtained in laboratory or field experiments.
-```{r, echo = T, results = 'hide'}
-LS_gen_StudyType_MCMC_model <- MCMCglmm(genCV~factor(Sex) * factor(StudyType),random=~animal + Index + Study_ID,
-                                        pedigree=LS_theTree,
-                                        prior=pr,
-                                        data=LS_gen_metaData,
-                                        burnin = BURNIN,
-                                        nitt=NITT,
-                                        thin=THIN)
-summary(LS_gen_StudyType_MCMC_model)
-```
+### Subsetting data by mating system
 
-```{r,echo=F}
-summary(LS_gen_StudyType_MCMC_model)
-```
-
-### Model diagnostics
-
-We examined the robustness of our models with the following model diagnostics.
-The following code is an example using the MCMC for the genetic variance of reprodcutive success.
-To facilitate the code for the other models, exchange 'RS_gen_MCMC_model' with the according model output.
-
-We first ....
-```{r}
-# __ Model diagnostics ####
-
-### example below: genetic variance of reprodcutive success
-MCMC_model <- RS_gen_MCMC_model
-library(lattice)
-xyplot(log(MCMC_model$VCV))
-# par(mar=c(1,1,1,1))
-plot(MCMC_model, random=FALSE)
-# plot(model$Sol)
-# plot(model$VCV)
-# plot(log(model$VCV))
-```
-
-Secondly, ...
-```{r}
-library(reshape2)
-ref <- data.frame(MCMC_model$VCV)
-rdf <- melt(ref, value.name="fat")
-ggplot(rdf, aes(x=sqrt(fat),color=variable))+geom_density()
-ggplot(ref, aes(x=sqrt(animal),y=sqrt(Study_ID)))+geom_density2d()+geom_abline(int=0,slope=1)
-```
-
-We then use Heidelberger and Welch's convergence diagnostic to ...
-```{r}
-# Heidelberger and Welch's convergence diagnostic 
-# (https://www.rdocumentation.org/packages/coda/versions/0.19-1/topics/heidel.diag)
-heidel.diag(MCMC_model$VCV)
-heidel.diag(MCMC_model$Sol) 
-```
-
-Finally, we test for autocorrelations.
-```{r}
-# Autocorrelation Test (Lag10 should be < 0.1)
-autocorr(MCMC_model$Sol) # Fixed Effects
-autocorr(MCMC_model$VCV) # Random Effects
-```
-
-### Subsetting data by mating sytem
-
-We then analyse the data separately for socially monogamous and polygamous species.
+We then analysed the data separately for socially monogamous and polygamous species.
 
 First we subset the data into socially monogamous and polygamous species for all fitness categories (lifespan and reproductive success) and their phenotypic as well as genetic variances. 
 ```{r, echo = T, results = 'hide'}
-## additional subsetting
+## Additional subsetting
 RS_gen_Monogamy_metaData<-subset(RS_gen_metaData, Mating_system == "monogamy")
 RS_gen_Polygamy_metaData<-subset(RS_gen_metaData, Mating_system == "polygamy")
 
@@ -439,7 +376,7 @@ LS_phen_Monogamy_metaData<-subset(LS_phen_metaData, Mating_system == "monogamy")
 LS_phen_Polygamy_metaData<-subset(LS_phen_metaData, Mating_system == "polygamy")
 ```
 
-We then prune the phylogenetic tree to all species with data on lifespan or reproductive success for monogamous and polygamous species separately.  
+We then pruned the phylogenetic tree to all species with data on lifespan or reproductive success for monogamous and polygamous species separately.  
 ```{r, echo = T, results = 'hide',fig.show='hide'}
 ## PRUNE PHYLOGENETIC TREES
 RS_gen_Monogamy_metaData$animal <- factor(RS_gen_Monogamy_metaData$animal)
@@ -467,16 +404,15 @@ LS_Polygamy_theTree<-drop.tip(theTree, theTree$tip.label[-na.omit(match(LS_Polyg
 plot(LS_Polygamy_theTree)
 ```
 
-We then run the MCMC models, first for the phenotypic variance in reproductive success in monogamous species.  
+#### MCMCs for reproductive success
+
+We then ran the MCMC models, first for the phenotypic variance in reproductive success in monogamous species (Table 1).  
 ```{r, echo = T, results = 'hide'}
 RS_phen_Monogamy_MCMC_model <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
                                pedigree=RS_Monogamy_theTree,
                                prior=pr,
                                data=RS_phen_Monogamy_metaData,
-                               pr = TRUE,
-                               burnin = BURNIN,
-                               nitt=NITT,
-                               thin=THIN)
+                               pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
 summary(RS_phen_Monogamy_MCMC_model)
 ```
 
@@ -484,16 +420,13 @@ summary(RS_phen_Monogamy_MCMC_model)
 summary(RS_phen_Monogamy_MCMC_model)
 ```
 
-Next we run the MCMC model for the genetic variance in reproductive success in monogamous species.
+Next, we ran the MCMC model for the genetic variance in reproductive success in monogamous species (Table 1).
 ```{r, echo = T, results = 'hide'}
 RS_gen_Monogamy_MCMC_model <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_ID,
                                         pedigree=RS_Monogamy_theTree,
                                         prior=pr,
                                         data=RS_gen_Monogamy_metaData,
-                                        pr = TRUE,
-                                       burnin = BURNIN,
-                                       nitt=NITT,
-                                       thin=THIN)
+                                       pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
 summary(RS_gen_Monogamy_MCMC_model)
 ```
 
@@ -501,34 +434,28 @@ summary(RS_gen_Monogamy_MCMC_model)
 summary(RS_gen_Monogamy_MCMC_model)
 ```
 
-Then follow the models for reproductive success in polygamous species.
-First, the MCMC for the phenotypic variance in reproductive success in polygamous species.  
+Then followed the models for reproductive success in polygamous species.
+First, the MCMC for the phenotypic variance in reproductive success in polygamous species (Table 1).  
 ```{r, echo = T, results = 'hide'}
 RS_phen_Polygamy_MCMC_model <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
                                         pedigree=RS_Polygamy_theTree,
                                         prior=pr,
                                         data=RS_phen_Polygamy_metaData,
-                                        pr = TRUE,
-                                        burnin = BURNIN,
-                                        nitt=NITT,
-                                        thin=THIN)
+                                        pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
 summary(RS_phen_Polygamy_MCMC_model)
 ```
 
 ```{r,echo=F}
-summary(RS_phen_Monogamy_MCMC_model)
+summary(RS_phen_Polygamy_MCMC_model)
 ```
 
-Next we run the MCMC model for the genetic variance in reproductive success in polygamous species.
+Next, we ran the MCMC model for the genetic variance in reproductive success in polygamous species (Table 1).
 ```{r, echo = T, results = 'hide'}
 RS_gen_Polygamy_MCMC_model <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_ID,
                                        pedigree=RS_Polygamy_theTree,
                                        prior=pr,
                                        data=RS_gen_Polygamy_metaData,
-                                       pr = TRUE,
-                                       burnin = BURNIN,
-                                       nitt=NITT,
-                                       thin=THIN)
+                                       pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
 summary(RS_gen_Polygamy_MCMC_model)
 ```
 
@@ -536,17 +463,16 @@ summary(RS_gen_Polygamy_MCMC_model)
 summary(RS_gen_Polygamy_MCMC_model)
 ```
 
-Now follow the mating system specific MCMCs for lifespan.
-We then run the MCMC models, first for the phenotypic variance in lifespan in monogamous species.  
+#### MCMCs for lifespan
+
+Now followed the mating system specific MCMCs for lifespan.
+We first ran the MCMC models for the phenotypic variance in lifespan in monogamous species (Table 1).  
 ```{r, echo = T, results = 'hide'}
 LS_phen_Monogamy_MCMC_model <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
                                         pedigree=LS_Monogamy_theTree,
                                         prior=pr,
                                         data=LS_phen_Monogamy_metaData,
-                                        pr = TRUE,
-                                        burnin = BURNIN,
-                                        nitt=NITT,
-                                        thin=THIN)
+                                        pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
 summary(LS_phen_Monogamy_MCMC_model)
 ```
 
@@ -554,16 +480,13 @@ summary(LS_phen_Monogamy_MCMC_model)
 summary(LS_phen_Monogamy_MCMC_model)
 ```
 
-Next we run the MCMC model for the genetic variance in lifespan in monogamous species.
+Next, we ran the MCMC model for the genetic variance in lifespan in monogamous species (Table 1).
 ```{r, echo = T, results = 'hide'}
 LS_gen_Monogamy_MCMC_model <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_ID,
                                        pedigree=LS_Monogamy_theTree,
                                        prior=pr,
                                        data=LS_gen_Monogamy_metaData,
-                                       pr = TRUE,
-                                       burnin = BURNIN,
-                                       nitt=NITT,
-                                       thin=THIN)
+                                       pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
 summary(LS_gen_Monogamy_MCMC_model)
 ```
 
@@ -571,17 +494,14 @@ summary(LS_gen_Monogamy_MCMC_model)
 summary(LS_gen_Monogamy_MCMC_model)
 ```
 
-Then follow the models for lifespan in polygamous species.
-First, the MCMC for the phenotypic variance in lifespan in polygamous species.  
+Then followed the models for lifespan in polygamous species.
+First, the MCMC for the phenotypic variance in lifespan in polygamous species (Table 1).  
 ```{r, echo = T, results = 'hide'}
 LS_phen_Polygamy_MCMC_model <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
                                         pedigree=LS_Polygamy_theTree,
                                         prior=pr,
                                         data=LS_phen_Polygamy_metaData,
-                                        pr = TRUE,
-                                        burnin = BURNIN,
-                                        nitt=NITT,
-                                        thin=THIN)
+                                        pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
 summary(LS_phen_Polygamy_MCMC_model)
 ```
 
@@ -589,16 +509,13 @@ summary(LS_phen_Polygamy_MCMC_model)
 summary(LS_phen_Polygamy_MCMC_model)
 ```
 
-Next we run the MCMC model for the genetic variance in lifespan in polygamous species.
+Next, we run the MCMC model for the genetic variance in lifespan in polygamous species (Table 1).
 ```{r, echo = T, results = 'hide'}
 LS_gen_Polygamy_MCMC_model <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_ID,
                                        pedigree=LS_Polygamy_theTree,
                                        prior=pr,
                                        data=LS_gen_Polygamy_metaData,
-                                       pr = TRUE,
-                                       burnin = BURNIN,
-                                       nitt=NITT,
-                                       thin=THIN)
+                                       pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
 summary(LS_gen_Polygamy_MCMC_model)
 ```
 
@@ -608,12 +525,11 @@ summary(LS_gen_Polygamy_MCMC_model)
 
 ### Analyses of vertebrates
 
-In this part we analysed the vertebrate species separately, as all monogamous species in this dataset are vertebrates.
+In this part, we analysed the vertebrate species separately, as all monogamous species in this dataset are vertebrates (see table S5 & S6).
 
-We first subset our dataframe to only include vertebrates (mammalia, aves or reptilia). 
+We first subset our data frame to only include vertebrates (mammalia, aves or reptilia). 
 ```{r, echo = T, results = 'hide'}
 Data_vertebrates <-subset(Data, Class == "Mammalia" | Class == "Aves" | Class == "Reptilia")
-
 
 stacked_gen_Data_vertebrates <- gather(Data_vertebrates, key = "Sex",value = "genCV", genCV_male, genCV_female)
 stacked_phen_Data_vertebrates <- gather(Data_vertebrates, key = "Sex",value = "phenCV", phenCV_male, phenCV_female)
@@ -626,19 +542,441 @@ RS_phen_metaData_vertebrates<-subset(stacked_phen_Data_vertebrates, FitnessCat =
 LS_phen_metaData_vertebrates<-subset(stacked_phen_Data_vertebrates, FitnessCat == "LS")
 ```
 
-```{r, echo = T, results = 'hide'}
+#### MCMCs for reproductive success
+
+We pruned the phylogenetic tree to all vertebrate species with data on reproductive success.  
+```{r, echo = T, results = 'hide',fig.show='hide'}
+## PRUNE PHYLOGENETIC TREE TO DATA SUBSET
+RS_gen_metaData_vertebrates$animal <- factor(RS_gen_metaData_vertebrates$animal)
+is.factor(RS_gen_metaData_vertebrates$animal)
+RS_Species_Data_vertebrates <- unique(RS_gen_metaData_vertebrates$animal)
+summary(RS_Species_Data_vertebrates)
+RS_theTree_vertebrates<-drop.tip(theTree, theTree$tip.label[-na.omit(match(RS_Species_Data_vertebrates, theTree$tip.label))])
+plot(RS_theTree_vertebrates)
+
+
+RS_phen_metaData_vertebrates$Index <- as.factor(RS_phen_metaData_vertebrates$Index)
+RS_phen_metaData_vertebrates$Study_ID <- as.factor(RS_phen_metaData_vertebrates$Study_ID)
+RS_gen_metaData_vertebrates$Index <- as.factor(RS_gen_metaData_vertebrates$Index)
+RS_gen_metaData_vertebrates$Study_ID <- as.factor(RS_gen_metaData_vertebrates$Study_ID)
 ```
 
+We then first ran the MCMC models for the phenotypic variance in reproductive success in vertebrate species (Table S5).  
 ```{r, echo = T, results = 'hide'}
-
+RS_phen_MCMC_model_vertebrates <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
+                               pedigree=RS_theTree,
+                               prior=pr,
+                               data=RS_phen_metaData_vertebrates,
+                               pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(RS_phen_MCMC_model_vertebrates)
 ```
 
-```{r, echo = T, results = 'hide'}
+```{r,echo=F}
+summary(RS_phen_MCMC_model_vertebrates)
 ```
 
+Next, we ran the MCMC model for the phenotypic variance in reproductive success in vertebrate species including an interaction of mating system ('Mating_system') and sex (Table S6).
 ```{r, echo = T, results = 'hide'}
-
+RS_phen_MatSyst_MCMC_model_vertebrates <- MCMCglmm(phenCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
+                                       pedigree=RS_theTree,
+                                       prior=pr,
+                                       data=RS_phen_metaData_vertebrates,
+                                       pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(RS_phen_MatSyst_MCMC_model_vertebrates)
 ```
 
-```{r, echo = T, results = 'hide'}
+```{r,echo=F}
+summary(RS_phen_MatSyst_MCMC_model_vertebrates)
 ```
+
+Then we ran the MCMC models for the genetic variance in reproductive success in vertebrate species (Table S5).  
+```{r, echo = T, results = 'hide'}
+RS_gen_MCMC_model_vertebrates <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_ID,
+                              pedigree=RS_theTree,
+                              prior=pr,
+                              data=RS_gen_metaData_vertebrates,
+                              pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(RS_gen_MCMC_model_vertebrates)
+```
+
+```{r,echo=F}
+summary(RS_gen_MCMC_model_vertebrates)
+```
+
+Next, we run the MCMC model for the genetic variance in reproductive success in vertebrate species including an interaction of mating system ('Mating_system') and sex (Table S6).
+```{r, echo = T, results = 'hide'}
+RS_gen_MatSyst_MCMC_model_vertebrates <- MCMCglmm(genCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
+                                      pedigree=RS_theTree,
+                                      prior=pr,
+                                      data=RS_gen_metaData_vertebrates,
+                                      pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(RS_gen_MatSyst_MCMC_model_vertebrates)
+```
+
+```{r,echo=F}
+summary(RS_gen_MatSyst_MCMC_model_vertebrates)
+```
+
+#### MCMCs for lifespan
+Now followed the vertebrate specific MCMCs for lifespan.
+We pruned the phylogenetic tree to all vertebrate species with data on lifespan.  
+```{r, echo = T, results = 'hide',fig.show='hide'}
+## PRUNE PHYLOGENETIC TREE TO DATA SUBSET
+LS_gen_metaData_vertebrates$animal <- factor(LS_gen_metaData_vertebrates$animal)
+is.factor(LS_gen_metaData_vertebrates$animal)
+LS_Species_Data_vertebrates <- unique(LS_gen_metaData_vertebrates$animal)
+summary(LS_Species_Data_vertebrates)
+LS_theTree_vertebrates<-drop.tip(theTree, theTree$tip.label[-na.omit(match(LS_Species_Data_vertebrates, theTree$tip.label))])
+plot(LS_theTree_vertebrates)
+
+LS_phen_metaData_vertebrates$Index <- as.factor(LS_phen_metaData_vertebrates$Index)
+LS_phen_metaData_vertebrates$Study_ID <- as.factor(LS_phen_metaData_vertebrates$Study_ID)
+LS_gen_metaData_vertebrates$Index <- as.factor(LS_gen_metaData_vertebrates$Index)
+LS_gen_metaData_vertebrates$Study_ID <- as.factor(LS_gen_metaData_vertebrates$Study_ID)
+```
+
+We then ran the MCMC models, first for the phenotypic variance in lifespan in vertebrate species (Table S5).  
+```{r, echo = T, results = 'hide'}
+LS_phen_MCMC_model_vertebrates <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
+                                           pedigree=LS_theTree,
+                                           prior=pr,
+                                           data=LS_phen_metaData_vertebrates,
+                                           pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(LS_phen_MCMC_model_vertebrates)
+```
+
+```{r,echo=F}
+summary(LS_phen_MCMC_model_vertebrates)
+```
+
+Next, we ran the MCMC model for the phenotypic variance in lifespan in vertebrate species including an interaction of mating system ('Mating_system') and sex (Table S6).
+```{r, echo = T, results = 'hide'}
+LS_phen_MatSyst_MCMC_model_vertebrates <- MCMCglmm(phenCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
+                                                   pedigree=LS_theTree,
+                                                   prior=pr,
+                                                   data=LS_phen_metaData_vertebrates,
+                                                   pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(LS_phen_MatSyst_MCMC_model_vertebrates)
+```
+
+```{r,echo=F}
+summary(LS_phen_MatSyst_MCMC_model_vertebrates)
+```
+
+Then we ran the MCMC models for the genetic variance in lifespan in vertebrate species (Table S5).  
+```{r, echo = T, results = 'hide'}
+LS_gen_MCMC_model_vertebrates <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_ID,
+                                          pedigree=LS_theTree,
+                                          prior=pr,
+                                          data=LS_gen_metaData_vertebrates,
+                                          pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(LS_gen_MCMC_model_vertebrates)
+```
+
+```{r,echo=F}
+summary(LS_gen_MCMC_model_vertebrates)
+```
+
+Next, we ran the MCMC model for the genetic variance in lifespan in vertebrate species including an interaction of mating system ('Mating_system') and sex (Table S6).
+```{r, echo = T, results = 'hide'}
+LS_gen_MatSyst_MCMC_model_vertebrates <- MCMCglmm(genCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
+                                                  pedigree=LS_theTree,
+                                                  prior=pr,
+                                                  data=LS_gen_metaData_vertebrates,
+                                                  pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(LS_gen_MatSyst_MCMC_model_vertebrates)
+```
+
+```{r,echo=F}
+summary(LS_gen_MatSyst_MCMC_model_vertebrates)
+```
+
+### Analyses of vertebrates by mating system
+
+Finally, we analysed the vertebrate species split by mating system.  
+
+We first subset our vertebrates data frame into socially monogamous and polygamous species. 
+```{r, echo = T, results = 'hide'}
+## additional subsetting
+RS_gen_Monogamy_metaData_vertebrates<-subset(RS_gen_metaData_vertebrates, Mating_system == "monogamy")
+RS_gen_Polygamy_metaData_vertebrates<-subset(RS_gen_metaData_vertebrates, Mating_system == "polygamy")
+
+RS_phen_Monogamy_metaData_vertebrates<-subset(RS_phen_metaData_vertebrates, Mating_system == "monogamy")
+RS_phen_Polygamy_metaData_vertebrates<-subset(RS_phen_metaData_vertebrates, Mating_system == "polygamy")
+
+LS_gen_Monogamy_metaData_vertebrates<-subset(LS_gen_metaData_vertebrates, Mating_system == "monogamy")
+LS_gen_Polygamy_metaData_vertebrates<-subset(LS_gen_metaData_vertebrates, Mating_system == "polygamy")
+
+LS_phen_Monogamy_metaData_vertebrates<-subset(LS_phen_metaData_vertebrates, Mating_system == "monogamy")
+LS_phen_Polygamy_metaData_vertebrates<-subset(LS_phen_metaData_vertebrates, Mating_system == "polygamy")
+```
+
+We prune the phylogenetic trees to all vertebrate species with data on reproductive success or lifespan for monogamous and polygamous species separately.  
+```{r, echo = T, results = 'hide',fig.show='hide'}
+## PRUNE PHYLOGENETIC TREES
+RS_gen_Monogamy_metaData_vertebrates$animal <- factor(RS_gen_Monogamy_metaData_vertebrates$animal)
+RS_Monogamy_Species_Data_vertebrates <- unique(RS_gen_Monogamy_metaData_vertebrates$animal)
+summary(RS_Monogamy_Species_Data_vertebrates)
+RS_Monogamy_theTree_vertebrates<-drop.tip(theTree, theTree$tip.label[-na.omit(match(RS_Monogamy_Species_Data_vertebrates, theTree$tip.label))])
+plot(RS_Monogamy_theTree_vertebrates)
+
+RS_gen_Polygamy_metaData_vertebrates$animal <- factor(RS_gen_Polygamy_metaData_vertebrates$animal)
+RS_Polygamy_Species_Data_vertebrates <- unique(RS_gen_Polygamy_metaData_vertebrates$animal)
+summary(RS_Polygamy_Species_Data_vertebrates)
+RS_Polygamy_theTree_vertebrates<-drop.tip(theTree, theTree$tip.label[-na.omit(match(RS_Polygamy_Species_Data_vertebrates, theTree$tip.label))])
+plot(RS_Polygamy_theTree_vertebrates)
+
+LS_gen_Monogamy_metaData_vertebrates$animal <- factor(LS_gen_Monogamy_metaData_vertebrates$animal)
+LS_Monogamy_Species_Data_vertebrates <- unique(LS_gen_Monogamy_metaData_vertebrates$animal)
+summary(LS_Monogamy_Species_Data_vertebrates)
+LS_Monogamy_theTree_vertebrates<-drop.tip(theTree, theTree$tip.label[-na.omit(match(LS_Monogamy_Species_Data_vertebrates, theTree$tip.label))])
+plot(LS_Monogamy_theTree_vertebrates)
+
+LS_gen_Polygamy_metaData_vertebrates$animal <- factor(LS_gen_Polygamy_metaData_vertebrates$animal)
+LS_Polygamy_Species_Data_vertebrates <- unique(LS_gen_Polygamy_metaData_vertebrates$animal)
+summary(LS_Polygamy_Species_Data_vertebrates)
+LS_Polygamy_theTree_vertebrates<-drop.tip(theTree, theTree$tip.label[-na.omit(match(LS_Polygamy_Species_Data_vertebrates, theTree$tip.label))])
+plot(LS_Polygamy_theTree_vertebrates)
+```
+
+#### MCMCs for reproductive success
+We then first ran the MCMC models for the phenotypic variance in reproductive success in socially monogamous vertebrate species (Table S5).  
+```{r, echo = T, results = 'hide'}
+RS_phen_Monogamy_MCMC_model_vertebrates <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
+                                        pedigree=RS_Monogamy_theTree,
+                                        prior=pr,
+                                        data=RS_phen_Monogamy_metaData_vertebrates,
+                                        pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(RS_phen_Monogamy_MCMC_model_vertebrates)
+```
+
+```{r,echo=F}
+summary(RS_phen_Monogamy_MCMC_model_vertebrates)
+```
+
+Next, we ran the MCMC model for the genetic variance in reproductive success in socially monogamous vertebrate species (Table S5).
+```{r, echo = T, results = 'hide'}
+RS_gen_Monogamy_MCMC_model_vertebrates <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_ID,
+                                       pedigree=RS_Monogamy_theTree,
+                                       prior=pr,
+                                       data=RS_gen_Monogamy_metaData_vertebrates,
+                                       pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(RS_gen_Monogamy_MCMC_model_vertebrates)
+```
+
+```{r,echo=F}
+summary(RS_gen_Monogamy_MCMC_model_vertebrates)
+```
+
+Then we ran the MCMC models for the phenotypic variance in reproductive success in polygamous vertebrate species (Table S5).
+```{r, echo = T, results = 'hide'}
+RS_phen_Polygamy_MCMC_model_vertebrates <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
+                                        pedigree=RS_Polygamy_theTree,
+                                        prior=pr,
+                                        data=RS_phen_Polygamy_metaData_vertebrates,
+                                        pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(RS_phen_Polygamy_MCMC_model_vertebrates)
+```
+
+```{r,echo=F}
+summary(RS_phen_Polygamy_MCMC_model_vertebrates)
+```
+
+Next, we ran the MCMC model for the genetic variance in reproductive success in polygamous vertebrate species (Table S5).
+```{r, echo = T, results = 'hide'}
+RS_gen_Polygamy_MCMC_model_vertebrates <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_ID,
+                                       pedigree=RS_Polygamy_theTree,
+                                       prior=pr,
+                                       data=RS_gen_Polygamy_metaData_vertebrates,
+                                       pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(RS_gen_Polygamy_MCMC_model_vertebrates)
+```
+
+```{r,echo=F}
+summary(RS_gen_Polygamy_MCMC_model_vertebrates)
+```
+
+#### MCMCs for lifespan
+Now followed the mating system specific MCMCs for lifespan in vertebrates.
+First, the MCMC for the phenotypic variance in lifespan in socially monogamous vertebrate species (Table S5).  
+```{r, echo = T, results = 'hide'}
+LS_phen_Monogamy_MCMC_model_vertebrates <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
+                                        pedigree=LS_Monogamy_theTree,
+                                        prior=pr,
+                                        data=LS_phen_Monogamy_metaData_vertebrates,
+                                        pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(LS_phen_Monogamy_MCMC_model_vertebrates)
+```
+
+```{r,echo=F}
+summary(LS_phen_Monogamy_MCMC_model_vertebrates)
+```
+
+Next, we ran the MCMC model for the genetic variance in lifespan in socially monogamous vertebrate species (Table S5).
+```{r, echo = T, results = 'hide'}
+LS_gen_Monogamy_MCMC_model_vertebrates <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_ID,
+                                       pedigree=LS_Monogamy_theTree,
+                                       prior=pr,
+                                       data=LS_gen_Monogamy_metaData_vertebrates,
+                                       pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(LS_gen_Monogamy_MCMC_model_vertebrates)
+```
+
+```{r,echo=F}
+summary(LS_gen_Monogamy_MCMC_model_vertebrates)
+```
+
+Then we ran the MCMC models for the phenotypic variance in lifespan in polygamous vertebrate species (Table S5).
+```{r, echo = T, results = 'hide'}
+LS_phen_Polygamy_MCMC_model_vertebrates <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
+                                        pedigree=LS_Polygamy_theTree,
+                                        prior=pr,
+                                        data=LS_phen_Polygamy_metaData_vertebrates,
+                                        pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(LS_phen_Polygamy_MCMC_model_vertebrates)
+```
+
+```{r,echo=F}
+summary(LS_phen_Polygamy_MCMC_model_vertebrates)
+```
+
+Next, we ran the MCMC model for the genetic variance in lifespan in polygamous vertebrate species (Table S5).
+```{r, echo = T, results = 'hide'}
+LS_gen_Polygamy_MCMC_model_vertebrates <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_ID,
+                                       pedigree=LS_Polygamy_theTree,
+                                       prior=pr,
+                                       data=LS_gen_Polygamy_metaData_vertebrates,
+                                       pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(LS_gen_Polygamy_MCMC_model_vertebrates)
+```
+
+```{r,echo=F}
+summary(LS_gen_Polygamy_MCMC_model_vertebrates)
+```
+
+### Methodological correlates
+
+In this final part of the analysis, we explored if the methodological moderators we collected interacted with the effect of sex on phenotypic and genetic variances. This was done to exclude that the methodological diversity in the data confounded the results. We explored effects of the study type (lab versus field studies) (see table S7), the estimate of the genetic variance (additive versus total VG) (see table S8) and the reproductive success estimate (annual versus lifetime reproductive success) (see table S9).
+
+#### Study type
+First, we explored the effect of study type (lab versus field studies).
+We began with the phenotypic variance in reproductive success (Table S7).
+```{r, echo = T, results = 'hide'}
+RS_phen_StudyType_MCMC_model  <- MCMCglmm(phenCV~factor(Sex) * factor(StudyType),random=~animal + Index + Study_ID,
+                                          pedigree=RS_theTree,data=RS_phen_metaData,
+                                          prior=pr, pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(RS_phen_StudyType_MCMC_model)
+```
+
+```{r,echo=F}
+summary(RS_phen_StudyType_MCMC_model)
+```
+
+Next, we ran the MCMC exploring the effect of study type on the genetic variance in reproductive success (Table S7).
+```{r, echo = T, results = 'hide'}
+RS_gen_StudyType_MCMC_model  <- MCMCglmm(genCV~factor(Sex) * factor(StudyType),random=~animal + Index + Study_ID,
+                                         pedigree=RS_theTree,data=RS_gen_metaData,
+                                         prior=pr, pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(RS_gen_StudyType_MCMC_model)
+```
+
+```{r,echo=F}
+summary(RS_gen_StudyType_MCMC_model)
+```
+
+Then we ran the model for the phenotypic variance in lifespan (Table S7).
+```{r, echo = T, results = 'hide'}
+LS_phen_StudyType_MCMC_model  <- MCMCglmm(phenCV~factor(Sex) * factor(StudyType),random=~animal + Index + Study_ID,
+                                          pedigree=LS_theTree,data=LS_phen_metaData,
+                                          prior=pr, pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(LS_phen_StudyType_MCMC_model)
+```
+
+```{r,echo=F}
+summary(LS_phen_StudyType_MCMC_model)
+```
+
+Finally, we explored the effect of study type on the genetic variance in lifespan (Table S7).
+```{r, echo = T, results = 'hide'}
+LS_gen_StudyType_MCMC_model  <- MCMCglmm(genCV~factor(Sex) * factor(StudyType),random=~animal + Index + Study_ID,
+                                         pedigree=LS_theTree,data=LS_gen_metaData,
+                                         prior=pr, pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(LS_gen_StudyType_MCMC_model)
+```
+
+```{r,echo=F}
+summary(LS_gen_StudyType_MCMC_model)
+```
+
+#### Fitness estimate
+Secondly, we explored the effect of the type of estimate of the genetic variance (additive versus total VG).
+We began with the phenotypic variance in reproductive success (Table S8).
+```{r, echo = T, results = 'hide'}
+RS_phen_FitnessEstimate_MCMC_model <- MCMCglmm(phenCV~factor(Sex)*factor(FitnessEstimate),random=~animal + Index + Study_ID,
+                                               pedigree=RS_theTree,data=RS_phen_metaData,
+                                               prior=pr, pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(RS_phen_FitnessEstimate_MCMC_model)
+```
+
+```{r,echo=F}
+summary(RS_phen_FitnessEstimate_MCMC_model)
+```
+
+Next, we ran the MCMC exploring the effect of the fitness estimate on the genetic variance in reproductive success (Table S8).
+```{r, echo = T, results = 'hide'}
+RS_gen_FitnessEstimate_MCMC_model <- MCMCglmm(genCV~factor(Sex)*factor(FitnessEstimate),random=~animal + Index + Study_ID,
+                                              pedigree=RS_theTree,data=RS_gen_metaData,
+                                              prior=pr, pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(RS_gen_FitnessEstimate_MCMC_model)
+```
+
+```{r,echo=F}
+summary(RS_gen_FitnessEstimate_MCMC_model)
+```
+
+#### Reproductive success estimate
+Finally, we explored the effect of the reproductive success estimate (annual versus lifetime reproductive success).
+We began with the genetic variance in reproductive success (Table S9).
+```{r, echo = T, results = 'hide'}
+RS_gen_GenVar_estimate_MCMC_model <- MCMCglmm(genCV~factor(Sex)*factor(GenVar_estimate),random=~animal + Index + Study_ID,
+                                              pedigree=RS_theTree,data=RS_gen_metaData,
+                                              prior=pr, pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(RS_gen_GenVar_estimate_MCMC_model)
+```
+
+```{r,echo=F}
+summary(RS_gen_GenVar_estimate_MCMC_model)
+```
+
+Next, we ran the MCMC exploring the effect of the reproductive success estimate on the genetic variance in lifespan (Table S9).
+```{r, echo = T, results = 'hide'}
+LS_gen_GenVar_estimate_MCMC_model <- MCMCglmm(genCV~factor(Sex)*factor(GenVar_estimate),random=~animal + Index + Study_ID,
+                                              pedigree=LS_theTree,data=LS_gen_metaData,
+                                              prior=pr, pr = TRUE, burnin = BURNIN, nitt=NITT, thin=THIN)
+summary(LS_gen_GenVar_estimate_MCMC_model)
+```
+
+```{r,echo=F}
+summary(LS_gen_GenVar_estimate_MCMC_model)
+```
+
+### References
+
+Berger, D., Grieshop, K., Lind, M.I., Goenaga, J., Maklakov, A.A. & Arnqvist, G. (2014). Intralocus sexual conflict and environmental stress. Evolution, 68, 2184-2196.
+
+de Villemereuil, P. & Nakagawa, S. (2014). General quantitative genetic methods for comparative biology. In: Modern phylogenetic comparative methods and their application in evolutionary biology (ed. Garamszegi, LZ). Springer-Verlag Berlin Heidelberg, p. 552.
+
+Fox, C., Bush, M., Roff, D. & Wallin, W. (2004). Evolutionary genetics of lifespan and mortality rates in two populations of the seed beetle, Callosobruchus maculatus. Heredity, 92, 170-181.
+
+Hadfield, J.D. (2010). MCMC methods for multi-response generalized linear mixed models: the MCMCglmm R package. Journal of Statistical Software, 33, 1-22.
+
+Holman, L. & Jacomb, F. (2017). The effects of stress and sex on selection, genetic covariance, and the evolutionary response. J. Evol. Biol., 30, 1898-1909.
+
+Janicke, T., Häderer, I.K., Lajeunesse, M.J. & Anthes, N. (2016). Darwinian sex roles confirmed across the animal kingdom. Science Advances, 2, e1500983.
+
+Nakagawa, S., Poulin, R., Mengersen, K., Reinhold, K., Engqvist, L., Lagisz, M. et al. (2015). Meta-analysis of variation: ecological and evolutionary applications and beyond. Methods in Ecology and Evolution, 6, 143-152.
+
+Nakagawa, S. & Schielzeth, H. (2013). A general and simple method for obtaining R2 from generalized linear mixed-effects models. Methods in Ecology and Evolution, 4, 133-142.
+
+Orme, D., Freckleton, R., Thomas, G., Petzoldt, T., Fritz, S., Isaac, N. et al. (2018). caper - Comparative Analyses of Phylogenetics and Evolution in R. Version 1.0.1.
+
