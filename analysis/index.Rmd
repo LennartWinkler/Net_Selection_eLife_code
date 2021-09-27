@@ -12,6 +12,7 @@ Supplementary material reporting R code for the manuscript 'Stronger net selecti
 ## Load and prepare data
 
 Before we started the analyses, we loaded all necessary packages and data.
+All data have been published at https://zenodo.org/record/5529490#.YVFnzlObE0N.
 
 ```{r, warning=FALSE, message=FALSE, results='hide'}
 #load packages
@@ -27,10 +28,10 @@ library(reshape2)
 
 #load data
 setwd(".")
-Data <- read.delim("./data/Winkler_et_al_2021_DataTable.txt")
-theTree <- read.tree("./data/META_SexSpecGenVar_Pylogeny_v05_NEWICK.txt") #phylogenetic tree
+Data <- read.delim("./data/Winkler_et_al_2021_eLife_DataTable.txt")
+theTree <- read.tree("./data/Winkler_et_al_2021_eLife_Phylogeny.txt") #phylogenetic tree
 #Load phylogenetic tree for PIC analyses
-PIC_Tree <- read.tree("./data/META_SexSpecGenVar_Pylogeny_v05_PIC.txt")
+PIC_Tree <- read.tree("./data/Winkler_et_al_2021_eLife_Phylogeny_PIC.txt")
 
 ## Reorganising and subsetting dataset ####
 
@@ -203,7 +204,7 @@ summary(RS_phen_MCMC_model)
 summary(RS_phen_MCMC_model)
 ```
 
-We then expanded the model to include an interaction of mating system ('Mating_system') and sex (Table S4).
+We then expanded the model to include an interaction of mating system ('Mating_system') and sex (Supplementary File 1).
 ```{r, echo = T, results = 'hide'}
 RS_phen_MatSyst_MCMC_model <- MCMCglmm(phenCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
                                   pedigree=RS_theTree,
@@ -233,7 +234,7 @@ summary(RS_gen_MCMC_model)
 summary(RS_gen_MCMC_model)
 ```
 
-Secondly, we included an interaction of mating system ('Mating_system') and sex (Table S4).
+Secondly, we included an interaction of mating system ('Mating_system') and sex (Supplementary File 1).
 ```{r, echo = T, results = 'hide'}
 RS_gen_MatSyst_MCMC_model <- MCMCglmm(genCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
                   pedigree=RS_theTree,
@@ -312,7 +313,7 @@ summary(LS_phen_MCMC_model)
 summary(LS_phen_MCMC_model)
 ```
 
-We then expanded the model to include an interaction of mating system ('Mating_system') and sex (Table S4).
+We then expanded the model to include an interaction of mating system ('Mating_system') and sex (Supplementary File 1).
 ```{r, echo = T, results = 'hide'}
 LS_phen_MatSyst_MCMC_model <- MCMCglmm(phenCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
                                        pedigree=LS_theTree,
@@ -342,7 +343,7 @@ summary(LS_gen_MCMC_model)
 summary(LS_gen_MCMC_model)
 ```
 
-Secondly, including an interaction of mating system ('Mating_system') and sex (Table S4).
+Secondly, including an interaction of mating system ('Mating_system') and sex (Supplementary File 1).
 ```{r, echo = T, results = 'hide'}
 LS_gen_MatSyst_MCMC_model <- MCMCglmm(genCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
                                       pedigree=LS_theTree,
@@ -525,7 +526,7 @@ summary(LS_gen_Polygamy_MCMC_model)
 
 ### Analyses of vertebrates
 
-In this part, we analysed the vertebrate species separately, as all monogamous species in this dataset are vertebrates (see table S5 & S6).
+In this part, we analysed the vertebrate species separately, as all monogamous species in this dataset are vertebrates (see Supplementary Files 2 & 3).
 
 We first subset our data frame to only include vertebrates (mammalia, aves or reptilia). 
 ```{r, echo = T, results = 'hide'}
@@ -561,7 +562,7 @@ RS_gen_metaData_vertebrates$Index <- as.factor(RS_gen_metaData_vertebrates$Index
 RS_gen_metaData_vertebrates$Study_ID <- as.factor(RS_gen_metaData_vertebrates$Study_ID)
 ```
 
-We then first ran the MCMC models for the phenotypic variance in reproductive success in vertebrate species (Table S5).  
+We then first ran the MCMC models for the phenotypic variance in reproductive success in vertebrate species (Supplementary File 2).  
 ```{r, echo = T, results = 'hide'}
 RS_phen_MCMC_model_vertebrates <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
                                pedigree=RS_theTree,
@@ -575,7 +576,7 @@ summary(RS_phen_MCMC_model_vertebrates)
 summary(RS_phen_MCMC_model_vertebrates)
 ```
 
-Next, we ran the MCMC model for the phenotypic variance in reproductive success in vertebrate species including an interaction of mating system ('Mating_system') and sex (Table S6).
+Next, we ran the MCMC model for the phenotypic variance in reproductive success in vertebrate species including an interaction of mating system ('Mating_system') and sex (Supplementary File 3).
 ```{r, echo = T, results = 'hide'}
 RS_phen_MatSyst_MCMC_model_vertebrates <- MCMCglmm(phenCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
                                        pedigree=RS_theTree,
@@ -589,7 +590,7 @@ summary(RS_phen_MatSyst_MCMC_model_vertebrates)
 summary(RS_phen_MatSyst_MCMC_model_vertebrates)
 ```
 
-Then we ran the MCMC models for the genetic variance in reproductive success in vertebrate species (Table S5).  
+Then we ran the MCMC models for the genetic variance in reproductive success in vertebrate species (Supplementary File 2).  
 ```{r, echo = T, results = 'hide'}
 RS_gen_MCMC_model_vertebrates <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_ID,
                               pedigree=RS_theTree,
@@ -603,7 +604,7 @@ summary(RS_gen_MCMC_model_vertebrates)
 summary(RS_gen_MCMC_model_vertebrates)
 ```
 
-Next, we run the MCMC model for the genetic variance in reproductive success in vertebrate species including an interaction of mating system ('Mating_system') and sex (Table S6).
+Next, we run the MCMC model for the genetic variance in reproductive success in vertebrate species including an interaction of mating system ('Mating_system') and sex (Supplementary File 3).
 ```{r, echo = T, results = 'hide'}
 RS_gen_MatSyst_MCMC_model_vertebrates <- MCMCglmm(genCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
                                       pedigree=RS_theTree,
@@ -635,7 +636,7 @@ LS_gen_metaData_vertebrates$Index <- as.factor(LS_gen_metaData_vertebrates$Index
 LS_gen_metaData_vertebrates$Study_ID <- as.factor(LS_gen_metaData_vertebrates$Study_ID)
 ```
 
-We then ran the MCMC models, first for the phenotypic variance in lifespan in vertebrate species (Table S5).  
+We then ran the MCMC models, first for the phenotypic variance in lifespan in vertebrate species (Supplementary File 2).  
 ```{r, echo = T, results = 'hide'}
 LS_phen_MCMC_model_vertebrates <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
                                            pedigree=LS_theTree,
@@ -649,7 +650,7 @@ summary(LS_phen_MCMC_model_vertebrates)
 summary(LS_phen_MCMC_model_vertebrates)
 ```
 
-Next, we ran the MCMC model for the phenotypic variance in lifespan in vertebrate species including an interaction of mating system ('Mating_system') and sex (Table S6).
+Next, we ran the MCMC model for the phenotypic variance in lifespan in vertebrate species including an interaction of mating system ('Mating_system') and sex (Supplementary File 3).
 ```{r, echo = T, results = 'hide'}
 LS_phen_MatSyst_MCMC_model_vertebrates <- MCMCglmm(phenCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
                                                    pedigree=LS_theTree,
@@ -663,7 +664,7 @@ summary(LS_phen_MatSyst_MCMC_model_vertebrates)
 summary(LS_phen_MatSyst_MCMC_model_vertebrates)
 ```
 
-Then we ran the MCMC models for the genetic variance in lifespan in vertebrate species (Table S5).  
+Then we ran the MCMC models for the genetic variance in lifespan in vertebrate species (Supplementary File 2).  
 ```{r, echo = T, results = 'hide'}
 LS_gen_MCMC_model_vertebrates <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_ID,
                                           pedigree=LS_theTree,
@@ -677,7 +678,7 @@ summary(LS_gen_MCMC_model_vertebrates)
 summary(LS_gen_MCMC_model_vertebrates)
 ```
 
-Next, we ran the MCMC model for the genetic variance in lifespan in vertebrate species including an interaction of mating system ('Mating_system') and sex (Table S6).
+Next, we ran the MCMC model for the genetic variance in lifespan in vertebrate species including an interaction of mating system ('Mating_system') and sex (Supplementary File 3).
 ```{r, echo = T, results = 'hide'}
 LS_gen_MatSyst_MCMC_model_vertebrates <- MCMCglmm(genCV~factor(Sex) * factor(Mating_system),random=~animal + Index + Study_ID,
                                                   pedigree=LS_theTree,
@@ -740,7 +741,7 @@ plot(LS_Polygamy_theTree_vertebrates)
 ```
 
 #### MCMCs for reproductive success
-We then first ran the MCMC models for the phenotypic variance in reproductive success in socially monogamous vertebrate species (Table S5).  
+We then first ran the MCMC models for the phenotypic variance in reproductive success in socially monogamous vertebrate species (Supplementary File 2).  
 ```{r, echo = T, results = 'hide'}
 RS_phen_Monogamy_MCMC_model_vertebrates <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
                                         pedigree=RS_Monogamy_theTree,
@@ -754,7 +755,7 @@ summary(RS_phen_Monogamy_MCMC_model_vertebrates)
 summary(RS_phen_Monogamy_MCMC_model_vertebrates)
 ```
 
-Next, we ran the MCMC model for the genetic variance in reproductive success in socially monogamous vertebrate species (Table S5).
+Next, we ran the MCMC model for the genetic variance in reproductive success in socially monogamous vertebrate species (Supplementary File 2).
 ```{r, echo = T, results = 'hide'}
 RS_gen_Monogamy_MCMC_model_vertebrates <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_ID,
                                        pedigree=RS_Monogamy_theTree,
@@ -768,7 +769,7 @@ summary(RS_gen_Monogamy_MCMC_model_vertebrates)
 summary(RS_gen_Monogamy_MCMC_model_vertebrates)
 ```
 
-Then we ran the MCMC models for the phenotypic variance in reproductive success in polygamous vertebrate species (Table S5).
+Then we ran the MCMC models for the phenotypic variance in reproductive success in polygamous vertebrate species (Supplementary File 2).
 ```{r, echo = T, results = 'hide'}
 RS_phen_Polygamy_MCMC_model_vertebrates <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
                                         pedigree=RS_Polygamy_theTree,
@@ -782,7 +783,7 @@ summary(RS_phen_Polygamy_MCMC_model_vertebrates)
 summary(RS_phen_Polygamy_MCMC_model_vertebrates)
 ```
 
-Next, we ran the MCMC model for the genetic variance in reproductive success in polygamous vertebrate species (Table S5).
+Next, we ran the MCMC model for the genetic variance in reproductive success in polygamous vertebrate species (Supplementary File 2).
 ```{r, echo = T, results = 'hide'}
 RS_gen_Polygamy_MCMC_model_vertebrates <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_ID,
                                        pedigree=RS_Polygamy_theTree,
@@ -798,7 +799,7 @@ summary(RS_gen_Polygamy_MCMC_model_vertebrates)
 
 #### MCMCs for lifespan
 Now followed the mating system specific MCMCs for lifespan in vertebrates.
-First, the MCMC for the phenotypic variance in lifespan in socially monogamous vertebrate species (Table S5).  
+First, the MCMC for the phenotypic variance in lifespan in socially monogamous vertebrate species (Supplementary File 2).  
 ```{r, echo = T, results = 'hide'}
 LS_phen_Monogamy_MCMC_model_vertebrates <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
                                         pedigree=LS_Monogamy_theTree,
@@ -812,7 +813,7 @@ summary(LS_phen_Monogamy_MCMC_model_vertebrates)
 summary(LS_phen_Monogamy_MCMC_model_vertebrates)
 ```
 
-Next, we ran the MCMC model for the genetic variance in lifespan in socially monogamous vertebrate species (Table S5).
+Next, we ran the MCMC model for the genetic variance in lifespan in socially monogamous vertebrate species (Supplementary File 2).
 ```{r, echo = T, results = 'hide'}
 LS_gen_Monogamy_MCMC_model_vertebrates <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_ID,
                                        pedigree=LS_Monogamy_theTree,
@@ -826,7 +827,7 @@ summary(LS_gen_Monogamy_MCMC_model_vertebrates)
 summary(LS_gen_Monogamy_MCMC_model_vertebrates)
 ```
 
-Then we ran the MCMC models for the phenotypic variance in lifespan in polygamous vertebrate species (Table S5).
+Then we ran the MCMC models for the phenotypic variance in lifespan in polygamous vertebrate species (Supplementary File 2).
 ```{r, echo = T, results = 'hide'}
 LS_phen_Polygamy_MCMC_model_vertebrates <- MCMCglmm(phenCV~factor(Sex),random=~animal + Index + Study_ID,
                                         pedigree=LS_Polygamy_theTree,
@@ -840,7 +841,7 @@ summary(LS_phen_Polygamy_MCMC_model_vertebrates)
 summary(LS_phen_Polygamy_MCMC_model_vertebrates)
 ```
 
-Next, we ran the MCMC model for the genetic variance in lifespan in polygamous vertebrate species (Table S5).
+Next, we ran the MCMC model for the genetic variance in lifespan in polygamous vertebrate species (Supplementary File 2).
 ```{r, echo = T, results = 'hide'}
 LS_gen_Polygamy_MCMC_model_vertebrates <- MCMCglmm(genCV~factor(Sex),random=~animal + Index + Study_ID,
                                        pedigree=LS_Polygamy_theTree,
@@ -856,11 +857,11 @@ summary(LS_gen_Polygamy_MCMC_model_vertebrates)
 
 ### Methodological correlates
 
-In this final part of the analysis, we explored if the methodological moderators we collected interacted with the effect of sex on phenotypic and genetic variances. This was done to exclude that the methodological diversity in the data confounded the results. We explored effects of the study type (lab versus field studies) (see table S7), the estimate of the genetic variance (additive versus total VG) (see table S8) and the reproductive success estimate (annual versus lifetime reproductive success) (see table S9).
+In this final part of the analysis, we explored if the methodological moderators we collected interacted with the effect of sex on phenotypic and genetic variances. This was done to exclude that the methodological diversity in the data confounded the results. We explored effects of the study type (lab versus field studies) (see Supplementary File 4), the estimate of the genetic variance (additive versus total VG) (see Supplementary File 5) and the reproductive success estimate (annual versus lifetime reproductive success) (see Supplementary File 6).
 
 #### Study type
 First, we explored the effect of study type (lab versus field studies).
-We began with the phenotypic variance in reproductive success (Table S7).
+We began with the phenotypic variance in reproductive success (Supplementary File 4).
 ```{r, echo = T, results = 'hide'}
 RS_phen_StudyType_MCMC_model  <- MCMCglmm(phenCV~factor(Sex) * factor(StudyType),random=~animal + Index + Study_ID,
                                           pedigree=RS_theTree,data=RS_phen_metaData,
@@ -872,7 +873,7 @@ summary(RS_phen_StudyType_MCMC_model)
 summary(RS_phen_StudyType_MCMC_model)
 ```
 
-Next, we ran the MCMC exploring the effect of study type on the genetic variance in reproductive success (Table S7).
+Next, we ran the MCMC exploring the effect of study type on the genetic variance in reproductive success (Supplementary File 4).
 ```{r, echo = T, results = 'hide'}
 RS_gen_StudyType_MCMC_model  <- MCMCglmm(genCV~factor(Sex) * factor(StudyType),random=~animal + Index + Study_ID,
                                          pedigree=RS_theTree,data=RS_gen_metaData,
@@ -884,7 +885,7 @@ summary(RS_gen_StudyType_MCMC_model)
 summary(RS_gen_StudyType_MCMC_model)
 ```
 
-Then we ran the model for the phenotypic variance in lifespan (Table S7).
+Then we ran the model for the phenotypic variance in lifespan (Supplementary File 4).
 ```{r, echo = T, results = 'hide'}
 LS_phen_StudyType_MCMC_model  <- MCMCglmm(phenCV~factor(Sex) * factor(StudyType),random=~animal + Index + Study_ID,
                                           pedigree=LS_theTree,data=LS_phen_metaData,
@@ -896,7 +897,7 @@ summary(LS_phen_StudyType_MCMC_model)
 summary(LS_phen_StudyType_MCMC_model)
 ```
 
-Finally, we explored the effect of study type on the genetic variance in lifespan (Table S7).
+Finally, we explored the effect of study type on the genetic variance in lifespan (Supplementary File 4).
 ```{r, echo = T, results = 'hide'}
 LS_gen_StudyType_MCMC_model  <- MCMCglmm(genCV~factor(Sex) * factor(StudyType),random=~animal + Index + Study_ID,
                                          pedigree=LS_theTree,data=LS_gen_metaData,
@@ -910,7 +911,7 @@ summary(LS_gen_StudyType_MCMC_model)
 
 #### Fitness estimate
 Secondly, we explored the effect of the type of estimate of the genetic variance (additive versus total VG).
-We began with the phenotypic variance in reproductive success (Table S8).
+We began with the phenotypic variance in reproductive success (Supplementary File 5).
 ```{r, echo = T, results = 'hide'}
 RS_phen_FitnessEstimate_MCMC_model <- MCMCglmm(phenCV~factor(Sex)*factor(FitnessEstimate),random=~animal + Index + Study_ID,
                                                pedigree=RS_theTree,data=RS_phen_metaData,
@@ -922,7 +923,7 @@ summary(RS_phen_FitnessEstimate_MCMC_model)
 summary(RS_phen_FitnessEstimate_MCMC_model)
 ```
 
-Next, we ran the MCMC exploring the effect of the fitness estimate on the genetic variance in reproductive success (Table S8).
+Next, we ran the MCMC exploring the effect of the fitness estimate on the genetic variance in reproductive success (Supplementary File 5).
 ```{r, echo = T, results = 'hide'}
 RS_gen_FitnessEstimate_MCMC_model <- MCMCglmm(genCV~factor(Sex)*factor(FitnessEstimate),random=~animal + Index + Study_ID,
                                               pedigree=RS_theTree,data=RS_gen_metaData,
@@ -936,7 +937,7 @@ summary(RS_gen_FitnessEstimate_MCMC_model)
 
 #### Reproductive success estimate
 Finally, we explored the effect of the reproductive success estimate (annual versus lifetime reproductive success).
-We began with the genetic variance in reproductive success (Table S9).
+We began with the genetic variance in reproductive success (Supplementary File 6).
 ```{r, echo = T, results = 'hide'}
 RS_gen_GenVar_estimate_MCMC_model <- MCMCglmm(genCV~factor(Sex)*factor(GenVar_estimate),random=~animal + Index + Study_ID,
                                               pedigree=RS_theTree,data=RS_gen_metaData,
@@ -948,7 +949,7 @@ summary(RS_gen_GenVar_estimate_MCMC_model)
 summary(RS_gen_GenVar_estimate_MCMC_model)
 ```
 
-Next, we ran the MCMC exploring the effect of the reproductive success estimate on the genetic variance in lifespan (Table S9).
+Next, we ran the MCMC exploring the effect of the reproductive success estimate on the genetic variance in lifespan (Supplementary File 6).
 ```{r, echo = T, results = 'hide'}
 LS_gen_GenVar_estimate_MCMC_model <- MCMCglmm(genCV~factor(Sex)*factor(GenVar_estimate),random=~animal + Index + Study_ID,
                                               pedigree=LS_theTree,data=LS_gen_metaData,
