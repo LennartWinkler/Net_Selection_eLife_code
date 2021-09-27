@@ -468,7 +468,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-09-22
+<strong>Last updated:</strong> 2021-09-27
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -559,16 +559,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomLennartWinklerNetSelectioneLifecodetree8c7305faddbc0995c08d540cb780e447827ae5e9targetblank8c7305fa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/LennartWinkler/Net_Selection_eLife_code/tree/8c7305faddbc0995c08d540cb780e447827ae5e9" target="_blank">8c7305f</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomLennartWinklerNetSelectioneLifecodetreea6602c7ce423c8fb3d7b49bf73fbd63d41debcb5targetblanka6602c7a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/LennartWinkler/Net_Selection_eLife_code/tree/a6602c7ce423c8fb3d7b49bf73fbd63d41debcb5" target="_blank">a6602c7</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomLennartWinklerNetSelectioneLifecodetree8c7305faddbc0995c08d540cb780e447827ae5e9targetblank8c7305fa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomLennartWinklerNetSelectioneLifecodetreea6602c7ce423c8fb3d7b49bf73fbd63d41debcb5targetblanka6602c7a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/LennartWinkler/Net_Selection_eLife_code/tree/8c7305faddbc0995c08d540cb780e447827ae5e9" target="_blank">8c7305f</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/LennartWinkler/Net_Selection_eLife_code/tree/a6602c7ce423c8fb3d7b49bf73fbd63d41debcb5" target="_blank">a6602c7</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -579,9 +579,9 @@ Ignored files:
     Ignored:    data/.Rhistory
 
 Untracked files:
-    Untracked:  data/META_SexSpecGenVar_Pylogeny_v05_NEWICK.txt
-    Untracked:  data/META_SexSpecGenVar_Pylogeny_v05_PIC.txt
-    Untracked:  data/Winkler_et_al_2021_DataTable.txt
+    Untracked:  data/Winkler_et_al_2021_eLife_DataTable.txt
+    Untracked:  data/Winkler_et_al_2021_eLife_Phylogeny.txt
+    Untracked:  data/Winkler_et_al_2021_eLife_Phylogeny_PIC.txt
 
 </code></pre>
 <p>
@@ -620,6 +620,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/LennartWinkler/Net_Selection_eLife_code/blob/a6602c7ce423c8fb3d7b49bf73fbd63d41debcb5/analysis/index.Rmd" target="_blank">a6602c7</a>
+</td>
+<td>
+LennartWinkler
+</td>
+<td>
+2021-09-27
+</td>
+<td>
+wflow_publish(republish = TRUE, all = T)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/LennartWinkler/Net_Selection_eLife_code/3b9b079b5b59f8c4075bc5fccadaf48cac74bcfd/docs/index.html" target="_blank">3b9b079</a>
+</td>
+<td>
+LennartWinkler
+</td>
+<td>
+2021-09-22
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -1344,7 +1378,7 @@ Start workflowr project.
 <p>Supplementary material reporting R code for the manuscript ‘Stronger net selection on males across animals’.</p>
 <div id="load-and-prepare-data" class="section level2">
 <h2>Load and prepare data</h2>
-<p>Before we started the analyses, we loaded all necessary packages and data.</p>
+<p>Before we started the analyses, we loaded all necessary packages and data. All data have been published at <a href="https://zenodo.org/record/5529490#.YVFnzlObE0N" class="uri">https://zenodo.org/record/5529490#.YVFnzlObE0N</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#load packages</span></a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw">library</span>(ape)</a>
@@ -1358,10 +1392,10 @@ Start workflowr project.
 <a class="sourceLine" id="cb1-11" title="11"></a>
 <a class="sourceLine" id="cb1-12" title="12"><span class="co">#load data</span></a>
 <a class="sourceLine" id="cb1-13" title="13"><span class="kw">setwd</span>(<span class="st">&quot;.&quot;</span>)</a>
-<a class="sourceLine" id="cb1-14" title="14">Data &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;./data/Winkler_et_al_2021_DataTable.txt&quot;</span>)</a>
-<a class="sourceLine" id="cb1-15" title="15">theTree &lt;-<span class="st"> </span><span class="kw">read.tree</span>(<span class="st">&quot;./data/META_SexSpecGenVar_Pylogeny_v05_NEWICK.txt&quot;</span>) <span class="co">#phylogenetic tree</span></a>
+<a class="sourceLine" id="cb1-14" title="14">Data &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;./data/Winkler_et_al_2021_eLife_DataTable.txt&quot;</span>)</a>
+<a class="sourceLine" id="cb1-15" title="15">theTree &lt;-<span class="st"> </span><span class="kw">read.tree</span>(<span class="st">&quot;./data/Winkler_et_al_2021_eLife_Phylogeny.txt&quot;</span>) <span class="co">#phylogenetic tree</span></a>
 <a class="sourceLine" id="cb1-16" title="16"><span class="co">#Load phylogenetic tree for PIC analyses</span></a>
-<a class="sourceLine" id="cb1-17" title="17">PIC_Tree &lt;-<span class="st"> </span><span class="kw">read.tree</span>(<span class="st">&quot;./data/META_SexSpecGenVar_Pylogeny_v05_PIC.txt&quot;</span>)</a>
+<a class="sourceLine" id="cb1-17" title="17">PIC_Tree &lt;-<span class="st"> </span><span class="kw">read.tree</span>(<span class="st">&quot;./data/Winkler_et_al_2021_eLife_Phylogeny_PIC.txt&quot;</span>)</a>
 <a class="sourceLine" id="cb1-18" title="18"></a>
 <a class="sourceLine" id="cb1-19" title="19"><span class="co">## Reorganising and subsetting dataset ####</span></a>
 <a class="sourceLine" id="cb1-20" title="20"></a>
@@ -1676,7 +1710,7 @@ units   0.05958  0.04009  0.08303    20000
 factor(Sex)phenCV_male    0.2341   0.1502   0.3231    20000 &lt;5e-05 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>We then expanded the model to include an interaction of mating system (‘Mating_system’) and sex (Table S4).</p>
+<p>We then expanded the model to include an interaction of mating system (‘Mating_system’) and sex (Supplementary File 1).</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">RS_phen_MatSyst_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(phenCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(Mating_system),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb22-2" title="2">                                  <span class="dt">pedigree=</span>RS_theTree,</a>
 <a class="sourceLine" id="cb22-3" title="3">                                  <span class="dt">prior=</span>pr,</a>
@@ -1771,7 +1805,7 @@ units   0.01469  0.01008  0.01966    20000
 factor(Sex)genCV_male   0.08653  0.04389  0.12967    20000 0.0002 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Secondly, we included an interaction of mating system (‘Mating_system’) and sex (Table S4).</p>
+<p>Secondly, we included an interaction of mating system (‘Mating_system’) and sex (Supplementary File 1).</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">RS_gen_MatSyst_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(Mating_system),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb26-2" title="2">                  <span class="dt">pedigree=</span>RS_theTree,</a>
 <a class="sourceLine" id="cb26-3" title="3">                  <span class="dt">prior=</span>pr,</a>
@@ -1900,7 +1934,7 @@ units   0.00341  0.00201 0.005072    20000
 factor(Sex)phenCV_male -0.004789 -0.030274  0.021496    20000 0.7104   
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>We then expanded the model to include an interaction of mating system (‘Mating_system’) and sex (Table S4).</p>
+<p>We then expanded the model to include an interaction of mating system (‘Mating_system’) and sex (Supplementary File 1).</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">LS_phen_MatSyst_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(phenCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(Mating_system),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb33-2" title="2">                                       <span class="dt">pedigree=</span>LS_theTree,</a>
 <a class="sourceLine" id="cb33-3" title="3">                                       <span class="dt">prior=</span>pr,</a>
@@ -1990,7 +2024,7 @@ units  0.002644 0.001612  0.00378    20000
 factor(Sex)genCV_male  0.016722 -0.005430  0.040323    20000 0.1464  
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Secondly, including an interaction of mating system (‘Mating_system’) and sex (Table S4).</p>
+<p>Secondly, including an interaction of mating system (‘Mating_system’) and sex (Supplementary File 1).</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">LS_gen_MatSyst_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(Mating_system),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb37-2" title="2">                                      <span class="dt">pedigree=</span>LS_theTree,</a>
 <a class="sourceLine" id="cb37-3" title="3">                                      <span class="dt">prior=</span>pr,</a>
@@ -2411,7 +2445,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 <div id="analyses-of-vertebrates" class="section level3">
 <h3>Analyses of vertebrates</h3>
-<p>In this part, we analysed the vertebrate species separately, as all monogamous species in this dataset are vertebrates (see table S5 &amp; S6).</p>
+<p>In this part, we analysed the vertebrate species separately, as all monogamous species in this dataset are vertebrates (see Supplementary Files 2 &amp; 3).</p>
 <p>We first subset our data frame to only include vertebrates (mammalia, aves or reptilia).</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">Data_vertebrates &lt;-<span class="kw">subset</span>(Data, Class <span class="op">==</span><span class="st"> &quot;Mammalia&quot;</span> <span class="op">|</span><span class="st"> </span>Class <span class="op">==</span><span class="st"> &quot;Aves&quot;</span> <span class="op">|</span><span class="st"> </span>Class <span class="op">==</span><span class="st"> &quot;Reptilia&quot;</span>)</a>
 <a class="sourceLine" id="cb60-2" title="2"></a>
@@ -2438,7 +2472,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <a class="sourceLine" id="cb62-2" title="2">RS_phen_metaData_vertebrates<span class="op">$</span>Study_ID &lt;-<span class="st"> </span><span class="kw">as.factor</span>(RS_phen_metaData_vertebrates<span class="op">$</span>Study_ID)</a>
 <a class="sourceLine" id="cb62-3" title="3">RS_gen_metaData_vertebrates<span class="op">$</span>Index &lt;-<span class="st"> </span><span class="kw">as.factor</span>(RS_gen_metaData_vertebrates<span class="op">$</span>Index)</a>
 <a class="sourceLine" id="cb62-4" title="4">RS_gen_metaData_vertebrates<span class="op">$</span>Study_ID &lt;-<span class="st"> </span><span class="kw">as.factor</span>(RS_gen_metaData_vertebrates<span class="op">$</span>Study_ID)</a></code></pre></div>
-<p>We then first ran the MCMC models for the phenotypic variance in reproductive success in vertebrate species (Table S5).</p>
+<p>We then first ran the MCMC models for the phenotypic variance in reproductive success in vertebrate species (Supplementary File 2).</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1">RS_phen_MCMC_model_vertebrates &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(phenCV<span class="op">~</span><span class="kw">factor</span>(Sex),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb63-2" title="2">                               <span class="dt">pedigree=</span>RS_theTree,</a>
 <a class="sourceLine" id="cb63-3" title="3">                               <span class="dt">prior=</span>pr,</a>
@@ -2479,7 +2513,7 @@ units   0.09002  0.04239   0.1505    21306
 factor(Sex)phenCV_male   0.18751  0.01349  0.35834    20000 0.0345 *
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Next, we ran the MCMC model for the phenotypic variance in reproductive success in vertebrate species including an interaction of mating system (‘Mating_system’) and sex (Table S6).</p>
+<p>Next, we ran the MCMC model for the phenotypic variance in reproductive success in vertebrate species including an interaction of mating system (‘Mating_system’) and sex (Supplementary File 3).</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1">RS_phen_MatSyst_MCMC_model_vertebrates &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(phenCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(Mating_system),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb65-2" title="2">                                       <span class="dt">pedigree=</span>RS_theTree,</a>
 <a class="sourceLine" id="cb65-3" title="3">                                       <span class="dt">prior=</span>pr,</a>
@@ -2532,7 +2566,7 @@ factor(Mating_system)polygamy
 factor(Sex)phenCV_male:factor(Mating_system)polygamy ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Then we ran the MCMC models for the genetic variance in reproductive success in vertebrate species (Table S5).</p>
+<p>Then we ran the MCMC models for the genetic variance in reproductive success in vertebrate species (Supplementary File 2).</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1">RS_gen_MCMC_model_vertebrates &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb67-2" title="2">                              <span class="dt">pedigree=</span>RS_theTree,</a>
 <a class="sourceLine" id="cb67-3" title="3">                              <span class="dt">prior=</span>pr,</a>
@@ -2573,7 +2607,7 @@ units   0.02015   0.0101  0.03242    20000
 factor(Sex)genCV_male  0.084344  0.003013  0.167764    20000 0.0458 *
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Next, we run the MCMC model for the genetic variance in reproductive success in vertebrate species including an interaction of mating system (‘Mating_system’) and sex (Table S6).</p>
+<p>Next, we run the MCMC model for the genetic variance in reproductive success in vertebrate species including an interaction of mating system (‘Mating_system’) and sex (Supplementary File 3).</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1">RS_gen_MatSyst_MCMC_model_vertebrates &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(Mating_system),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb69-2" title="2">                                      <span class="dt">pedigree=</span>RS_theTree,</a>
 <a class="sourceLine" id="cb69-3" title="3">                                      <span class="dt">prior=</span>pr,</a>
@@ -2636,7 +2670,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <a class="sourceLine" id="cb72-2" title="2">LS_phen_metaData_vertebrates<span class="op">$</span>Study_ID &lt;-<span class="st"> </span><span class="kw">as.factor</span>(LS_phen_metaData_vertebrates<span class="op">$</span>Study_ID)</a>
 <a class="sourceLine" id="cb72-3" title="3">LS_gen_metaData_vertebrates<span class="op">$</span>Index &lt;-<span class="st"> </span><span class="kw">as.factor</span>(LS_gen_metaData_vertebrates<span class="op">$</span>Index)</a>
 <a class="sourceLine" id="cb72-4" title="4">LS_gen_metaData_vertebrates<span class="op">$</span>Study_ID &lt;-<span class="st"> </span><span class="kw">as.factor</span>(LS_gen_metaData_vertebrates<span class="op">$</span>Study_ID)</a></code></pre></div>
-<p>We then ran the MCMC models, first for the phenotypic variance in lifespan in vertebrate species (Table S5).</p>
+<p>We then ran the MCMC models, first for the phenotypic variance in lifespan in vertebrate species (Supplementary File 2).</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1">LS_phen_MCMC_model_vertebrates &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(phenCV<span class="op">~</span><span class="kw">factor</span>(Sex),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb73-2" title="2">                                           <span class="dt">pedigree=</span>LS_theTree,</a>
 <a class="sourceLine" id="cb73-3" title="3">                                           <span class="dt">prior=</span>pr,</a>
@@ -2677,7 +2711,7 @@ units  0.003681 0.001224 0.007095    21065
 factor(Sex)phenCV_male -0.003234 -0.049740  0.043387    20000 0.8842  
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Next, we ran the MCMC model for the phenotypic variance in lifespan in vertebrate species including an interaction of mating system (‘Mating_system’) and sex (Table S6).</p>
+<p>Next, we ran the MCMC model for the phenotypic variance in lifespan in vertebrate species including an interaction of mating system (‘Mating_system’) and sex (Supplementary File 3).</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1">LS_phen_MatSyst_MCMC_model_vertebrates &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(phenCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(Mating_system),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb75-2" title="2">                                                   <span class="dt">pedigree=</span>LS_theTree,</a>
 <a class="sourceLine" id="cb75-3" title="3">                                                   <span class="dt">prior=</span>pr,</a>
@@ -2725,7 +2759,7 @@ factor(Mating_system)polygamy                         0.74345    20000 0.3333
 factor(Sex)phenCV_male:factor(Mating_system)polygamy -0.01288    20000 0.0307 *
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Then we ran the MCMC models for the genetic variance in lifespan in vertebrate species (Table S5).</p>
+<p>Then we ran the MCMC models for the genetic variance in lifespan in vertebrate species (Supplementary File 2).</p>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1">LS_gen_MCMC_model_vertebrates &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb77-2" title="2">                                          <span class="dt">pedigree=</span>LS_theTree,</a>
 <a class="sourceLine" id="cb77-3" title="3">                                          <span class="dt">prior=</span>pr,</a>
@@ -2764,7 +2798,7 @@ units  0.006555 0.002279  0.01211    20000
                       post.mean l-95% CI u-95% CI eff.samp pMCMC
 (Intercept)             0.12917 -0.28251  0.54413    20451 0.376
 factor(Sex)genCV_male   0.02424 -0.03988  0.08738    20000 0.421</code></pre>
-<p>Next, we ran the MCMC model for the genetic variance in lifespan in vertebrate species including an interaction of mating system (‘Mating_system’) and sex (Table S6).</p>
+<p>Next, we ran the MCMC model for the genetic variance in lifespan in vertebrate species including an interaction of mating system (‘Mating_system’) and sex (Supplementary File 3).</p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" title="1">LS_gen_MatSyst_MCMC_model_vertebrates &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(Mating_system),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb79-2" title="2">                                                  <span class="dt">pedigree=</span>LS_theTree,</a>
 <a class="sourceLine" id="cb79-3" title="3">                                                  <span class="dt">prior=</span>pr,</a>
@@ -2852,7 +2886,7 @@ factor(Sex)genCV_male:factor(Mating_system)polygamy    20000 0.210</code></pre>
 <a class="sourceLine" id="cb85-5" title="5"><span class="kw">plot</span>(LS_Polygamy_theTree_vertebrates)</a></code></pre></div>
 <div id="mcmcs-for-reproductive-success-2" class="section level4">
 <h4>MCMCs for reproductive success</h4>
-<p>We then first ran the MCMC models for the phenotypic variance in reproductive success in socially monogamous vertebrate species (Table S5).</p>
+<p>We then first ran the MCMC models for the phenotypic variance in reproductive success in socially monogamous vertebrate species (Supplementary File 2).</p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1">RS_phen_Monogamy_MCMC_model_vertebrates &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(phenCV<span class="op">~</span><span class="kw">factor</span>(Sex),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb86-2" title="2">                                        <span class="dt">pedigree=</span>RS_Monogamy_theTree,</a>
 <a class="sourceLine" id="cb86-3" title="3">                                        <span class="dt">prior=</span>pr,</a>
@@ -2893,7 +2927,7 @@ units  0.004651  0.00176 0.008672    21379
 factor(Sex)phenCV_male  -0.01260 -0.06223  0.03545    20000 0.5853  
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Next, we ran the MCMC model for the genetic variance in reproductive success in socially monogamous vertebrate species (Table S5).</p>
+<p>Next, we ran the MCMC model for the genetic variance in reproductive success in socially monogamous vertebrate species (Supplementary File 2).</p>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1">RS_gen_Monogamy_MCMC_model_vertebrates &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb88-2" title="2">                                       <span class="dt">pedigree=</span>RS_Monogamy_theTree,</a>
 <a class="sourceLine" id="cb88-3" title="3">                                       <span class="dt">prior=</span>pr,</a>
@@ -2932,7 +2966,7 @@ units   0.00753  0.00298  0.01386    19966
                       post.mean l-95% CI u-95% CI eff.samp pMCMC
 (Intercept)             0.21227 -0.14167  0.54623    20000 0.130
 factor(Sex)genCV_male  -0.01510 -0.07858  0.04649    18383 0.625</code></pre>
-<p>Then we ran the MCMC models for the phenotypic variance in reproductive success in polygamous vertebrate species (Table S5).</p>
+<p>Then we ran the MCMC models for the phenotypic variance in reproductive success in polygamous vertebrate species (Supplementary File 2).</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" title="1">RS_phen_Polygamy_MCMC_model_vertebrates &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(phenCV<span class="op">~</span><span class="kw">factor</span>(Sex),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb90-2" title="2">                                        <span class="dt">pedigree=</span>RS_Polygamy_theTree,</a>
 <a class="sourceLine" id="cb90-3" title="3">                                        <span class="dt">prior=</span>pr,</a>
@@ -2973,7 +3007,7 @@ units    0.1734  0.03728   0.3935    20000
 factor(Sex)phenCV_male    0.5599   0.1538   0.9827    20000 0.0137 *
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Next, we ran the MCMC model for the genetic variance in reproductive success in polygamous vertebrate species (Table S5).</p>
+<p>Next, we ran the MCMC model for the genetic variance in reproductive success in polygamous vertebrate species (Supplementary File 2).</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" title="1">RS_gen_Polygamy_MCMC_model_vertebrates &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb92-2" title="2">                                       <span class="dt">pedigree=</span>RS_Polygamy_theTree,</a>
 <a class="sourceLine" id="cb92-3" title="3">                                       <span class="dt">prior=</span>pr,</a>
@@ -3017,7 +3051,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 <div id="mcmcs-for-lifespan-2" class="section level4">
 <h4>MCMCs for lifespan</h4>
-<p>Now followed the mating system specific MCMCs for lifespan in vertebrates. First, the MCMC for the phenotypic variance in lifespan in socially monogamous vertebrate species (Table S5).</p>
+<p>Now followed the mating system specific MCMCs for lifespan in vertebrates. First, the MCMC for the phenotypic variance in lifespan in socially monogamous vertebrate species (Supplementary File 2).</p>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1">LS_phen_Monogamy_MCMC_model_vertebrates &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(phenCV<span class="op">~</span><span class="kw">factor</span>(Sex),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb94-2" title="2">                                        <span class="dt">pedigree=</span>LS_Monogamy_theTree,</a>
 <a class="sourceLine" id="cb94-3" title="3">                                        <span class="dt">prior=</span>pr,</a>
@@ -3058,7 +3092,7 @@ units  0.003209 0.0007803 0.007097    20000
 factor(Sex)phenCV_male   0.02688 -0.02605  0.07985    20000 0.2758  
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Next, we ran the MCMC model for the genetic variance in lifespan in socially monogamous vertebrate species (Table S5).</p>
+<p>Next, we ran the MCMC model for the genetic variance in lifespan in socially monogamous vertebrate species (Supplementary File 2).</p>
 <div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1">LS_gen_Monogamy_MCMC_model_vertebrates &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb96-2" title="2">                                       <span class="dt">pedigree=</span>LS_Monogamy_theTree,</a>
 <a class="sourceLine" id="cb96-3" title="3">                                       <span class="dt">prior=</span>pr,</a>
@@ -3097,7 +3131,7 @@ units  0.006645 0.001789  0.01379    20000
                       post.mean l-95% CI u-95% CI eff.samp pMCMC
 (Intercept)             0.14564 -0.18708  0.46842    20000 0.265
 factor(Sex)genCV_male   0.04893 -0.02428  0.13013    19025 0.187</code></pre>
-<p>Then we ran the MCMC models for the phenotypic variance in lifespan in polygamous vertebrate species (Table S5).</p>
+<p>Then we ran the MCMC models for the phenotypic variance in lifespan in polygamous vertebrate species (Supplementary File 2).</p>
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1">LS_phen_Polygamy_MCMC_model_vertebrates &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(phenCV<span class="op">~</span><span class="kw">factor</span>(Sex),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb98-2" title="2">                                        <span class="dt">pedigree=</span>LS_Polygamy_theTree,</a>
 <a class="sourceLine" id="cb98-3" title="3">                                        <span class="dt">prior=</span>pr,</a>
@@ -3136,7 +3170,7 @@ units   0.01186 0.0007259  0.03687    20000
                        post.mean l-95% CI u-95% CI eff.samp pMCMC
 (Intercept)              0.71490 -2.08563  3.65561    20000 0.305
 factor(Sex)phenCV_male  -0.07031 -0.21813  0.07990    20000 0.246</code></pre>
-<p>Next, we ran the MCMC model for the genetic variance in lifespan in polygamous vertebrate species (Table S5).</p>
+<p>Next, we ran the MCMC model for the genetic variance in lifespan in polygamous vertebrate species (Supplementary File 2).</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1">LS_gen_Polygamy_MCMC_model_vertebrates &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb100-2" title="2">                                       <span class="dt">pedigree=</span>LS_Polygamy_theTree,</a>
 <a class="sourceLine" id="cb100-3" title="3">                                       <span class="dt">prior=</span>pr,</a>
@@ -3179,10 +3213,10 @@ factor(Sex)genCV_male  -0.03284 -0.21857  0.15540    19017 0.643</code></pre>
 </div>
 <div id="methodological-correlates" class="section level3">
 <h3>Methodological correlates</h3>
-<p>In this final part of the analysis, we explored if the methodological moderators we collected interacted with the effect of sex on phenotypic and genetic variances. This was done to exclude that the methodological diversity in the data confounded the results. We explored effects of the study type (lab versus field studies) (see table S7), the estimate of the genetic variance (additive versus total VG) (see table S8) and the reproductive success estimate (annual versus lifetime reproductive success) (see table S9).</p>
+<p>In this final part of the analysis, we explored if the methodological moderators we collected interacted with the effect of sex on phenotypic and genetic variances. This was done to exclude that the methodological diversity in the data confounded the results. We explored effects of the study type (lab versus field studies) (see Supplementary File 4), the estimate of the genetic variance (additive versus total VG) (see Supplementary File 5) and the reproductive success estimate (annual versus lifetime reproductive success) (see Supplementary File 6).</p>
 <div id="study-type" class="section level4">
 <h4>Study type</h4>
-<p>First, we explored the effect of study type (lab versus field studies). We began with the phenotypic variance in reproductive success (Table S7).</p>
+<p>First, we explored the effect of study type (lab versus field studies). We began with the phenotypic variance in reproductive success (Supplementary File 4).</p>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1">RS_phen_StudyType_MCMC_model  &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(phenCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(StudyType),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb102-2" title="2">                                          <span class="dt">pedigree=</span>RS_theTree,<span class="dt">data=</span>RS_phen_metaData,</a>
 <a class="sourceLine" id="cb102-3" title="3">                                          <span class="dt">prior=</span>pr, <span class="dt">pr =</span> <span class="ot">TRUE</span>, <span class="dt">burnin =</span> BURNIN, <span class="dt">nitt=</span>NITT, <span class="dt">thin=</span>THIN)</a>
@@ -3228,7 +3262,7 @@ factor(StudyType)Laboratory                           21409 0.1259
 factor(Sex)phenCV_male:factor(StudyType)Laboratory    20139 0.4069    
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Next, we ran the MCMC exploring the effect of study type on the genetic variance in reproductive success (Table S7).</p>
+<p>Next, we ran the MCMC exploring the effect of study type on the genetic variance in reproductive success (Supplementary File 4).</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1">RS_gen_StudyType_MCMC_model  &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(StudyType),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb104-2" title="2">                                         <span class="dt">pedigree=</span>RS_theTree,<span class="dt">data=</span>RS_gen_metaData,</a>
 <a class="sourceLine" id="cb104-3" title="3">                                         <span class="dt">prior=</span>pr, <span class="dt">pr =</span> <span class="ot">TRUE</span>, <span class="dt">burnin =</span> BURNIN, <span class="dt">nitt=</span>NITT, <span class="dt">thin=</span>THIN)</a>
@@ -3274,7 +3308,7 @@ factor(StudyType)Laboratory                          20000 0.3494
 factor(Sex)genCV_male:factor(StudyType)Laboratory    20000 0.9339  
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Then we ran the model for the phenotypic variance in lifespan (Table S7).</p>
+<p>Then we ran the model for the phenotypic variance in lifespan (Supplementary File 4).</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1">LS_phen_StudyType_MCMC_model  &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(phenCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(StudyType),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb106-2" title="2">                                          <span class="dt">pedigree=</span>LS_theTree,<span class="dt">data=</span>LS_phen_metaData,</a>
 <a class="sourceLine" id="cb106-3" title="3">                                          <span class="dt">prior=</span>pr, <span class="dt">pr =</span> <span class="ot">TRUE</span>, <span class="dt">burnin =</span> BURNIN, <span class="dt">nitt=</span>NITT, <span class="dt">thin=</span>THIN)</a>
@@ -3320,7 +3354,7 @@ factor(StudyType)Laboratory                         0.311116    20532 0.2685
 factor(Sex)phenCV_male:factor(StudyType)Laboratory  0.052921    22732 0.9370  
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Finally, we explored the effect of study type on the genetic variance in lifespan (Table S7).</p>
+<p>Finally, we explored the effect of study type on the genetic variance in lifespan (Supplementary File 4).</p>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1">LS_gen_StudyType_MCMC_model  &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex) <span class="op">*</span><span class="st"> </span><span class="kw">factor</span>(StudyType),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb108-2" title="2">                                         <span class="dt">pedigree=</span>LS_theTree,<span class="dt">data=</span>LS_gen_metaData,</a>
 <a class="sourceLine" id="cb108-3" title="3">                                         <span class="dt">prior=</span>pr, <span class="dt">pr =</span> <span class="ot">TRUE</span>, <span class="dt">burnin =</span> BURNIN, <span class="dt">nitt=</span>NITT, <span class="dt">thin=</span>THIN)</a>
@@ -3367,7 +3401,7 @@ factor(Sex)genCV_male:factor(StudyType)Laboratory    20000 0.641</code></pre>
 </div>
 <div id="fitness-estimate" class="section level4">
 <h4>Fitness estimate</h4>
-<p>Secondly, we explored the effect of the type of estimate of the genetic variance (additive versus total VG). We began with the phenotypic variance in reproductive success (Table S8).</p>
+<p>Secondly, we explored the effect of the type of estimate of the genetic variance (additive versus total VG). We began with the phenotypic variance in reproductive success (Supplementary File 5).</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1">RS_phen_FitnessEstimate_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(phenCV<span class="op">~</span><span class="kw">factor</span>(Sex)<span class="op">*</span><span class="kw">factor</span>(FitnessEstimate),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb110-2" title="2">                                               <span class="dt">pedigree=</span>RS_theTree,<span class="dt">data=</span>RS_phen_metaData,</a>
 <a class="sourceLine" id="cb110-3" title="3">                                               <span class="dt">prior=</span>pr, <span class="dt">pr =</span> <span class="ot">TRUE</span>, <span class="dt">burnin =</span> BURNIN, <span class="dt">nitt=</span>NITT, <span class="dt">thin=</span>THIN)</a>
@@ -3413,7 +3447,7 @@ factor(FitnessEstimate)RS                           20000 0.1283
 factor(Sex)phenCV_male:factor(FitnessEstimate)RS    20907 0.0769 .  
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Next, we ran the MCMC exploring the effect of the fitness estimate on the genetic variance in reproductive success (Table S8).</p>
+<p>Next, we ran the MCMC exploring the effect of the fitness estimate on the genetic variance in reproductive success (Supplementary File 5).</p>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1">RS_gen_FitnessEstimate_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex)<span class="op">*</span><span class="kw">factor</span>(FitnessEstimate),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb112-2" title="2">                                              <span class="dt">pedigree=</span>RS_theTree,<span class="dt">data=</span>RS_gen_metaData,</a>
 <a class="sourceLine" id="cb112-3" title="3">                                              <span class="dt">prior=</span>pr, <span class="dt">pr =</span> <span class="ot">TRUE</span>, <span class="dt">burnin =</span> BURNIN, <span class="dt">nitt=</span>NITT, <span class="dt">thin=</span>THIN)</a>
@@ -3462,7 +3496,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 <div id="reproductive-success-estimate" class="section level4">
 <h4>Reproductive success estimate</h4>
-<p>Finally, we explored the effect of the reproductive success estimate (annual versus lifetime reproductive success). We began with the genetic variance in reproductive success (Table S9).</p>
+<p>Finally, we explored the effect of the reproductive success estimate (annual versus lifetime reproductive success). We began with the genetic variance in reproductive success (Supplementary File 6).</p>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1">RS_gen_GenVar_estimate_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex)<span class="op">*</span><span class="kw">factor</span>(GenVar_estimate),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb114-2" title="2">                                              <span class="dt">pedigree=</span>RS_theTree,<span class="dt">data=</span>RS_gen_metaData,</a>
 <a class="sourceLine" id="cb114-3" title="3">                                              <span class="dt">prior=</span>pr, <span class="dt">pr =</span> <span class="ot">TRUE</span>, <span class="dt">burnin =</span> BURNIN, <span class="dt">nitt=</span>NITT, <span class="dt">thin=</span>THIN)</a>
@@ -3513,7 +3547,7 @@ factor(GenVar_estimate)narrow-sense                       0.6737
 factor(Sex)genCV_male:factor(GenVar_estimate)narrow-sense 0.1397    
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Next, we ran the MCMC exploring the effect of the reproductive success estimate on the genetic variance in lifespan (Table S9).</p>
+<p>Next, we ran the MCMC exploring the effect of the reproductive success estimate on the genetic variance in lifespan (Supplementary File 6).</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1">LS_gen_GenVar_estimate_MCMC_model &lt;-<span class="st"> </span><span class="kw">MCMCglmm</span>(genCV<span class="op">~</span><span class="kw">factor</span>(Sex)<span class="op">*</span><span class="kw">factor</span>(GenVar_estimate),<span class="dt">random=</span><span class="op">~</span>animal <span class="op">+</span><span class="st"> </span>Index <span class="op">+</span><span class="st"> </span>Study_ID,</a>
 <a class="sourceLine" id="cb116-2" title="2">                                              <span class="dt">pedigree=</span>LS_theTree,<span class="dt">data=</span>LS_gen_metaData,</a>
 <a class="sourceLine" id="cb116-3" title="3">                                              <span class="dt">prior=</span>pr, <span class="dt">pr =</span> <span class="ot">TRUE</span>, <span class="dt">burnin =</span> BURNIN, <span class="dt">nitt=</span>NITT, <span class="dt">thin=</span>THIN)</a>
